@@ -42,3 +42,33 @@ Isso significa que qualquer outro tipo de formulário mais elaborado, precisamos
 
 ***IMPORTANTE:*** Ao implementar a interface ```ControlValueAccessor```, ela te dará 3 metodos: ```writeValue```,
 ```registerOnChange``` e ```registerOnTouched```, esses metodos só podem ser utilizados pelo componente e ou diretiva que está implementando esse metodo, componente pai NÃO PODE utilizar esses metodos, pq eles são de uso de callback do framework
+
+
+## Provide a NG_VALUE_ACCESSOR
+---
+<br>
+
+provide: 
+
+O que essa configuração faz? <br>
+Estamos adicionando o componente à lista de acessadores de valor conhecido, todos registrados com a chave de injeção de dependência exclusiva NG_VALUE_ACCESSOR (também conhecida como token de injeção).
+
+multi: true 
+ 
+ Isso significa que essa dependência fornece uma lista de valores, e não apenas um valor. Isso é normal porque existem muitos acessadores de valor registrados no Angular Forms além do nosso.
+
+useExisting: NomeDoSeuComponente
+
+ Estamos dizendo que toda a configuração a cima se referencia ao ComponenteX
+
+## Validator interface
+---
+
+<br>
+
+Utilizamos o ```validator interface``` APENAS SE iremos precisar de uma validação específica que só vai ter nesse componente, exemplo:
+
+Meu formulário valida se o calculo de dois campos for diferente de 5 ele deve retornar um erro.
+
+Então como esse calculo é bem específico, podemos utilizazar o ```Validator Interface``` para 
+fazer essa validação específica para esse custom form.
