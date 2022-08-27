@@ -6,7 +6,12 @@ Link ref: [implementando micro front utilizando angular elements](https://dzone.
 ---
 <br>
 
-...
+## Passo 1
+
+Instale essas dependencias:
+- npm install @angular/element --save
+- npm install ngx-build-plus --save
+
 
 <br>
 
