@@ -10,7 +10,13 @@ Link ref: [implementando micro front utilizando angular elements](https://dzone.
 
 Instale essas dependencias:
 - npm install @angular/element --save
-- npm install ngx-build-plus --save
+- npm install ngx-build-plus --save **IMPORTANTE** ( a versão que você deve instalar deve ser a mesma do angular da aplicação, ou seja se seu angular é versão 10, você deve dar um  npm install ngx-build-plus@10.0.0 --save)
+
+**@angular/element** -> vai te permitir a criar Web Components ( componentes que rodam em qualquer aplicação ( seja react, vue, angular ) )
+
+**ngx-build-plus** -> vai fazer com que o build do angular gere apenas um bundle final .js
+ se atente a versão correta antes de instalar o ngx
+![](./images/ngx-build-plus-versions.png)
 
 
 <br>
