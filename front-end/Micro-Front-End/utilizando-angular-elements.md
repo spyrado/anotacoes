@@ -44,31 +44,45 @@ Link ref: [implementando micro front utilizando angular elements](https://dzone.
     &nbsp;&nbsp;&nbsp;&nbsp;`customElements.define('mfe-xpto', nomeDoSeuComponenteElement);` eu defino 
     o nome do componente, e passo como segundo parametro o componente que vai ter esse nome, ou seja sempre que eu quiser chamar o meu micro front em outra aplicação o nome que eu devo chamar é oq eu colocar no lugar de `mfe-xpto`.
 
-  1. O seu `app.module.ts` deve ficar assim:
+     1. O seu `app.module.ts` deve ficar assim:
 
-          import { Injector, NgModule } from '@angular/core';
-          import { createCustomElement } from '@angular/elements';
-          import { BrowserModule } from '@angular/platform-browser';
+            import { Injector, NgModule } from '@angular/core';
+            import { createCustomElement } from '@angular/elements';
+            import { BrowserModule } from '@angular/platform-browser';
 
-          import { NOME_DO_COMPONENTE_MFE } from './NOME_DO_COMPONENTE_MFE.component';
+            import { NOME_DO_COMPONENTE_MFE } from './NOME_DO_COMPONENTE_MFE.component';
 
-          @NgModule({
-            declarations: [
-              NOME_DO_COMPONENTE_MFE
-            ],
-            imports: [
-              BrowserModule
-            ],
-          })
-          export class AppModule { 
+            @NgModule({
+              declarations: [
+                NOME_DO_COMPONENTE_MFE
+              ],
+              imports: [
+                BrowserModule
+              ],
+            })
+            export class AppModule { 
 
-            constructor(private injector: Injector) {}
+              constructor(private injector: Injector) {}
 
-            ngDoBootstrap() {
-              const nomeDoSeuComponenteElement = createCustomElement(NOME_DO_COMPONENTE_MFE, { injector: this.injector });
-              customElements.define('mfe-xpto', nomeDoSeuComponenteElement);
+              ngDoBootstrap() {
+                const nomeDoSeuComponenteElement = createCustomElement(NOME_DO_COMPONENTE_MFE, { injector: this.injector });
+                customElements.define('mfe-xpto', nomeDoSeuComponenteElement);
+              }
             }
-          }
+  7. Após ter feito isso, rode o comando `npm run bundle`, ele vai gerar o build do seu `MFE` -> `nome-do-seu-mfe.js`.
+  8. Fora do projeto, crie uma pasta chamada `emula-servidor`, clique com o direito nessa pasta e clique na opção `Git Bash Here`, ele vai abrir o terminal no caminho dessa pasta, já dentro do terminal, digite `code .` para que o vs code abra com referencia a essa pasta.
+  9. Já estando dentro do vs-code você deve estar na pasta `emula-servidor`, após isso deve colar o arquivo gerado no build (`nome-do-seu-mfe.js`) dentro dessa pasta `emula-servidor`.
+  10. Abra o console do vs code, e digite `npm i http-server` <br> 
+    É uma lib (https://www.npmjs.com/package/http-server), para que você consiga simular um servidor e testar o seu microfront em algum projeto core rodando localmente.
+  11. Já com o lib instalada, rode o comando: `http-server`, ele vai gerar um servidor local exemplo:
+  http://192.xxx.xxx.xx:8080,<br> copie esse servidor vá até o seu projeto angular CORE
+  12. no `index.html` do angular core cole o script antes de fechar a tag body, como no exemplo:
+    <script src="http://192.xxx.xxx.xx:8080/nome-do-seu-mfe.js"></script>
+    </body>
+  13. Pronto já temos o script injetado no angular que vai rodar o micro, agora é só colocar a tag do micro, em qualquer
+  lugar do código, por exemplo:<br> vá até o `app.component.html` e cole o nome da sua tag de micro que você definiu em: `customElements.define('mfe-xpto', nomeDoSeuComponenteElement);` que no caso do exemplo a tag é `mfe-xpto`.
+  14. E pronto, seu micro já deveria estar rodando 100% =)
+
 
 
 
