@@ -12,19 +12,19 @@ Link ref: [implementando micro front utilizando angular elements](https://dzone.
  1. Crie o seu projeto angular normalmente `ng new nome-do-seu-projeto --style=scss`
  2. Entre no projeto criado `cd nome-do-seu-projeto`
  3. Instale essa dependência que vai possibilitar a criação do micro: 
-    1. `npm install @angular/element --save`
+    1. `npm install @angular/elements --save`
  4. mude o arquivo `package.json` para essa configuração:
 
-    `"build":"ng build --prod --output-hashing=none",`<br>
+    `"build":"ng build --configuration production --output-hashing=none",`<br>
     `"package":"cat dist/nome-projeto/{polyfills,runtime,main}.js > ./dist/nome-projeto/nome-do-seu-mfe.js",`<br>
     `"bundle":"npm run build && npm run package"`
 
-    > `"build":"ng build --prod --output-hashing=none",`: Essa configuração vai fazer com que ele rode um build do micro front sem colocar HASH no arquivo<br>
+    > `"build":"ng build --configuration production --output-hashing=none",`: Essa configuração vai fazer com que ele rode um build do micro front sem colocar HASH no arquivo<br>
     `"package":"cat dist/nome-projeto/{polyfills,runtime,main}.js > ./dist/nome-projeto/nome-do-seu-mfe.js"`: Essa configuração,<br>
     vai possibilitar pegar todos os `.js` gerados no build e jogar para um só `arquivo.js` .<br>
     `"bundle":"npm run build && npm run package"`: vai juntar as duas configs acima, primeiro vai gerar o `build` do microfront, e após isso vai pegar rodar o `package` que vai pegar os arquivos `.js` do build gerado e vai gerar um único `arquivo.js`<br>
 
- 5. Vá até o app.module.ts e remova o `bootstrap: [ AppComponent ]`
+ 5. Vá até o `app.module.ts` e remova o `bootstrap: [ AppComponent ]`
  6. cole o código abaixo:
 
         export class AppModule {
@@ -69,12 +69,20 @@ Link ref: [implementando micro front utilizando angular elements](https://dzone.
                 customElements.define('mfe-xpto', nomeDoSeuComponenteElement);
               }
             }
-  7. Após ter feito isso, rode o comando `npm run bundle`, ele vai gerar o build do seu `MFE` -> `nome-do-seu-mfe.js`.
-  8. Fora do projeto, crie uma pasta chamada `emula-servidor`, clique com o direito nessa pasta e clique na opção `Git Bash Here`, ele vai abrir o terminal no caminho dessa pasta, já dentro do terminal, digite `code .` para que o vs code abra com referencia a essa pasta.
-  9. Já estando dentro do vs-code você deve estar na pasta `emula-servidor`, após isso deve colar o arquivo gerado no build (`nome-do-seu-mfe.js`) dentro dessa pasta `emula-servidor`.
-  10. Abra o console do vs code, e digite `npm i http-server` <br> 
+  7. remova os arquivos: <br>
+    - `app.component.ts`<br>
+    - `app.component.html`<br>
+    - `app.component.scss`
+  8. Crie o seu componente por exemplo:
+  `ng g c mfe-pokemons`
+  9. e insira ele em : `const nomeDoSeuComponenteElement = createCustomElement(MfePokemonsComponent, { injector: this.injector });`
+  10. declare ele em: `declarations: [ MfePokemonsComponent ]` do app.module.ts
+  11. Após ter feito isso, rode o comando `npm run bundle`, ele vai gerar o build do seu `MFE` -> `nome-do-seu-mfe.js`.
+  12. Fora do projeto, crie uma pasta chamada `emula-servidor`, clique com o direito nessa pasta e clique na opção `Git Bash Here`, ele vai abrir o terminal no caminho dessa pasta, já dentro do terminal, digite `code .` para que o vs code abra com referencia a essa pasta.
+  13. Já estando dentro do vs-code você deve estar na pasta `emula-servidor`, após isso deve colar o arquivo gerado no build (`nome-do-seu-mfe.js`) dentro dessa pasta `emula-servidor`.
+  14. Abra o console do vs code, e digite `npm i http-server` <br> 
     É uma lib (https://www.npmjs.com/package/http-server), para que você consiga simular um servidor e testar o seu microfront em algum projeto core rodando localmente.
-  11. Já com o lib instalada, rode o comando: `http-server`, ele vai gerar um servidor local exemplo:
+  15. Já com o lib instalada, rode o comando: `http-server`, ele vai gerar um servidor local exemplo:
   http://192.xxx.xxx.xx:8080,<br> copie esse servidor vá até o seu projeto angular CORE
   12. no `index.html` do angular core cole o script antes de fechar a tag body, como no exemplo:
     <script src="http://192.xxx.xxx.xx:8080/nome-do-seu-mfe.js"></script>
