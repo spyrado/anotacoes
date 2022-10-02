@@ -1,0 +1,1 @@
+![](./images/requisicao-http.png)
