@@ -18,3 +18,7 @@ Arquitetura do Projeto:
 
 Exemplo de toda essa arquitetura em imagem:
 ![](./images/arquitetura-em-camadas.png)
+<br/>
+<br/>
+<br/>
+![](./images/possiveis-estruturas-para-o-projeto.png)
