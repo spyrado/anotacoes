@@ -16,4 +16,12 @@ Precisamos utilizar um provedor para fazer a conversa entre o .NET e o Banco De 
 
 para instalar basta digitar 
 
+VIA CLI:
+
 dotnet add package Pomelo.EntityFrameworkCore.MySql
+
+OU
+
+VIA CONSOLE VISUAL STUDIO
+
+install-packagePomelo.EntityFrameworkCore.MySql
