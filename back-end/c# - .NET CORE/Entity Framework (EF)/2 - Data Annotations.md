@@ -29,3 +29,14 @@ public class Student
 ```
 
 Estou dizendo que StudentName lá no banco de dados deve ser Obrigatório, ou seja NOT NULL, assim garantimos que caso no front insira um valor nullo vai gerar um erro de retorno para ele.
+
+## Atributos para sobrescrever as convenções do EF Core
+
+1. `Key` -> Identifica como `Primary Key`
+2. `ForeignKey` -> Especifica que a prorpiedade é usada como uma `chave estrangeira`
+3. `Table("NOME_TABELA")` -> Define o nome da tabela para qual a classe será mapeada
+4. `Column` -> Define o nome da coluna para a qual a propriedade será mapeada
+5. `DataType` -> Associa um tipo de dados adicional a uma propriedade
+6. `NotMapped` -> Exclui a propriedade do mapeamento
+7. `StringLength` -> Define o tamanho mínimo e máximo permitido para o tipo
+8. `Required` -> Especifica que o valor do campo é obrigatório
