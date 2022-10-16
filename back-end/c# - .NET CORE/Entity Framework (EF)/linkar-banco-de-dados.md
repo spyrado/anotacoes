@@ -1,6 +1,8 @@
 # O que fazer para linkar com o banco
 
-Para mais infos: https://www.entityframeworktutorial.net/efcore/entity-framework-core-console-application.aspx
+Para mais infos: 
+- https://www.entityframeworktutorial.net/efcore/entity-framework-core-console-application.aspx
+- https://learn.microsoft.com/en-us/ef/core/modeling/relationships?tabs=fluent-api%2Cfluent-api-simple-key%2Csimple-key
 
 1. Crie a Entidade
 

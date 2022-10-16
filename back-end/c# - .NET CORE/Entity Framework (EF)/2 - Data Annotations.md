@@ -40,3 +40,17 @@ Estou dizendo que StudentName lá no banco de dados deve ser Obrigatório, ou se
 6. `NotMapped` -> Exclui a propriedade do mapeamento
 7. `StringLength` -> Define o tamanho mínimo e máximo permitido para o tipo
 8. `Required` -> Especifica que o valor do campo é obrigatório
+
+## Mensagem de erro de acordo com a validação
+
+ - Podemos exibir uma mensagem de erro para cada validação.
+ 
+        Exemplo:
+
+    ```
+    public class Student
+    {
+        [Required(ErrorMessage = "Campo StudentName é obrigatório")]
+        public string StudentName { get; set; }
+    }
+    ```
