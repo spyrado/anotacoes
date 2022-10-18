@@ -11,3 +11,7 @@ do EF Core para preencher as tabelas com dados.
 4. Criar uma migração vazia usando o `Migrations` e usar os métodos `Up() e Down()` definindo nestes
 métodos as instruções `INSERT INTO`<br> para  incluir dados nas tabelas.
 > Uma migração VAZIA significa que a ultima migração vc já executou e dps disso você não alterou nada no dbContext nem nas suas entitys e vai rodar o comando de migrations novamente, ai ele cria uma migração vazia apenas com os metodos Up e Down 
+
+> Após feito o passo acima, você consegue criar seu próprio script segue exemplo abaixo:
+
+![](./images/populando-tabela-de-produtos.png)
