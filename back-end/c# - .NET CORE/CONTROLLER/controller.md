@@ -71,7 +71,7 @@ POST -> /teste
 PUT -> /teste
 DELETE -> /teste
 
-## Mas e se eu precisar de mais de um get para a mesma controller?
+# Mas e se eu precisar de mais de um get para a mesma controller?
 
 Ai podemos trabalhar com `actions` elas nos dão essa liberdade:
 
