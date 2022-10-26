@@ -8,5 +8,9 @@
     builder.Services.AddControllers().AddJsonOptions(options =>
     {
       options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+      // Utilizamos a classe ReferenceHandler para dizer como o JsonSerializer vai lider com as referencias
+      // na Serialização e Desserialização
+      // e ai eu to chamando a propriedade IgnoreCycles que vai ignorar as referencias no momento de Serealização
     });
     ```
+![](./images/serializacao-e-desserializacao.png)
