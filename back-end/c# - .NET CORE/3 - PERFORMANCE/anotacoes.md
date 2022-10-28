@@ -19,3 +19,13 @@ var produtos = _context.Produtos.AsNoTracking().ToList();
 > **Recomendação**: Utilizar o método AsNoTracking quando tivermos metodos de apenas `LEITURA` que não<br>
 > tenha a necessidade de `ALTERAÇÃO`, pois o AsNoTracking tira o rastreio da entidade e se for o caso de uma edição<br>
 > você irá perder essa rastreabilidade
+
+## NUNCA Retorne todos os registros em uma consulta ( a menos que sejam poucos )
+> Nota: Utilize o `Take` para indicar quantos produtos dessa lista você deseja<br>
+`_context.Produtos.Take(10).ToList();`
+
+## NUNCA retorne objetos relacionados sem aplicar um filtro
+> Nota: Utilize um Where com a condição necessária<br/>
+`_context.Categorias.Include(p => p.Produtos).Where(c => c.CategoriaId <= 5).ToList();`
+
+
