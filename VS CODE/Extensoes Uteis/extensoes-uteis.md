@@ -8,3 +8,4 @@
 6. `Peacock` -> caso vc precise trabalhar com mais de um projeto ao mesmo tempo, ele muda a cor do seu vs code<br>
 Ai voce consegue identificar melhor cada projeto.
 7. `Prettier` -> Essa é uma ferramenta bem importante, sugerir utilizar ela para manter um padrão de estilo de código.
+8. `Auto Rename Tag` -> vc clica em uma tag html muda de div para p e ele ja cuida de replicar a sua alteração nas duas tags 

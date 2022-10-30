@@ -54,3 +54,62 @@ npm install cypress -> instala o cypess
     });
 
   ```
+
+<br/>
+
+---
+
+<br/>
+
+## Asserts para Arrays
+
+`expect(array).to.be.members([1,2,3]);` -> Deve possuir exatamente os mesmos numeros<br>
+`expect(array).to.include.members([1,3]);` -> Deve ter esses numeros dentro do array.<br>
+`expect(array).not.to.be.empty;` -> Nao deve estar vazio<br>
+`expect([]).to.be.empty;` -> Deve estar vazio<br>
+`expect([]).length(0);` -> variação de implementacao do deve estar vazio<br>
+`expect([1,2]).length.greaterThan(0);` -> deve ser maior que 0<br>
+
+<br/>
+
+---
+
+<br/>
+
+## ASYNC
+
+Trabalhando com coisas asyncronas no cypress, uma delas é pegar o título de uma página, exemplo:
+
+Se eu digitar:<br>
+`cy.visit('url_da_pagina');` e logo após isso digitar:<br>
+`cy.title()` vai dar erro, pois ele retorna uma função "encadeada"(`chained`) e para testar funções encadeadas utilizamos o `should`, segue um exemplo:<br>
+`cy.title().should('be.equal', 'Campo De Treinamento');` ele é igual a um `expect` só que um pouco diferente.
+
+Mas o cypress nos preparou um metodo chamado should,
+
+```
+it('should visit a page and assert a title', () => {
+  cy.visit('https://wcaquino.me/cypress/componentes.html');
+  cy.title().should('be.equal', 'Campo');
+});
+```
+
+<br/>
+
+---
+
+<br/>
+
+## SHOULD
+
+O should ele cria uma assertiva, e assertivas são automaticamente retentadas durante um periodo de tempo e a condição 
+para elas pararem de ser retentadas é caso de sucesso na acertiva ou o tempo delas acabem ( geralmente o padrão é 4 segundos de retentativa ).
+
+`CENÁRIO 1:` No exemplo abaixo se o titulo for diferente de Campo De Treinamento, ela vai executar por 4 segundos e somente depois vai disparar um erro.<br>
+`CENÁRIO 2:` Agora se no exemplo abaixo o título for igual ela vai executar até que obtenha a informação do título.
+
+`RESULTADO CENÁRIO 1:` O tempo de execução demorou 4 segundos, pois não existia aquele título e o should ficou reexecutando até dar o tempo de timeout( que são 4 segundos ) <br>
+`RESULTADO CENÁRIO 2:` O tempo de execução demorou 0.35 segundos, pois o título inserido era exatamento o esperado.
+
+
+`cy.title().should('be.equal', 'Campo De Treinamento');` 
