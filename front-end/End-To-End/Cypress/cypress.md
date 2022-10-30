@@ -102,7 +102,22 @@ it('should visit a page and assert a title', () => {
 
 ## SHOULD
 
-O should ele cria uma assertiva, e assertivas são automaticamente retentadas durante um periodo de tempo e a condição 
+> **Nota:** o `should` pode ser utilizado encadeado, ou seja eu posso fazer algo como: 
+```
+cy.title()
+  .should('be.equal', 'Campo de Treinamento')
+  .should('contains', 'Campo');
+```
+
+> **Nota:** mas para deixarmos um pouco mais legível utilizamos `and` no lugar do segundo should para mais, segue exemplo:
+
+```
+cy.title()
+  .should('be.equal', 'Campo de Treinamento')
+  .and('contains', 'Campo');
+```
+
+> O should ele cria uma assertiva, e assertivas são automaticamente retentadas durante um periodo de tempo e a condição 
 para elas pararem de ser retentadas é caso de sucesso na acertiva ou o tempo delas acabem ( geralmente o padrão é 4 segundos de retentativa ).
 
 `CENÁRIO 1:` No exemplo abaixo se o titulo for diferente de Campo De Treinamento, ela vai executar por 4 segundos e somente depois vai disparar um erro.<br>
