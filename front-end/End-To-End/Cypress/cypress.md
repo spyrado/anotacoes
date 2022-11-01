@@ -13,6 +13,25 @@ npm install cypress -> instala o cypess
 
 <br/>
 
+## DEBUG
+
+Utilize o debug, para entender mais sobre o que ocorre.
+> **Nota:** Após abrir o inspecionar e cair no ponto de debug só de o play( deixe passar o debug ), e vai aparecer<br>
+> um log do que ocorreu, segue exemplo:
+
+`cy.get('#buttonSimple').should('have.value', 'Clique Aqui').debug();` -> com o debug no `should` ele vai abrir infos sobre oq ocorreu no `should`<br>
+
+![](./images/debug-console.png)
+
+`cy.get('#buttonSimple').click().debug().should('have.value', 'Clique Aqui');` -> com o debug no `click` ele vai abrir infos sobre oq ocorreu no `click`<br>
+
+![](./images/debug-click.png)
+
+<br/>
+
+---
+
+<br/>
 
 ## Asserts
 
@@ -20,11 +39,9 @@ npm install cypress -> instala o cypess
   
   Todas abaixo tem o mesmo resultado, o que muda é a leitura, e na minha opiniao `to be equal` seria o ideal nesse caso
   
-  ```
-    expect(1).equal(1); -> vai dar o mesmo resultado
-    expect(1).to.equal(1); -> vai dar o mesmo resultado
-    expect(1).to.be.equal(1); -> vai dar o mesmo resultado
-  ```
+`expect(1).equal(1);` -> vai dar o mesmo resultado<br>
+`expect(1).to.equal(1);` -> vai dar o mesmo resultado<br>
+`expect(1).to.be.equal(1);` -> vai dar o mesmo resultado
 
 <br/>
 
@@ -35,7 +52,7 @@ npm install cypress -> instala o cypess
 ## Asserts para objetos
 
 `expect(obj).to.be.deep.equal({ a: 1, b: 2 });` -> `.deep` Verifica TODAS as propriedades dentro do objeto<br>
-`expect(obj).eql({ a: 1, b: 2 });` -> é um shortcut do comando a cima 
+`expect(obj).eql({ a: 1, b: 2 });` -> é um shortcut do comando a cima <br>
 `expect(obj).include({ a: 1);` -> Verifica se EXISTE AQUELA PROPRIEDADE/VALOR dentro daquele objeto 
 
   ```
@@ -69,6 +86,16 @@ npm install cypress -> instala o cypess
 `expect([]).to.be.empty;` -> Deve estar vazio<br>
 `expect([]).length(0);` -> variação de implementacao do deve estar vazio<br>
 `expect([1,2]).length.greaterThan(0);` -> deve ser maior que 0<br>
+
+<br/>
+
+---
+
+<br/>
+
+## Asserts para ELEMENTOS HTML
+
+`cy.get('#buttonSimple').should('have.value', 'Clique Aqui');` -> pelo `have.value` eu verifico o texto do botão
 
 <br/>
 
