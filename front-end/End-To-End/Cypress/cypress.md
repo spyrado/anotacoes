@@ -33,6 +33,41 @@ Utilize o debug, para entender mais sobre o que ocorre.
 
 <br/>
 
+## PAUSE
+
+O comando `.pause()` ele serve como um debugger, porem nós conseguimos ver o passo a passo do que está ocorrendo,<br>
+podemos dar um `next step` na ferramenta ai iremos acompanhar passo a passo do comportamento da ferramenta.
+
+> **Nota:** Se os comandos estiverem aninhados eles serão executados de uma vez e você não vai conseguir dar um <br> 
+> `next step` entre eles para isso vc pode durante a analise, separar esse `aninhamento`.
+
+#### Exemplo de aninhamento: 
+
+```
+  cy.pause();
+  cy.title()
+    .should('be.equal', 'Campo de Treinamento')
+    .and('contains', 'Campo');
+```
+
+#### Exemplo do funcionamento do pause:
+
+O comando abaixo vai dar um pause antes de executar os 2 outros comandos, ai `na ferramenta` eu posso dar um `next`<br>
+ai ele vai cair nessa primeira validação: `cy.title().should('be.equal', 'Campo de Treinamento');`<br>
+e depois eu posso dar outro `next` ai ele cai na proxima validação (`cy.title().should('contains', 'Campo');`) e por ai vai
+
+```
+  cy.pause();
+  cy.title().should('be.equal', 'Campo de Treinamento');
+  cy.title().should('contains', 'Campo');
+```
+
+<br/>
+
+---
+
+<br/>
+
 ## Asserts
 
   Podemos fazer de algumas formas umas menos intuitivas como:<br>
