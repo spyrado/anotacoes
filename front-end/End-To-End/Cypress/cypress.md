@@ -190,3 +190,216 @@ para elas pararem de ser retentadas é caso de sucesso na acertiva ou o tempo de
 
 
 `cy.title().should('be.equal', 'Campo De Treinamento');` 
+
+<br/>
+
+---
+
+<br/>
+
+## Hooks
+
+`before` -> Ele é executado UMA vez ANTES de TODOS os Testes, exemplo:
+
+Aqui eu digo que antes de qualquer teste, entre na pagina XPTO.
+
+```
+  before(() => {
+    cy.visit('https://wcaquino.me/cypress/componentes.html');
+  });
+```
+
+`beforeEach` -> Para cada `it` ele executa uma vez, exemplo:
+
+No exemplo abaixo eu quero que a cada nova execução de teste ele deixe de um reload na pagina,<br>
+assim eu garanto que a nova execução vai ser em um cenário limpo.
+
+```
+  beforeEach(() => {
+    cy.reload();
+  });
+```
+
+> **Nota:** O before e beforeEach eles seguem a lógica deles, POREM se eles estiverem dentro de um describe<br>
+> eles só vao executar tudo dentro do describe, e nada fora, EXEMPLO:
+
+No exemplo abaixo o `teste 3` não contem as execuções de `before` e `beforeEach`
+
+```
+  describe('Teste XPTO', () => {
+    
+    before(() => {
+      // executa isso 1
+    });
+
+    beforeEach(() => {
+      // executa isso 2
+    });
+
+    it('teste 1', () => {
+      
+    });
+
+    it('teste 2', () => {
+      
+    });
+
+  });
+
+  it('teste 3', () => {
+    
+  });
+```
+
+<br/>
+
+---
+
+<br/>
+
+## Seletores
+
+O cypress dependendo de como você selecionar um elemento ele pode não identificar aquele elemento, segue um exemplo:<br>
+`cy.get('#elementosForm:sugestoes')` -> Essa forma de selecionar um elemento é errada no cypress, ele considera `:` como caracter especial, Para fazer com que ele considere o `:` devemos usar `\\:` 
+
+Forma correta:<br>
+`cy.get('#elementosForm\\:sugestoes')` -> Obviamente que aqui é só um cenário, o ideal não é utilizar um id dessa forma,
+de preferencia utilize data-attributes para lidar com cypress
+
+<br/>
+
+---
+
+<br/>
+
+## Type
+
+<br>
+
+> **Nota:** Doc de referencia: https://docs.cypress.io/api/commands/type#Usage
+
+<br>
+
+Podemos ao longo do digito(type) manipular ele e dar um backspace por exemplo para remover algum caracter,<br>
+simulando um comportamento do usuário.
+
+Nesse exemplo eu estou digitando `Teste12345` e removendo via {backspace} os ultimos 2 digitos Teste123`45`,<br>
+resultando em `Teste123`, e depois eu verifico se o resultado esperado confere.
+
+```
+cy.get('[data-cy=dataSobrenome]')
+  .type('Teste12345{backspace}{backspace}')
+  .should('have.value', 'Teste123'); 
+``` 
+
+### Argumentos
+
+<br>
+
+> **Nota:** Só lembrando que todos os argumentos existem na doc: https://docs.cypress.io/api/commands/type#Arguments
+
+<br>
+
+Sequence	Notes<br>
+{{}	Types the literal { key<br>
+{backspace}	Deletes character to the left of the cursor<br>
+{del}	Deletes character to the right of the cursor<br>
+{downArrow}	Moves cursor down<br>
+{end}	Moves cursor to the end of the line<br>
+{enter}	Types the Enter key<br>
+{esc}	Types the Escape key<br>
+{home}	Moves cursor to the start of the line<br>
+{insert}	Inserts character to the right of the cursor<br>
+{leftArrow}	Moves cursor left<br>
+{moveToEnd}	Moves cursor to end of typeable element<br>
+{moveToStart}	Moves cursor to the start of typeable element<br>
+{pageDown}	Scrolls down<br>
+{pageUp}	Scrolls up<br>
+{rightArrow}	Moves cursor right<br>
+{selectAll}	Selects all text by creating a selection range<br>
+{upArrow}	Moves cursor up<br>
+
+Text passed to .type() may also include any of these modifier character sequences:
+
+Sequence	Notes<br>
+{alt}	Activates the altKey modifier. Aliases: {option}<br>
+{ctrl}	Activates the ctrlKey modifier. Aliases: {control}<br>
+{meta}	Activates the metaKey modifier. Aliases: {command}, {cmd}<br>
+{shift}	Activates the shiftKey modifier.<br>
+
+
+
+<br/>
+
+---
+
+<br/>
+
+## Inputs
+
+<br>
+
+`cy.get('seletorDoMeuInput').type('texto xpto')` -> insere um texto dentro do input
+`cy.get('seletorDoMeuInput').clear()` -> limpa o campo do input
+`cy.get('seletorDoMeuInput').type('texto xpto', { delay: 2000 )` -> insere um texto dentro do input, porem com delay de 2 segundos<br>
+Dois pontos importante sobre o `delay`
+ 1. Interessante quando você deseja VISUALIZAR o que a funcionalidade está fazendo
+ 2. As vezes é um campo de busca que tem um debounce de 3 segundos ou 500 ms para disparar para o backend,<br>
+ai voce pode trabalhar com o `delay` nesses casos para testar esses cenários
+
+<br/>
+
+---
+
+<br/>
+
+## Radio Buttons
+
+<br>
+
+Exemplo de teste:
+
+```
+cy.get('#formSexoMasc')
+  .click()
+  .should('be.checked');
+cy.get('#formSexoFem')
+  .should('be.not.checked');
+```
+
+> **Nota:** Geralmente um radio button é composto por 2 ou mais items, e eles são agrupados pela propriedade name
+```
+cy.get('[name="formSexo"]')
+      .should('have.length', 2);
+```
+
+<br/>
+
+---
+
+<br/>
+
+## CheckBox
+
+<br>
+
+Diferentemente de um `radiobutton` um `checkbox` pode ter varios checks diferentes checkados, no cypress
+podemos pegar todos os checks `pelo seu name que geralmente um grupo de checkbox tem um unico name`
+
+Segue exemplo: <br>
+Aqui eu estou pegando todos os checkboxes com name formComidaFavorita e pedindo para o cypress clicar em todos ( checked === true )<br>
+`cy.get('[name=formComidaFavorita]').click({ multiple: true })`
+
+<br/>
+
+---
+
+<br/>
+
+## Click
+
+<br>
+
+`.click()` -> clica no elemento<br>
+`.click({ multiple: true })` -> clica em mais de um elemento <br>
+( apenas passar o parametro quando o `seletor for um array` )
