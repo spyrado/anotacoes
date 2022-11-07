@@ -403,3 +403,48 @@ Aqui eu estou pegando todos os checkboxes com name formComidaFavorita e pedindo 
 `.click()` -> clica no elemento<br>
 `.click({ multiple: true })` -> clica em mais de um elemento <br>
 ( apenas passar o parametro quando o `seletor for um array` )
+
+<br/>
+
+---
+
+<br/>
+
+## Combos / Selects
+
+<br>
+
+Como validar um select?
+
+Por padrão o `.select('')` ele pode validar tanto o valor visual para o usuário, quanto o valor enviado para<br>
+o endpoint.
+
+POREM, para verificar no `.should('have.value', 'xpto')` o should aceita apenas o valor enviado para o endpoint.
+
+Segue exemplo: 
+
+```
+cy.get('[data-test=dataEscolaridade]')
+  .select('2o grau completo') // valor visual para o usuário
+  .should('have.value', '2graucomp') // valor da propriedade value do html <option value="2graucomp">2o grau completo</option>
+```
+
+<br/>
+
+---
+
+<br/>
+
+## Combo Multiplo / Multi Selects
+
+<br>
+
+Como validar um combo de select?
+
+Para selecionar mais de um item, devemos utilizar um array e passar apenas as props values das options, ou seja<br>
+`<option value="nada">Texto de Exemplo</option>`
+
+```
+cy.get('[data-testid=dataEsportes]')
+  .select(['nada', 'natacao', 'Corrida'])
+```
