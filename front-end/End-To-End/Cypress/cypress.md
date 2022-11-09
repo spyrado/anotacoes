@@ -448,3 +448,97 @@ Para selecionar mais de um item, devemos utilizar um array e passar apenas as pr
 cy.get('[data-testid=dataEsportes]')
   .select(['nada', 'natacao', 'Corrida'])
 ```
+
+<br/>
+
+---
+
+<br/>
+
+## Retentativas / Retrys 
+
+<br>
+
+Em um cenário aonde você clica em um botão e um campo demora um tempo para aparecer, temos o seguinte problema
+caso nós tentarmos encadear o should para verificar o estado do elemento.
+
+O Cypress tem uma peculiaridade, exemplo, pq esse comando funciona?
+
+```
+cy.get('#novoCampo').should('not.exist');
+cy.get('#novoCampo').should('exist');
+```
+
+E esse não funciona?
+
+```
+cy.get('#novoCampo')
+  .should('not.exist')
+  .should('exist');
+```
+
+A Explicação é simples, quando você utiliza um get(`cy.get('#novoCampo')`) para cada teste, ele vai testar <br>
+individualmente, quando você encadeia os `shoulds` ele só irá ser válido se todas as condições forem verdadeiras.
+
+Ou seja, no primeiro quando eu clico no elemento ele demora 3 segundos para aparecer então o teste<br>
+`cy.get('#novoCampo').should('not.exist');` passa de primeira.<br>
+e o segundo teste fica aguardando (tempo padrão do cypress +/- 4 segundos para lançar uma excessão) <br>
+como o tempo para exibir é menor que 4 segundos esse teste também passa
+`cy.get('#novoCampo').should('exist');`
+
+Agora no segundo cenário, seria a mesma coisa porem o primeiro should ele entende como verdade, mas o segundo não
+pq se o primeiro deu como não existe ele guarda essa ref e passa para o segundo should e o segundo should da uma <br>
+Excepton null, pois se o primeiro ele diz que não existe o segundo realmente nao vai existir.
+
+> **Nota:** Aqui explica sobre o pq acontece isso pois ele pega a referencia anterior: https://docs.cypress.io/api/commands/should#Yields
+
+<br/>
+
+---
+
+<br/>
+
+## Find Solo E Find Com Async (Com async não é interessante vou explicar o pq)
+
+<br>
+
+### Diferença entre usar find e usar um seletor
+
+Exemplo, temos a seguinte estrutura:
+
+```
+<ul id="lista">
+  <li><span>item 1</span></li>
+  <li><span>item 2</span></li>
+</ul>
+```
+
+E podemos selecionar ela de duas formas, porem cada forma tem sua particularidade.
+
+`cy.get('#lista li span', { timeout: 6000 })`<br>
+  `.should('contain', 'Item 2');` -> aqui eu to falando o seguinte
+pega minha lista e todos os spans que tiver dentro de cada `<li>` e aguarde até que apareça o Item 2, nesse exemplo, o `should` vai ficar perguntando ao `get` e fazendo com que o get fique dando get no seletor até achar a assertiva que foi imposta que no caso é `'contain', 'Item 2'`
+como no exemplo a lista é asyncrona porem com um tempo `definido` de exibição, se esse tempo definido passar de 4 segundos podemos indicar para o nosso seletor aguardar mais tempo pela prop `timeout` que nesse caso eu passei
+6 segundos.
+
+`cy.get('#lista li').find('span')`
+  `.should('contain', 'Item 2')`-> Já o nosso find, ele não vai esperar pelo segundo elemento aparecer
+ assim que dermos o find ele vai pegar a primeira referencia que veio em `cy.get('#lista li')` e dar um find em `span`
+ porem como a lista é `asyncrona` o primeiro `cy.get('#lista li')` que ele pega é apenas essa estrutura:
+
+ ```
+<ul id="lista">
+  <li><span>item 1</span></li>
+</ul>
+```
+
+e fica guardado na memoria que existe apenas essa estrutura com o `.find()` ou seja, não importa quantas retentativas
+o crypres der, `nunca vai achar o item 2`.
+
+já utilizando sem o `find` o `should` vai ficar perguntando pro get, iai tem esse valor? iai tem esse valor? até dar
+o tempo de timeout.
+
+com o `find`, o get vai achar a estrutura o find vai localizar o elemento e a partir dai, o get vira um "cache" da primeira estrutura que ele achou, e o `should` vai ficar perguntando pro find, iai achou o `item 2`? iai achou?
+porem como ficou em cache a estrutura sem o item 2, nunca vai achar.
+
+Por isso utilizar o `find` para estruturas asyncronas não é uma boa.
