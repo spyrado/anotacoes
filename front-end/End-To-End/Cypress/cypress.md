@@ -542,3 +542,48 @@ com o `find`, o get vai achar a estrutura o find vai localizar o elemento e a pa
 porem como ficou em cache a estrutura sem o item 2, nunca vai achar.
 
 Por isso utilizar o `find` para estruturas asyncronas não é uma boa.
+
+<br/>
+
+---
+
+<br/>
+
+## Elementos removidos do DOM dinamicamente durante o teste
+
+<br>
+
+Ao remover elementos do dom DURANTE o teste, o cypress vai gerar um erro falando olha o elemento `<li id="item-1">` `(cy.get('#item-1'))`
+foi removido do dom.
+
+as vezes o front por algum motivo remove esse item 1 mais adiciona novamente, ai o certo para fazer o teste novamente
+seria fazer a seleção pelo elemento pai, exemplo: 
+`cy.get('#lista #item-1').should('have.text', 'XPTO');
+
+
+<br/>
+
+---
+
+<br/>
+
+## Timeout / Wait
+
+<br>
+
+O tempo de retentativas até a falha do cypress por padrão é de 4 segundos, porem conseguimos alterar esse valor,
+para mais ou para menos, segue um exemplo
+
+`cy.get('#exemplo1')` -> aqui ele vai demorar `4 segundos` para achar o `exemplo1`
+`cy.get('#exemplo1', { timeout: 2000 })` -> aqui ele vai demorar `2 segundos` para achar o `exemplo1`
+`cy.get('#exemplo1', { timeout: 10000 })` -> aqui ele vai demorar `10 segundos` para achar o `exemplo1`
+
+### Podemos também alterar o timeout padrão do cypress para um determinado tempo
+
+Para fazer isso você deve ir no arquivo `cypress.json` e adicionar a configuração abaixo:
+
+```
+{
+  "defaultCommandTimeout": 1000 // aqui vc configura em milisegundos quanto tempo voce deseja que se torne o padrão
+}
+```
