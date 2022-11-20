@@ -571,6 +571,10 @@ seria fazer a seleção pelo elemento pai, exemplo:
 
 <br>
 
+### Timeout
+---
+<br>
+
 O tempo de retentativas até a falha do cypress por padrão é de 4 segundos, porem conseguimos alterar esse valor,
 para mais ou para menos, segue um exemplo
 
@@ -587,3 +591,171 @@ Para fazer isso você deve ir no arquivo `cypress.json` e adicionar a configura�
   "defaultCommandTimeout": 1000 // aqui vc configura em milisegundos quanto tempo voce deseja que se torne o padrão
 }
 ```
+
+### Wait
+---
+<br>
+
+> **Nota:** Cuidado com o uso do wait ele trava os testes até atingir o tempo definido, já o timeout não, assim que a condição for atendida ele executa ela, caso contrario ficará tentando até o tempo definido.
+
+A **Nota** já diz tudo, tenha cuidado com o uso do wait, pq ao colocar um wait de 5 segundos TODA VEZ que a aplicação rodar e parar nesse wait ela vai esperar por 5 segundos, POREM, se você colocar para o elemento um timeout maior, vai ser mais performatico e vc deve se perguntar o pq?
+
+Bom.. vou mostrar:
+
+`cy.get('.procura-elemento', { timeout:  5000 })` -> nesse caso, eu estou falando para o `cy.get` ficando retentando
+buscar esse elemento até no maximo 5segundos, porem se ele achar em `100 milisegundos` o teste vai executar apenas `100 milisegundos` e é ai que está a diferença entre o `timeout` e o `wait`
+
+
+`cy.wait(5000)`<br>
+`cy.get('.procura-elemento')` -> ja nesse conjunto de código estou falando, para tudo e vamos ESPERAR POR 5 SEGUNDOS independente se o elemento aparece antes OU NÃO na tela e só depois de 5 segundos que vamos buscar esse elemento,
+ou seja aqui nós criamos um gap de performance, o sistema toda vez vai parar por 5 segundos porem nem sempre demora 5, as vezes demora menos..
+
+<br/>
+
+---
+
+<br/>
+
+## Nem todo comando tem Retry
+
+<br/>
+
+O click não tem retry, no exemplo abaixo o click nao fica clicando até que satisfaça a condição de should,<br>
+ele apenas clica uma vez só e fim.
+
+```
+it('Click não tem retry', () => {
+  cy.get('#buttonCount')
+    .click()
+    .should('have.value', '11'); // se eu colocar 111 aqui o click não vai ficar clicando até que atenda a condição
+
+});
+```
+
+<br/>
+
+---
+
+<br/>
+
+## Then vs Should
+
+<br/>
+
+Primeiramente que ao usar `then` ou `should` como Promises, temos alguns pontos aqui.
+
+`Then`: 
+
+1 - Ao utilizar then como Promise, ele vai retornar apenas uma vez quando satisfazer a condição e vai retornar
+um objeto em JQuery, ai é só logar esse JQuery e usar como deseja.
+
+2 - O then se não atender ao meu expect eu posso retornar um valor x dentro da arrow function
+
+3 - Com Then eu posso chamar um elemento dar um then e chamar outro dentro do then
+
+
+`Should`: 
+
+1 - Já o should faz a mesma coisa porem a diferença é que ele fica dando retry até que a condição se satisfaça,
+ou seja performaticamente não é bom utilizar o should como promise.
+
+2 - Já o should eu posso retornar um valor porem o should por padrão não le esse retorno ele simplemente ignora
+
+3 - Já com o should eu não consigo pegar um elemento dar um should e dentro desse should eu pegar outro elemento<br> 
+Se eu fizer isso ele fica em loop infinito, pq ele fica retentando pegar o elemento de dentro e de fora.
+
+THEN
+```
+  cy.get('#lista li span').then($el => {
+    console.log($el);
+  });
+```
+
+SHOULD
+```
+  cy.get('#lista li span').should($el => {
+    console.log($el);
+  });
+```
+
+<br/>
+
+---
+
+<br/>
+
+## Wrap
+
+<br/>
+
+### #1 Exemplo de uso 
+Com o uso do wrap podemos transformar elementos que não são rastreados pelo cypress para elementos rastreaveis,
+é como se fosse um `of` do `rxjs`, segue um exemplo:
+
+`var objetoNormal = { nome: 'Nicolas' };`
+
+`cy.wrap(objetoNormal).should('have.property', 'nome', 'Nicolas')`
+
+No código acima eu estou permitindo que um objeto normal do js ganhe funcionalidades de validações do cypress,
+o mesmo eu posso fazer para elementos do dom, segue um exemplo:
+
+
+### #2 Exemplo de uso 
+
+```
+cy.get('#formNome').then($el => {
+  $el.type('Testando o type com wrap'); // ASSIM NÃO FUNCIONA
+  cy.wrap($el).type('Testando o type com wrap'); // ASSIM FUNCIONA
+});
+```
+
+No código acima eu estou pegando um input e dando um `then` para obter o elemento e trabalhar em cima dele,
+nesse caso apenas como exemplo de como posso utilizar o `wrap`, eu estou dando um `wrap` nesse `elemento`
+para que ele ganhe as `funcionalidades do cypress` e eu possa digitar nele.
+
+### #3 Exemplo de uso 
+
+Suponhamos que estamos mexendo com `Promises` e 2 são do proprio cypress e uma é customizada do js, vamos ter um erro de ordem de execução pois o cypress gerencia suas promisses top down ( primeira segunda e etc..) já no js, a primeira
+promisse que executar ele loga na tela, com `cy.wrap` podemos resolver o problema de uma promise customizada, segue 
+um exemplo:
+
+
+```
+const promiseCustom = new Promise((resolve, reject) => {
+  setTimeout(() => resolve(10), 500);
+});
+
+cy.get('#buttonSimple').then(() => console.log('Executei primeiro'));
+promiseCustom.then((result) => console.log(result));
+cy.get('#buttonList').then(() => console.log('Executei terceiro'));
+```
+
+
+![](./images/promise-customizada2.png).
+
+Voce percebe na imagem que o valor 10 da promisse foi logado por ultimo e não em segundo, para resolvendo isso
+podemos utilizar o `wrap` para entrar no ciclo do cypress, segue a correção:
+
+Altere a linha do `promiseCustom.then` para:<br>
+`cy.wrap(promiseCustom).then((result) => console.log(result));` e pronto, agora vai executar na ordem certa.
+
+
+<br/>
+
+---
+
+<br/>
+
+## Its
+
+<br/>
+
+Basicamente ele acessa uma propriedade que você informar, segue o exemplo:
+
+```
+var objetoNormal = { nome: 'Nicolas' };
+
+cy.wrap(objetoNormal).its('nome').should('be.equal', 'Nicolas');
+```
+
+No exemplo acima eu acesso a prop `nome` com `its` e verifico o valor dela se é igual a `Nicolas`, 
