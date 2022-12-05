@@ -3,7 +3,7 @@
 ## Início
 
 npm install cypress -> instala o cypess
-  cypress open -> roda o cypress
+cypress open -> roda o cypress
 
 `/// <reference types="Cypress" />` -> adicione essa linha no começo de um arquivo `nome_arquivo.spec.js` para o vs code<br> entender que estamos trabalhando com cypress
 
@@ -16,6 +16,7 @@ npm install cypress -> instala o cypess
 ## DEBUG
 
 Utilize o debug, para entender mais sobre o que ocorre.
+
 > **Nota:** Após abrir o inspecionar e cair no ponto de debug só de o play( deixe passar o debug ), e vai aparecer<br>
 > um log do que ocorreu, segue exemplo:
 
@@ -38,10 +39,10 @@ Utilize o debug, para entender mais sobre o que ocorre.
 O comando `.pause()` ele serve como um debugger, porem nós conseguimos ver o passo a passo do que está ocorrendo,<br>
 podemos dar um `next step` na ferramenta ai iremos acompanhar passo a passo do comportamento da ferramenta.
 
-> **Nota:** Se os comandos estiverem aninhados eles serão executados de uma vez e você não vai conseguir dar um <br> 
+> **Nota:** Se os comandos estiverem aninhados eles serão executados de uma vez e você não vai conseguir dar um <br>
 > `next step` entre eles para isso vc pode durante a analise, separar esse `aninhamento`.
 
-#### Exemplo de aninhamento: 
+#### Exemplo de aninhamento:
 
 ```
   cy.pause();
@@ -70,10 +71,10 @@ e depois eu posso dar outro `next` ai ele cai na proxima validação (`cy.title(
 
 ## Asserts
 
-  Podemos fazer de algumas formas umas menos intuitivas como:<br>
-  
-  Todas abaixo tem o mesmo resultado, o que muda é a leitura, e na minha opiniao `to be equal` seria o ideal nesse caso
-  
+Podemos fazer de algumas formas umas menos intuitivas como:<br>
+
+Todas abaixo tem o mesmo resultado, o que muda é a leitura, e na minha opiniao `to be equal` seria o ideal nesse caso
+
 `expect(1).equal(1);` -> vai dar o mesmo resultado<br>
 `expect(1).to.equal(1);` -> vai dar o mesmo resultado<br>
 `expect(1).to.be.equal(1);` -> vai dar o mesmo resultado
@@ -88,24 +89,24 @@ e depois eu posso dar outro `next` ai ele cai na proxima validação (`cy.title(
 
 `expect(obj).to.be.deep.equal({ a: 1, b: 2 });` -> `.deep` Verifica TODAS as propriedades dentro do objeto<br>
 `expect(obj).eql({ a: 1, b: 2 });` -> é um shortcut do comando a cima <br>
-`expect(obj).include({ a: 1);` -> Verifica se EXISTE AQUELA PROPRIEDADE/VALOR dentro daquele objeto 
+`expect(obj).include({ a: 1);` -> Verifica se EXISTE AQUELA PROPRIEDADE/VALOR dentro daquele objeto
 
-  ```
+```
 
-    it('Equality for Objects', () => {
-  
-    const obj = {
-      a: 1,
-      b: 2
-    };
-    // essa é uma forma errada, pq o js entende que é outro objeto outra referencia, para isso devemos utilizar deep
-    // expect(obj).to.be.equal({ a: 1, b: 2 }); // ERRADA
-      expect(obj).to.be.deep.equal({ a: 1, b: 2 }); // CERTA
-      expect(obj).eql({ a: 1, b: 2 }); // SHORTCUT DE DEEP
-      expect(obj).include({ a: 1 }); // VERIFICA SE EXISTE AQUELA PROP/VALUE DENTRO DO OBJ
-    });
+  it('Equality for Objects', () => {
 
-  ```
+  const obj = {
+    a: 1,
+    b: 2
+  };
+  // essa é uma forma errada, pq o js entende que é outro objeto outra referencia, para isso devemos utilizar deep
+  // expect(obj).to.be.equal({ a: 1, b: 2 }); // ERRADA
+    expect(obj).to.be.deep.equal({ a: 1, b: 2 }); // CERTA
+    expect(obj).eql({ a: 1, b: 2 }); // SHORTCUT DE DEEP
+    expect(obj).include({ a: 1 }); // VERIFICA SE EXISTE AQUELA PROP/VALUE DENTRO DO OBJ
+  });
+
+```
 
 <br/>
 
@@ -155,6 +156,8 @@ it('should visit a page and assert a title', () => {
   cy.title().should('be.equal', 'Campo');
 });
 ```
+Também podemos precisar trabalhar com promises do cypress e promises do js, aqui vai um exemplo<br>
+[clique nesse link para ser redirecionado para o exemplo](#3-exemplo-de-uso-de-promises-com-async-do-js-vs-async-do-cypress)
 
 <br/>
 
@@ -164,7 +167,8 @@ it('should visit a page and assert a title', () => {
 
 ## SHOULD
 
-> **Nota:** o `should` pode ser utilizado encadeado, ou seja eu posso fazer algo como: 
+> **Nota:** o `should` pode ser utilizado encadeado, ou seja eu posso fazer algo como:
+
 ```
 cy.title()
   .should('be.equal', 'Campo de Treinamento')
@@ -179,8 +183,8 @@ cy.title()
   .and('contains', 'Campo');
 ```
 
-> O should ele cria uma assertiva, e assertivas são automaticamente retentadas durante um periodo de tempo e a condição 
-para elas pararem de ser retentadas é caso de sucesso na acertiva ou o tempo delas acabem ( geralmente o padrão é 4 segundos de retentativa ).
+> O should ele cria uma assertiva, e assertivas são automaticamente retentadas durante um periodo de tempo e a condição
+> para elas pararem de ser retentadas é caso de sucesso na acertiva ou o tempo delas acabem ( geralmente o padrão é 4 segundos de retentativa ).
 
 `CENÁRIO 1:` No exemplo abaixo se o titulo for diferente de Campo De Treinamento, ela vai executar por 4 segundos e somente depois vai disparar um erro.<br>
 `CENÁRIO 2:` Agora se no exemplo abaixo o título for igual ela vai executar até que obtenha a informação do título.
@@ -188,8 +192,7 @@ para elas pararem de ser retentadas é caso de sucesso na acertiva ou o tempo de
 `RESULTADO CENÁRIO 1:` O tempo de execução demorou 4 segundos, pois não existia aquele título e o should ficou reexecutando até dar o tempo de timeout( que são 4 segundos ) <br>
 `RESULTADO CENÁRIO 2:` O tempo de execução demorou 0.35 segundos, pois o título inserido era exatamento o esperado.
 
-
-`cy.title().should('be.equal', 'Campo De Treinamento');` 
+`cy.title().should('be.equal', 'Campo De Treinamento');`
 
 <br/>
 
@@ -227,7 +230,7 @@ No exemplo abaixo o `teste 3` não contem as execuções de `before` e `beforeEa
 
 ```
   describe('Teste XPTO', () => {
-    
+
     before(() => {
       // executa isso 1
     });
@@ -237,17 +240,17 @@ No exemplo abaixo o `teste 3` não contem as execuções de `before` e `beforeEa
     });
 
     it('teste 1', () => {
-      
+
     });
 
     it('teste 2', () => {
-      
+
     });
 
   });
 
   it('teste 3', () => {
-    
+
   });
 ```
 
@@ -260,7 +263,7 @@ No exemplo abaixo o `teste 3` não contem as execuções de `before` e `beforeEa
 ## Seletores
 
 O cypress dependendo de como você selecionar um elemento ele pode não identificar aquele elemento, segue um exemplo:<br>
-`cy.get('#elementosForm:sugestoes')` -> Essa forma de selecionar um elemento é errada no cypress, ele considera `:` como caracter especial, Para fazer com que ele considere o `:` devemos usar `\\:` 
+`cy.get('#elementosForm:sugestoes')` -> Essa forma de selecionar um elemento é errada no cypress, ele considera `:` como caracter especial, Para fazer com que ele considere o `:` devemos usar `\\:`
 
 Forma correta:<br>
 `cy.get('#elementosForm\\:sugestoes')` -> Obviamente que aqui é só um cenário, o ideal não é utilizar um id dessa forma,
@@ -289,8 +292,8 @@ resultando em `Teste123`, e depois eu verifico se o resultado esperado confere.
 ```
 cy.get('[data-cy=dataSobrenome]')
   .type('Teste12345{backspace}{backspace}')
-  .should('have.value', 'Teste123'); 
-``` 
+  .should('have.value', 'Teste123');
+```
 
 ### Argumentos
 
@@ -300,34 +303,32 @@ cy.get('[data-cy=dataSobrenome]')
 
 <br>
 
-Sequence	Notes<br>
-{{}	Types the literal { key<br>
-{backspace}	Deletes character to the left of the cursor<br>
-{del}	Deletes character to the right of the cursor<br>
-{downArrow}	Moves cursor down<br>
-{end}	Moves cursor to the end of the line<br>
-{enter}	Types the Enter key<br>
-{esc}	Types the Escape key<br>
-{home}	Moves cursor to the start of the line<br>
-{insert}	Inserts character to the right of the cursor<br>
-{leftArrow}	Moves cursor left<br>
-{moveToEnd}	Moves cursor to end of typeable element<br>
-{moveToStart}	Moves cursor to the start of typeable element<br>
-{pageDown}	Scrolls down<br>
-{pageUp}	Scrolls up<br>
-{rightArrow}	Moves cursor right<br>
-{selectAll}	Selects all text by creating a selection range<br>
-{upArrow}	Moves cursor up<br>
+Sequence Notes<br>
+{{} Types the literal { key<br>
+{backspace} Deletes character to the left of the cursor<br>
+{del} Deletes character to the right of the cursor<br>
+{downArrow} Moves cursor down<br>
+{end} Moves cursor to the end of the line<br>
+{enter} Types the Enter key<br>
+{esc} Types the Escape key<br>
+{home} Moves cursor to the start of the line<br>
+{insert} Inserts character to the right of the cursor<br>
+{leftArrow} Moves cursor left<br>
+{moveToEnd} Moves cursor to end of typeable element<br>
+{moveToStart} Moves cursor to the start of typeable element<br>
+{pageDown} Scrolls down<br>
+{pageUp} Scrolls up<br>
+{rightArrow} Moves cursor right<br>
+{selectAll} Selects all text by creating a selection range<br>
+{upArrow} Moves cursor up<br>
 
 Text passed to .type() may also include any of these modifier character sequences:
 
-Sequence	Notes<br>
-{alt}	Activates the altKey modifier. Aliases: {option}<br>
-{ctrl}	Activates the ctrlKey modifier. Aliases: {control}<br>
-{meta}	Activates the metaKey modifier. Aliases: {command}, {cmd}<br>
-{shift}	Activates the shiftKey modifier.<br>
-
-
+Sequence Notes<br>
+{alt} Activates the altKey modifier. Aliases: {option}<br>
+{ctrl} Activates the ctrlKey modifier. Aliases: {control}<br>
+{meta} Activates the metaKey modifier. Aliases: {command}, {cmd}<br>
+{shift} Activates the shiftKey modifier.<br>
 
 <br/>
 
@@ -343,9 +344,10 @@ Sequence	Notes<br>
 `cy.get('seletorDoMeuInput').clear()` -> limpa o campo do input
 `cy.get('seletorDoMeuInput').type('texto xpto', { delay: 2000 )` -> insere um texto dentro do input, porem com delay de 2 segundos<br>
 Dois pontos importante sobre o `delay`
- 1. Interessante quando você deseja VISUALIZAR o que a funcionalidade está fazendo
- 2. As vezes é um campo de busca que tem um debounce de 3 segundos ou 500 ms para disparar para o backend,<br>
-ai voce pode trabalhar com o `delay` nesses casos para testar esses cenários
+
+1.  Interessante quando você deseja VISUALIZAR o que a funcionalidade está fazendo
+2.  As vezes é um campo de busca que tem um debounce de 3 segundos ou 500 ms para disparar para o backend,<br>
+    ai voce pode trabalhar com o `delay` nesses casos para testar esses cenários
 
 <br/>
 
@@ -368,6 +370,7 @@ cy.get('#formSexoFem')
 ```
 
 > **Nota:** Geralmente um radio button é composto por 2 ou mais items, e eles são agrupados pela propriedade name
+
 ```
 cy.get('[name="formSexo"]')
       .should('have.length', 2);
@@ -421,7 +424,7 @@ o endpoint.
 
 POREM, para verificar no `.should('have.value', 'xpto')` o should aceita apenas o valor enviado para o endpoint.
 
-Segue exemplo: 
+Segue exemplo:
 
 ```
 cy.get('[data-test=dataEscolaridade]')
@@ -455,7 +458,7 @@ cy.get('[data-testid=dataEsportes]')
 
 <br/>
 
-## Retentativas / Retrys 
+## Retentativas / Retrys
 
 <br>
 
@@ -516,19 +519,19 @@ Exemplo, temos a seguinte estrutura:
 E podemos selecionar ela de duas formas, porem cada forma tem sua particularidade.
 
 `cy.get('#lista li span', { timeout: 6000 })`<br>
-  `.should('contain', 'Item 2');` -> aqui eu to falando o seguinte
+`.should('contain', 'Item 2');` -> aqui eu to falando o seguinte
 pega minha lista e todos os spans que tiver dentro de cada `<li>` e aguarde até que apareça o Item 2, nesse exemplo, o `should` vai ficar perguntando ao `get` e fazendo com que o get fique dando get no seletor até achar a assertiva que foi imposta que no caso é `'contain', 'Item 2'`
 como no exemplo a lista é asyncrona porem com um tempo `definido` de exibição, se esse tempo definido passar de 4 segundos podemos indicar para o nosso seletor aguardar mais tempo pela prop `timeout` que nesse caso eu passei
 6 segundos.
 
 `cy.get('#lista li').find('span')`
-  `.should('contain', 'Item 2')`-> Já o nosso find, ele não vai esperar pelo segundo elemento aparecer
- assim que dermos o find ele vai pegar a primeira referencia que veio em `cy.get('#lista li')` e dar um find em `span`
- porem como a lista é `asyncrona` o primeiro `cy.get('#lista li')` que ele pega é apenas essa estrutura:
+`.should('contain', 'Item 2')`-> Já o nosso find, ele não vai esperar pelo segundo elemento aparecer
+assim que dermos o find ele vai pegar a primeira referencia que veio em `cy.get('#lista li')` e dar um find em `span`
+porem como a lista é `asyncrona` o primeiro `cy.get('#lista li')` que ele pega é apenas essa estrutura:
 
- ```
+```
 <ul id="lista">
-  <li><span>item 1</span></li>
+ <li><span>item 1</span></li>
 </ul>
 ```
 
@@ -557,9 +560,8 @@ Ao remover elementos do dom DURANTE o teste, o cypress vai gerar um erro falando
 foi removido do dom.
 
 as vezes o front por algum motivo remove esse item 1 mais adiciona novamente, ai o certo para fazer o teste novamente
-seria fazer a seleção pelo elemento pai, exemplo: 
+seria fazer a seleção pelo elemento pai, exemplo:
 `cy.get('#lista #item-1').should('have.text', 'XPTO');
-
 
 <br/>
 
@@ -572,7 +574,9 @@ seria fazer a seleção pelo elemento pai, exemplo:
 <br>
 
 ### Timeout
+
 ---
+
 <br>
 
 O tempo de retentativas até a falha do cypress por padrão é de 4 segundos, porem conseguimos alterar esse valor,
@@ -593,7 +597,9 @@ Para fazer isso você deve ir no arquivo `cypress.json` e adicionar a configura�
 ```
 
 ### Wait
+
 ---
+
 <br>
 
 > **Nota:** Cuidado com o uso do wait ele trava os testes até atingir o tempo definido, já o timeout não, assim que a condição for atendida ele executa ela, caso contrario ficará tentando até o tempo definido.
@@ -604,7 +610,6 @@ Bom.. vou mostrar:
 
 `cy.get('.procura-elemento', { timeout:  5000 })` -> nesse caso, eu estou falando para o `cy.get` ficando retentando
 buscar esse elemento até no maximo 5segundos, porem se ele achar em `100 milisegundos` o teste vai executar apenas `100 milisegundos` e é ai que está a diferença entre o `timeout` e o `wait`
-
 
 `cy.wait(5000)`<br>
 `cy.get('.procura-elemento')` -> ja nesse conjunto de código estou falando, para tudo e vamos ESPERAR POR 5 SEGUNDOS independente se o elemento aparece antes OU NÃO na tela e só depois de 5 segundos que vamos buscar esse elemento,
@@ -644,7 +649,7 @@ it('Click não tem retry', () => {
 
 Primeiramente que ao usar `then` ou `should` como Promises, temos alguns pontos aqui.
 
-`Then`: 
+`Then`:
 
 1 - Ao utilizar then como Promise, ele vai retornar apenas uma vez quando satisfazer a condição e vai retornar
 um objeto em JQuery, ai é só logar esse JQuery e usar como deseja.
@@ -653,18 +658,18 @@ um objeto em JQuery, ai é só logar esse JQuery e usar como deseja.
 
 3 - Com Then eu posso chamar um elemento dar um then e chamar outro dentro do then
 
-
-`Should`: 
+`Should`:
 
 1 - Já o should faz a mesma coisa porem a diferença é que ele fica dando retry até que a condição se satisfaça,
 ou seja performaticamente não é bom utilizar o should como promise.
 
 2 - Já o should eu posso retornar um valor porem o should por padrão não le esse retorno ele simplemente ignora
 
-3 - Já com o should eu não consigo pegar um elemento dar um should e dentro desse should eu pegar outro elemento<br> 
+3 - Já com o should eu não consigo pegar um elemento dar um should e dentro desse should eu pegar outro elemento<br>
 Se eu fizer isso ele fica em loop infinito, pq ele fica retentando pegar o elemento de dentro e de fora.
 
 THEN
+
 ```
   cy.get('#lista li span').then($el => {
     console.log($el);
@@ -672,6 +677,7 @@ THEN
 ```
 
 SHOULD
+
 ```
   cy.get('#lista li span').should($el => {
     console.log($el);
@@ -688,7 +694,8 @@ SHOULD
 
 <br/>
 
-### #1 Exemplo de uso 
+### #1 Exemplo de uso
+
 Com o uso do wrap podemos transformar elementos que não são rastreados pelo cypress para elementos rastreaveis,
 é como se fosse um `of` do `rxjs`, segue um exemplo:
 
@@ -699,8 +706,7 @@ Com o uso do wrap podemos transformar elementos que não são rastreados pelo cy
 No código acima eu estou permitindo que um objeto normal do js ganhe funcionalidades de validações do cypress,
 o mesmo eu posso fazer para elementos do dom, segue um exemplo:
 
-
-### #2 Exemplo de uso 
+### #2 Exemplo de uso
 
 ```
 cy.get('#formNome').then($el => {
@@ -713,12 +719,11 @@ No código acima eu estou pegando um input e dando um `then` para obter o elemen
 nesse caso apenas como exemplo de como posso utilizar o `wrap`, eu estou dando um `wrap` nesse `elemento`
 para que ele ganhe as `funcionalidades do cypress` e eu possa digitar nele.
 
-### #3 Exemplo de uso 
+### #3 Exemplo de uso de promises com async do js vs async do cypress
 
 Suponhamos que estamos mexendo com `Promises` e 2 são do proprio cypress e uma é customizada do js, vamos ter um erro de ordem de execução pois o cypress gerencia suas promisses top down ( primeira segunda e etc..) já no js, a primeira
-promisse que executar ele loga na tela, com `cy.wrap` podemos resolver o problema de uma promise customizada, segue 
+promisse que executar ele loga na tela, com `cy.wrap` podemos resolver o problema de uma promise customizada, segue
 um exemplo:
-
 
 ```
 const promiseCustom = new Promise((resolve, reject) => {
@@ -730,7 +735,6 @@ promiseCustom.then((result) => console.log(result));
 cy.get('#buttonList').then(() => console.log('Executei terceiro'));
 ```
 
-
 ![](./images/promise-customizada2.png).
 
 Voce percebe na imagem que o valor 10 da promisse foi logado por ultimo e não em segundo, para resolvendo isso
@@ -738,7 +742,6 @@ podemos utilizar o `wrap` para entrar no ciclo do cypress, segue a correção:
 
 Altere a linha do `promiseCustom.then` para:<br>
 `cy.wrap(promiseCustom).then((result) => console.log(result));` e pronto, agora vai executar na ordem certa.
-
 
 <br/>
 
@@ -752,10 +755,72 @@ Altere a linha do `promiseCustom.then` para:<br>
 
 Basicamente ele acessa uma propriedade que você informar, segue o exemplo:
 
+## Exemplo 1
+
 ```
 var objetoNormal = { nome: 'Nicolas' };
 
 cy.wrap(objetoNormal).its('nome').should('be.equal', 'Nicolas');
 ```
 
-No exemplo acima eu acesso a prop `nome` com `its` e verifico o valor dela se é igual a `Nicolas`, 
+No exemplo acima eu acesso a prop `nome` com `its` e verifico o valor dela se é igual a `Nicolas`.
+
+## Exemplo 2
+
+também podemos acessar mais de uma prop como no exemplo abaixo:
+
+```
+// Mais de um its
+const objetoDentroDeObjeto = {
+  nome: 'Nicolas',
+  endereco: { rua: 'do fulano' },
+};
+
+cy.wrap(objetoDentroDeObjeto)
+  .its('endereco')
+  .its('rua')
+  .should('eq', 'do fulano');
+```
+
+
+## Exemplo 3
+Também podemos acessar diretamente, minimizando o comando:
+
+```
+cy.wrap(objetoDentroDeObjeto)
+  .its('endereco.rua')
+  .should('eq', 'do fulano');
+```
+
+<br/>
+
+---
+
+<br/>
+
+## Invoke
+
+<br/>
+
+Podemos utilizar o evoke de algumas maneiras, ele é utilizado para executar funções e testa-las, seja ela pura do javascript ou do JQuery ou do cypress, não importa, sendo função podemos testar o seu resultado.
+
+```
+const getValue = () => 1;
+const soma = (a,b) => a+b;
+
+// função simples
+cy.wrap({ getValue }).invoke('getValue').should('be.equal', 1);
+
+// função com argumentos
+cy.wrap({ soma }).invoke('soma', 1,2).should('be.equal', 3);
+
+// utilizando a pagina com invoke e escrevendo um valor em um input
+cy.visit('https://wcaquino.me/cypress/componentes.html');
+cy.get('#formNome').invoke('val', 'Inputando texto com invoke');
+
+// Esse alert funciona o teste, porem o cypress mata imediatamente ele para não atrapalhar o fluxo de teste
+cy.window().invoke('alert', 'invokando alerta pelo invoke');
+
+// podemos pegar um elemento da tela e acessar qualquer propriedade JQuery e manipular esse elemento com o invoke
+cy.get('#resultado').invoke('html', '<input type="button" value="injetando html com invoke">');
+```
