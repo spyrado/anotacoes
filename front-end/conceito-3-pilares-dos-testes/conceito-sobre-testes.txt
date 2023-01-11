@@ -1,0 +1,11 @@
+TEMOS 3 PILARES DOS TESTES DE UM SOFTWARE
+
+Imagine uma pirâmide;
+
+ - Teste E2E( End to End ) -> que consiste em testar a aplicação como um todo, ou seja, testar a tela o que existe nela, a navegação dela,
+testar se os serviços do back end estão ok, se está retornando o esperado esse é o teste end to end.
+
+ - Teste de Integração -> Consiste em testar a aplicação em um ambiente mockado ou seja o front mocka o serviço do back e testa o comportamento da tela.
+
+ - Teste Unitário -> Consiste em testar os inputs e outputs do seu código, validar se cada pedaço dele está apresentando o comportamento esperado,
+ exemplo em uma função que soma 2 numeros o retorno deve ser a soma desses 2 numeros, como soma(2,2) resultado esperado 4, é nisso que consiste o unitário
