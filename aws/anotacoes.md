@@ -35,3 +35,54 @@ Contexto:
 ## A pergunta é, podemos externalizar tudo isso?
 
 - E a resposta é sim, e essa será a nuvem da AWS ( CLOUD )
+
+# What is Cloud Computing?
+
+- Computação em nuvem é a entrega sob demanda de poder de computação, armazenamento de banco de dados, aplicativo e outros recursos de TI.
+- Por meio de uma plataforma de serviço em nuvem, você obterá um preço pré-pago, isso significa que você
+  ... só vai pagar pelo que solicitou no momento em que solicitou, e a medida que estiver usando, quando terminar de usar, você não pagará mais.
+- Então podemos provisionar exatamente o tipo e o tamanho certo de recursos de computação que você precise.
+  ... ( você precisa de um grande servidor? nós temos. precisa de mais memória? nós temos)
+- Você pode acessar vários recursos que precisa, e te-los instantaneamente ( quer mais 10 servidores? pronto está aqui, quer ampliar para 100? ok, está aqui. )
+- Maneira simples de acessar os servidores, storages, banco de dados e um conjunto de serviços de aplicativo.
+- Amazon Web Services, possui e mantem o hardware conectado a rede para esses serviços de aplicativos enquanto você provisiona e usa o que você precisa via web application
+
+# Diferença entre CLOUDS
+
+## Private Cloud
+
+- Serviços de Cloud utilizamos por apenas uma organização, não é exposto ao publico
+- Controle completo
+- Segurança para aplicações sensiveis
+- Atende a necessidades específicas do negócio
+
+Exemplo de empresa que usa: rockspace
+
+## Public Cloud
+
+- Os Recursos de nuvem são propriedade e operados por um provedor de serviços em nuvem tercerizado e são
+  ... fornecidos pela internet
+- 6 vantagens de usar computação em nuvem
+
+## Hybrid Cloud
+
+- Manteremos alguns servidores no local ( On-premises ) e extenderemos alguns dos recursos de que precisamos para a nuvem
+- Teremos controle sobre ativos confidenciais na nossa infraestrutura privada
+- Mas teremos a flexibilidade e a economia de usar a nuvem publica
+
+# The Five Characteristics of Cloud Computing
+
+- On-demand self service ( autoatendimento sob demanda ):
+  - Usuários podem provisionar recursos e usá-los sem a necessidade de interação com alguém da AWS
+- Broad network access (Acesso a uma rede ampla):
+  - Os recursos estarão disponiveis na rede, e podemos acessa-los de diversas plataformas.
+- Multi-Tenancy and resource pooling (Multilocação e pool de recursos):
+  - Isso significa que não apenas nós, mas outros clientes da AWS podem compartilhar a mesma infraestrutura e aplicativos, mantendo a segurança e a privacidade
+  - E então esses multiplos clientes estão sendo atendidos com os mesmos recursos físicos
+  - Isso significa que eu você e outros, vão compartilhar essa grande nuvem, o que nos da elasticidade
+    ... e escalabilidade rapida.
+- Rapid elasticy and scalability (Elasticidade rápida e escalabilidade):
+  - Isso significa que podemos adquirir e descartar recursos de forma rapida e automática quando precisarmos
+  - Isso significa que podemos de forma rápida escalar nossa aplicação on demand
+- Measure Service (serviço de medida):
+  - O Uso é medido, significa que o usuário paga exatamente pelo oq ele usou. ( essa é uma grande diferença do on-premises ( infraestrutura local privada ))
