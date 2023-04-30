@@ -86,3 +86,30 @@ Exemplo de empresa que usa: rockspace
   - Isso significa que podemos de forma rápida escalar nossa aplicação on demand
 - Measure Service (serviço de medida):
   - O Uso é medido, significa que o usuário paga exatamente pelo oq ele usou. ( essa é uma grande diferença do on-premises ( infraestrutura local privada ))
+
+# Six Advantages of Cloud Computing
+
+- Vamos negociar despesas de capital com despesas operacionais ou seja CAPEX por OPEX
+  - Você paga sob demanda do serviço e não precisa possuir o hardware ( espaço fisico economizado )
+  - Reduz seu custo total da propriedade dos hardwares(TCO) ( pq vc vai solicitar sob demanda na aws )
+    ... Reduz o custo Operacional (OPEX) ( ou seja você não precisa mais que alguem fique dando...
+    ... manutenção 24/7 pq vc n tem mais um data center e etc ).
+- Beneficiar de enormes economias de escalas
+  - O preço será reduzido, pois muitas pessoas estão utilizando a AWS então os preços serão reduzidos ao
+    ... longo do tempo, porque a AWS será mais eficiente na execução devido à sua grande escala.
+- Stop guessing capacity ( Pare de advinhar a capacidade que precisamos )
+  - Antes precisavamos planejar e comprar servidores com antecedencias e esperar que atendecem a capacidade
+    ... Hoje podemos solicitar sob demanda tudo isso com AWS, baseado no uso real da nossa aplicação
+- Aumento na velocidade e a agilidade
+  - uso porque tudo é sob demanda, então se precisarmos de x item, com poucos cliques teremos.
+- Pare de gastar dinheiro executando e mantendo data centers.
+- Seja global em minutos: com a infraestrutura da AWS digamos que, 5 pessoas podem criar a infra de um
+  ... aplicativo em minutos.
+
+# Problems solved by the Cloud
+
+- <b>Flexibility</b>: Altere os tipos de recursos quando necessário.
+- <b>Cost-Effectiveness ( Mais economicos )</b>: Pague conforme o uso, pelo que usar
+- <b>Scalability</b>: Acomoda cargas maiores, tornando o hardware mais forte, ou adicionando nós adicionais
+- <b>Elasticity</b>: Capacidade de expandir e reduzir quando necessário
+- <b>Flexibility</b>: mude
