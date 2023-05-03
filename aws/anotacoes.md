@@ -157,3 +157,26 @@ Exemplo de empresa que usa: rockspace
 - E Aqui vai um exemplo em imagem:
 
 ![aleatorio](imgs/exemplo_de_tipos_de_cloud_computing.png 'aleatorio')
+
+# Example of Cloud Computing Types
+
+- Infrastructure as a Service ( IaaS ):
+  - Amazon EC2 ( on AWS )
+  - GCP, Azure, Rackspace, Digital Ocean, Linode
+- Platform as a Service ( PaaS )
+  - Elastic Beanstalk ( on AWS )
+  - Heroku, Google App Engine ( GCP ), Windows Azure ( Microsoft )
+- Software as a Service ( SaaS )
+  - Many AWS Services ( ex: Rekognition for Machine Learning )
+  - Google Apps ( Gmail ), Dropbox, Zoom
+
+# Pricing of the Cloud - Quick Overview
+
+- AWS tem 3 fundamentos de precificação, seguindo o modelo de precificação de pagamento conforme o uso ( pay as you go )
+  - Computador: pagar pelo tempo de computação
+  - Armazenamento: Paga pelo tamanho de dados armazenados na nuvem.
+  - Data Transfer OUT of the Cloud: Vamos pagar quando os dados sairem da CLOUD
+  - Data Transfer IN is free: Todo dado recebido na CLOUD não é cobrado.
+  - Isso resolve o caro problema do TI Tradicional
+  - Segue exemplo em imagem:
+    ![aleatorio](imgs/pricing_of_the_cloud.png 'aleatorio')
