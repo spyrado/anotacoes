@@ -180,3 +180,30 @@ Exemplo de empresa que usa: rockspace
   - Isso resolve o caro problema do TI Tradicional
   - Segue exemplo em imagem:
     ![aleatorio](imgs/pricing_of_the_cloud.png 'aleatorio')
+
+# AWS Cloud Use Cases ( Nuvem AWS Casos de Uso )
+
+- AWS permite que você contrua aplicações sofisticadas e escalaveis.
+- Aplicavél a um conjunto diversificado de insdustrias.
+- O Caso de Uso inclui:
+  - Empresarial TI
+  - Backup & Storage
+  - Big Data analytics
+  - Website Hosting
+  - BackEnd for Mobile & Social Apps
+  - Entire Game Server on the cloud
+
+# AWS GLOBAL Infrastructure
+
+- AWS Regions
+- AWS Availability Zones
+- AWS Data Centers
+- AWS Edge Locations / Point of Presence
+
+conseguimos ver tudo isso aqui: https://infrastructure.aws/
+
+# AWS Regions
+
+- Aws tem Regions pelo mundo todo
+- Os nomes dessas regiões podem ser: us-east-1, eu-west-3
+- Uma Região é um Cluster de datacenters
