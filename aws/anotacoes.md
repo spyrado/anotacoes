@@ -1,3 +1,5 @@
+MAPA MENTAL SOBRE ESSE ESTUDO LINK: https://whimsical.com/aws-51e7H496tunrdg2SsXu1MB
+
 # What is a server composed of? ( do que um servidor é composto? )
 
 1 - <b>CPU</b> ( Que realiza todos os calculos necessários, processamentos e etc. ) <br>
@@ -251,5 +253,4 @@ Bom isso depende, tem alguns pontos:
 
 # Tour of the AWS Console
 
-- AWS tem serviços globais
-  -
+- ## AWS tem serviços globais
