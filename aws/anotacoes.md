@@ -61,7 +61,7 @@ Exemplo de empresa que usa: rockspace
 ## Public Cloud
 
 - Os Recursos de nuvem são propriedade e operados por um provedor de serviços em nuvem tercerizado e são
-  <br>... fornecidos pela internet
+  fornecidos pela internet
 - 6 vantagens de usar computação em nuvem
 
 ## Hybrid Cloud
@@ -80,7 +80,7 @@ Exemplo de empresa que usa: rockspace
   - Isso significa que não apenas nós, mas outros clientes da AWS podem compartilhar a mesma infraestrutura e aplicativos, mantendo a segurança e a privacidade
   - E então esses multiplos clientes estão sendo atendidos com os mesmos recursos físicos
   - Isso significa que eu você e outros, vão compartilhar essa grande nuvem, o que nos da elasticidade
-    <br>... e escalabilidade rapida.
+    e escalabilidade rapida.
 - Rapid elasticy and scalability (Elasticidade rápida e escalabilidade):
   - Isso significa que podemos adquirir e descartar recursos de forma rapida e automática quando precisarmos
   - Isso significa que podemos de forma rápida escalar nossa aplicação on demand
@@ -92,19 +92,19 @@ Exemplo de empresa que usa: rockspace
 - Vamos negociar despesas de capital com despesas operacionais ou seja CAPEX por OPEX
   - Você paga sob demanda do serviço e não precisa possuir o hardware ( espaço fisico economizado )
   - Reduz seu custo total da propriedade dos hardwares(TCO) ( pq vc vai solicitar sob demanda na aws )
-    <br>... Reduz o custo Operacional (OPEX) ( ou seja você não precisa mais que alguem fique dando...
-    <br>... manutenção 24/7 pq vc n tem mais um data center e etc ).
+    Reduz o custo Operacional (OPEX) ( ou seja você não precisa mais que alguem fique dando...
+    manutenção 24/7 pq vc n tem mais um data center e etc ).
 - Beneficiar de enormes economias de escalas
   - O preço será reduzido, pois muitas pessoas estão utilizando a AWS então os preços serão reduzidos ao
-    <br>... longo do tempo, porque a AWS será mais eficiente na execução devido à sua grande escala.
+    longo do tempo, porque a AWS será mais eficiente na execução devido à sua grande escala.
 - Stop guessing capacity ( Pare de advinhar a capacidade que precisamos )
   - Antes precisavamos planejar e comprar servidores com antecedencias e esperar que atendecem a capacidade
-    <br>... Hoje podemos solicitar sob demanda tudo isso com AWS, baseado no uso real da nossa aplicação
+    Hoje podemos solicitar sob demanda tudo isso com AWS, baseado no uso real da nossa aplicação
 - Aumento na velocidade e a agilidade
-  - uso porque tudo é sob demanda, então se precisarmos de x item, com poucos cliques teremos.
+  - Isso porque tudo é sob demanda, então se precisarmos de x itens, com poucos cliques teremos.
 - Pare de gastar dinheiro executando e mantendo data centers.
 - Seja global em minutos: com a infraestrutura da AWS digamos que, 5 pessoas podem criar a infra de um
-  <br>... aplicativo em minutos.
+  aplicativo em minutos.
 
 # Problems solved by the Cloud
 
@@ -206,4 +206,50 @@ conseguimos ver tudo isso aqui: https://infrastructure.aws/
 
 - Aws tem Regions pelo mundo todo
 - Os nomes dessas regiões podem ser: us-east-1, eu-west-3
-- Uma Região é um Cluster de datacenters
+- Uma Região é um Cluster de datacenters ( dois ou mais computadores para que estes trabalhem de maneira conjunta no intuito de processar uma tarefa. Estas máquinas dividem entre si as atividades de processamento e executam este trabalho de maneira simultânea. )
+- A maioria dos serviços AWS tem escopo regional
+
+- Conformidade com a governança de dados e requisitos legais: os dados nunca saem de uma região sem
+  sua permissão explícita.
+
+## Como escolher uma região na AWS?
+
+Bom isso depende, tem alguns pontos:
+
+- **Compliance ( Conformidade ):** As vezes os governos querem que os dados sejam locais para o pais em que você está
+  implantando a sua aplicação. Por exemplo, na França, os dados na França podem ter que permanecer
+  na França e, portanto, você deve lançar seu pedido na região francesa.
+
+- **Proximity ( Proximidade ):** Aqui a o conceito de latência, se o seu público ALVO fica na américa do sul e você contrata uma região da Austrália, seu publico alvo terá muito atraso ao acessar a sua aplicação
+
+- **Available Services ( Disponibilidade de Serviços ):** IMPORTANTE: Nem toda region tem todos os serviços, então é muito importante que antes da escolha da sua região, você deve verificar se ela possui
+  o serviço que você precisa.
+
+- **Pricing ( Preços ):** Os preços dos serviços variam de região para região, mas isso é transparente na pagina de serviços mostra os preços deles e você consegue compará-los.
+  Exemplo: vamos supor que sua aplicação é uma aplicação de upload e download de fotos, nesse caso
+  o que importa é o custo sobre o download de fotos, teriamos que fazer uma análise de qual
+  região tem o menor custo de "DATA Out" por transação, que isso é o que iria ter mais impácto no nosso
+  negócio.
+
+# AWS Availability Zones (AZ)
+
+- Cada região tem muitas zonas de disponibilidade ( Availability Zones ), normalmente cada região possui
+  no mínimo 3 e no máximo 6 "zonas de disponibilidade" ( Availability Zones ), mas normalmente é 3, exemplo:
+  - ap-southeast-2a
+  - ap-southeast-2b
+  - ap-southeast-2c
+- Cada Zona de Disponibilidade (AZ) pode ter um ou mais data centers com energia, rede, e conectividade, exemplo:
+  - ap-southeast-2a pode ter 1 2 3 poderia ser 4 datacenters, nós não sabemos realmente, a AWS não nos informa isso
+  - Mas o que sabemos é que essas zonas de disponibilidade (az) estão separadas umas das outras, para que fiquem,
+    isoladas de desastres, se um der ruim temos mais 2 funcionando (por exemplo)
+
+# AWS Points of Presence ( Edge Locations )
+
+- A Amazon possui 216 pontos de presença ( 205 pontos de presença 11 cache regional ) em 84 cidades
+  de 42 países.
+- E isso será muito útil quando entregarmos conteúdo aos usuários finais com a menor latência possível.
+
+# Tour of the AWS Console
+
+- AWS tem serviços globais
+  -
