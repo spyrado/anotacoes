@@ -253,4 +253,13 @@ Bom isso depende, tem alguns pontos:
 
 # Tour of the AWS Console
 
-- ## AWS tem serviços globais
+- AWS tem serviços globais
+  - Identity and Access Management (IAM) ( Gerenciamento de identidade e acesso )
+  - Route 53 ( DNS service )
+  - CloudFront ( Content Delivery Network ) ( Rede de entrega de conteúdo )
+  - WAF ( Web Application Firewall )
+- Mas a maioria dos serviços AWS são por escopo de região
+  - Amazon EC2 ( Infrastructure as a Service )
+  - Elastic Beanstalk ( Platform as a Service )
+  - Lambda ( Function as a Service )
+  - Rekognition ( Software as a Service )
