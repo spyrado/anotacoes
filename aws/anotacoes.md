@@ -263,3 +263,25 @@ Bom isso depende, tem alguns pontos:
   - Elastic Beanstalk ( Platform as a Service )
   - Lambda ( Function as a Service )
   - Rekognition ( Software as a Service )
+
+# Shared Responsibility Model Diagram
+
+- Tudo o que você usa na nuvem, independentemente da forma que você configura é de sua inteira responsabilidade, e isso inclui segurança, seus dados, seu sistema operacional, sua configuração de rede
+  firewall e etc.
+
+- E a AWS é responsável pela segurança da NUVEM, então toda a infraestrutura, todo o hardware, todo o software, toda a segurança interna própria eles são responsáveis.
+
+- Segue o DIAGRAMA para exemplificar (https://aws.amazon.com/compliance/shared-responsibility-model/):
+  ![aleatorio](imgs/shared_responsibility_model.png 'aleatorio')
+
+# AWS Acceptable Use Policy ( Política de uso aceitável da AWS )
+
+- LINK: https://aws.amazon.com/aup/
+
+- Você não pode usar, ou facilitar ou permitir que outros usem os Produtos ou o Site da AWS:
+  - por qualquer atividade ilegal ou fraudulenta;
+  - para violar os direitos de outras pessoas;
+  - para ameaçar, incitar, promover ou incentivar ativamente violência, terrorismo ou outros danos graves;
+  - por qualquer conteúdo ou atividade que promova a exploração ou abuso sexual infantil;
+  - para violar a segurança, integridade ou disponibilidade de qualquer usuário, rede, computador ou sistema de comunicações, aplicação de software ou dispositivo de rede ou computação;
+  - para distribuir, publicar, enviar ou facilitar o envio de e-mails em massa não solicitados ou outras mensagens, promoções, publicidade ou solicitações (ou “spam”).
