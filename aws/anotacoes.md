@@ -1,5 +1,12 @@
 MAPA MENTAL SOBRE ESSE ESTUDO LINK: https://whimsical.com/aws-51e7H496tunrdg2SsXu1MB
 
+<br>
+
+> **IMPORTANTE:** NÃO UTILIZE o usuário root, use-o apenas para criar o seu usuário e use o seu usuário
+> na aws, ele não deve ser utilizado e nem compartilhado.
+
+<br>
+
 # What is a server composed of? ( do que um servidor é composto? )
 
 1 - <b>CPU</b> ( Que realiza todos os calculos necessários, processamentos e etc. ) <br>
@@ -285,3 +292,34 @@ Bom isso depende, tem alguns pontos:
   - por qualquer conteúdo ou atividade que promova a exploração ou abuso sexual infantil;
   - para violar a segurança, integridade ou disponibilidade de qualquer usuário, rede, computador ou sistema de comunicações, aplicação de software ou dispositivo de rede ou computação;
   - para distribuir, publicar, enviar ou facilitar o envio de e-mails em massa não solicitados ou outras mensagens, promoções, publicidade ou solicitações (ou “spam”).
+
+# [SERVICES] IAM ( Identity and Access Management )
+
+> **IMPORTANTE:** NÃO UTILIZE o usuário root, use-o apenas para criar o seu usuário e use o seu usuário
+> na aws, ele não deve ser utilizado e nem compartilhado.
+
+<br/>
+
+## Users and Groups
+
+- IAM Significa Identidade e Gerenciamento de acessos
+- Root Account criado pro padrão quando se cria uma conta na aws, ele não deve ser utilizado, e nem compartilhado.
+- Users (Usuarios) são pessoas dentro da sua organização e podem ser agrupados juntos se fizer sentido.
+- Groups (Grupos) apenas contem usuários e não outros grupos.
+- User (Usuário) sem um grupo, não é uma boa prática, mas é possível fazer isso.
+- Um usuário pode pertencer a mais de um grupo.
+
+## Permissoes
+
+- Usuários ou Grupos podem receber documentos JSON, chamados de políticas ( Policies ).
+- Essas políticas definem as permissões dos usuários.
+- Na AWS você sempre deve aplicar o Princípio do Privilégio Mínimo (Least Privilege Principle),
+  não de mais permissões do que o usuário precise, de apenas o que ele precisa.
+- Segue exemplo:
+
+![aleatorio](imgs/iam_permissions.png 'aleatorio')
+
+## Tags
+
+- Podemos utilizar tags ao criar um usuário, elas são uteis para por exemplo, falar que aquele
+  usuário é do departamento de engenharia, ai na tag ficaria KEY: Departamento VALUE: Engenharia

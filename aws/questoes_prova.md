@@ -19,3 +19,45 @@ R: AWS Database Migration Service
    R: Minha responsabilidade é tudo o que eu utilizar da nuvem é de minha responsabilidade, isso inclui segurança, dados, sistema operacional configuração de rede de firewall e etc.
 
    A Responsabilidade da AWS é toda a segurança da NUVEM, ou seja infraestrutura hardware software toda a segurança interna.
+
+# PRIMEIRA QUIZ
+
+1. Which of the following is the definition of Cloud Computing?
+   R: On-demand availability of computer system resources, especially data storage (cloud storage) and computing power, without direct active management by the user
+
+2. A company would like to benefit from the advantages of the Public Cloud but would like to keep sensitive assets in its own infrastructure. Which deployment model should the company use?
+   R: Hybrid Cloud
+
+3. Which of the following is NOT an advantage of Cloud Computing?
+   R:Train your employees less
+
+4. You ONLY want to manage Applications and Data. Which type of Cloud Computing model should you use?
+   R: Platform as a Service (PaaS)
+   (In the Platform as a Service model, you only manage the data and the applications.)
+
+5. What is the pricing model of Cloud Computing?
+   R: Pay-as-you-go pricing
+
+6. Which of the following is NOT one of the Five Characteristics of Cloud Computing?
+   R: Dedicated Support Agent to help you deploy applications
+
+7. Which of the following services has a global scope?
+   R: IAM
+
+8. Which Global Infrastructure identity is composed of one or more discrete data centers with redundant power, networking, and connectivity, and are used to deploy infrastructure?
+   R: Availability Zones
+
+9. What defines the distribution of responsibilities for security in the AWS Cloud?
+   R: The Shared Responsibility Model
+
+10. What is NOT authorized to do on AWS according to the AWS Acceptable Use Policy?
+    R: Run analytics on stolen content
+
+11. AWS Regions are composed of?
+    R: Three or more Availability Zones
+
+12. Which are the 3 pricing fundamentals of the AWS Cloud?
+    R: Compute, Storage, and Data transfer out of the AWS Cloud
+
+13. Which of the following options is NOT a point of consideration when choosing an AWS Region?
+    R: Capacity availability
