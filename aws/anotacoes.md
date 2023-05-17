@@ -319,7 +319,62 @@ Bom isso depende, tem alguns pontos:
 
 ![aleatorio](imgs/iam_permissions.png 'aleatorio')
 
+<br>
+
 ## Tags
 
 - Podemos utilizar tags ao criar um usuário, elas são uteis para por exemplo, falar que aquele
   usuário é do departamento de engenharia, ai na tag ficaria KEY: Departamento VALUE: Engenharia
+
+<br>
+
+## IAM Policies
+
+<br>
+
+### inheritance ( Herança )
+
+- As políticas na aws podem ser herdadas, como herança mesmo em objetos por exemplo
+- Se eu tenho um grupo chamado developer com determinadas politicas, e eu colocar
+  um usuário dentro desse grupo ele vai herdar as políticas desse grupo
+- Se eu tiver um grupo chamado Audit e colocar esse mesmo usuário do grupo developer dentro do audit,
+  o usuário agora tem as politicas tanto de developers quanto de audit
+- Também podemos ter políticas isoladas para usuários sem grupo, chamamos essas políticas de "inline policy" são políticas que são dedicadas para usuários sem grupo.,
+- Segue exemplo:
+  ![aleatorio](imgs/politicas_de_heranca.png 'aleatorio')
+
+### Structure ( estrutura JSON )
+
+```json
+{
+  "Version": "2012-10-17",
+  "Id": "S3-Account-Permissions", // pode dar o nome que quiser apenas para identificar a policie
+  "Statement": [
+    {
+      "Sid": "1", // Pode dar o nome que quiser, é apenas para identificar o Statement
+      "Effect": "Allow", // Indica se esse Statement vai Negar ou Permitir as instruções abaixo
+      "Principal": {
+        "AWS": ["arn:aws:iam::123456789012:root"] // O ou Os usuários que irão receber essa policie
+      },
+      "Action": [
+        "s3:GetObject", // pode dar get no s3
+        "s3:PutObject" // pode dar put no s3
+      ],
+      "Resource": ["arn:aws:s3:::mybucket/*"] // no s3 especificado aqui em mybucket
+    }
+  ]
+}
+```
+
+### Significado de cada propriedade do JSON ( policie / política )
+
+- **Version** - Linguagem da versão da política, sempre coloque "2012-10-17" [REQUIRED]
+- **Id** - Um identificador para a política ( policie ) [OPTIONAL]
+- **Statement** - Uma ou Mais declarações individuais ( Individual Statements )  [REQUIRED]
+- **Sid** - Um identificador para o Statement [OPCIONAL]
+- **Effect** - Se o Statement Permite ou Nega o acesso (Allow,Deny) [REQUIRED]
+- **Principal** - Consiste em qual Conta/Usuário/Função(Role) a política deve ser aplicada  [??]
+- **Action** - É a lista de chamadas da API que serão negadas ou permitidas com base no **Effect** [??]
+- **Resource** - É uma lista de recursos aos quais as ações serão aplicadas [??]
+- **Condition** - De acordo com essa condição ele vai verificar se esse Statement configurado, deve ou 
+  não ser aplicado [OPTIONAL] ( não está no objeto acima, mas se possivel dps coloque no exemplo )

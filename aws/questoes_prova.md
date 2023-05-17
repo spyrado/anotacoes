@@ -61,3 +61,8 @@ R: AWS Database Migration Service
 
 13. Which of the following options is NOT a point of consideration when choosing an AWS Region?
     R: Capacity availability
+
+# :::::::::::::::::::::::::: IMPORTANTE ::::::::::::::::::::::::::
+
+- Pode cair na prova sobre a Estrutura JSON ( policies ou políticas )
+  - pode cair sobre "Principal", "Effect", "Action" e "Resource" mas estude sobre tudo e fique de buenas.
