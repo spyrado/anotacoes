@@ -300,7 +300,7 @@ Bom isso depende, tem alguns pontos:
 
 <br/>
 
-## Users and Groups
+## [SERVICES] IAM Users and Groups
 
 - IAM Significa Identidade e Gerenciamento de acessos
 - Root Account criado pro padrão quando se cria uma conta na aws, ele não deve ser utilizado, e nem compartilhado.
@@ -309,7 +309,7 @@ Bom isso depende, tem alguns pontos:
 - User (Usuário) sem um grupo, não é uma boa prática, mas é possível fazer isso.
 - Um usuário pode pertencer a mais de um grupo.
 
-## Permissoes
+## [SERVICES] IAM Permissoes
 
 - Usuários ou Grupos podem receber documentos JSON, chamados de políticas ( Policies ).
 - Essas políticas definem as permissões dos usuários.
@@ -321,18 +321,18 @@ Bom isso depende, tem alguns pontos:
 
 <br>
 
-## Tags
+## [SERVICES] IAM Tags
 
 - Podemos utilizar tags ao criar um usuário, elas são uteis para por exemplo, falar que aquele
   usuário é do departamento de engenharia, ai na tag ficaria KEY: Departamento VALUE: Engenharia
 
 <br>
 
-## IAM Policies
+## [SERVICES] IAM Policies
 
 <br>
 
-### inheritance ( Herança )
+### [SERVICES] IAM inheritance ( Herança )
 
 - As políticas na aws podem ser herdadas, como herança mesmo em objetos por exemplo
 - Se eu tenho um grupo chamado developer com determinadas politicas, e eu colocar
@@ -343,7 +343,7 @@ Bom isso depende, tem alguns pontos:
 - Segue exemplo:
   ![aleatorio](imgs/politicas_de_heranca.png 'aleatorio')
 
-### Structure ( estrutura JSON )
+### [SERVICES] IAM Structure ( estrutura JSON )
 
 ```json
 {
@@ -351,16 +351,7 @@ Bom isso depende, tem alguns pontos:
   "Id": "S3-Account-Permissions", // pode dar o nome que quiser apenas para identificar a policie
   "Statement": [
     {
-      "Sid": "1", // Pode dar o nome que quiser, é apenas para identificar o Statement
-      "Effect": "Allow", // Indica se esse Statement vai Negar ou Permitir as instruções abaixo
-      "Principal": {
-        "AWS": ["arn:aws:iam::123456789012:root"] // O ou Os usuários que irão receber essa policie
-      },
-      "Action": [
-        "s3:GetObject", // pode dar get no s3
-        "s3:PutObject" // pode dar put no s3
-      ],
-      "Resource": ["arn:aws:s3:::mybucket/*"] // no s3 especificado aqui em mybucket
+       especificado aqui em mybucket
     }
   ]
 }
@@ -378,3 +369,44 @@ Bom isso depende, tem alguns pontos:
 - **Resource** - É uma lista de recursos aos quais as ações serão aplicadas [??]
 - **Condition** - De acordo com essa condição ele vai verificar se esse Statement configurado, deve ou 
   não ser aplicado [OPTIONAL] ( não está no objeto acima, mas se possivel dps coloque no exemplo )
+
+<br>
+
+# [SERVICES] IAM Mecanismos de defesa
+
+## [SERVICES] IAM Password Policy
+
+- senhas fortes - mais segurança para a sua conta
+- Na AWS voce pode definir uma "política de senha"( Password Policy )
+  - definir um tamanho mínimo de senha
+  - Requerer caracteres específicos:
+    - incluindo letras com Upper Case
+    - letras com Lower Case
+    - numeros
+    - Caracteres Especiais, exemplo: &;%, e etc
+  - Voce pode PERMITIR que o usuário mude o seu próprio password
+  - Ou pode requerer que os usuários mudem o password de tempo em tempo ( password expiration )
+  - Pode também previnir que os usuários reutilizem senhas anteriores na hora da mudança da senha. ( Prevent password re-use )
+
+<br>
+
+## [SERVICES] IAM MFA - Multi Factor Authentication
+
+- Usuários podem ter acesso a sua conta e podem mudar as configurações ou deletar recursos com sua
+  conta da AWS
+- Você quer proteger seu usuário root e os seus IAM Users.
+- Para isso você deve utilizar o MFA, o MFA basicamente faz a combinação da senha que você sabe
+  mais um dispositivo físico seu.
+- Principal benefício do MFA:
+  - mesmo que um usuário perca a sua senha porque foi roubado ou hackeado a conta não será comprometida
+    porque o hacker também vai precisar obter o dispositivo fisico do usuário para ter acesso ao token gerado no MFA
+- Segue um exemplo:
+![aleatorio](imgs/mfa-example.png 'aleatorio')
+
+<br>
+
+## [SERVICES] IAM MFA Devices options in AWS
+
+- [Virtual_MFA_Device] Google Authenticator [ mobile only ]
+- [Virtual_MFA_Device] Authy [ multi-device ] ( funciona tanto pc quanto celular )
+- Os Virtual MFA Device Suportam multiplos tokens em um unico dispositivo.
