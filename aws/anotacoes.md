@@ -410,3 +410,78 @@ Bom isso depende, tem alguns pontos:
 - [Virtual_MFA_Device] Google Authenticator [ mobile only ]
 - [Virtual_MFA_Device] Authy [ multi-device ] ( funciona tanto pc quanto celular )
 - Os Virtual MFA Device Suportam multiplos tokens em um unico dispositivo.
+- [Universal 2nd Factor] (U2F) Security Key [ YubiKey ] é um dispositivo fisico tipo o que você tem para crypto,
+  vc pode cadastrar multiplos usuários e n precisa decorar 50 mil codigos, vc só usa o seu dedo para autenticar e fim.
+  fora que por ser um dispositivo fisico ele te trais mais segunrança ainda.
+- [Hardware Key Fob MFA Device] esse vc gera a senha apertando um botão.
+- [Hardware Key Fob MFA Device for AWS GovCloud (US)] e temos um Key Fob específico, se vc estiver usando a NUVEM do governo nos EUA,
+  provavelmente vc vai precisar de um desse para acessar.
+
+![aleatorio](imgs/mfa_devices_options.png 'aleatorio')
+
+## How can users access AWS?
+
+- To access AWS, you have three options:
+  - AWS Management Console ( protected by password + MFA )
+  - AWS Command Line Interface ( CLI ): protected by access keys
+  - AWS Software Developer Kit ( SDK ) - for code: protected by access keys
+  - As chaves são geradas pelo o console da AWS ( AWS Console )
+  - as chaves (access keys) são gerenciadas pelos proprios usuários.
+  - As chaves são secretas, assim como um password, não compartilhe as chaves.
+  - Então trate de pensar que a sua "Access Key ID" (username) e sua "Secret Access Key"(password) são como seu
+    usuário e senha.
+
+## What's the AWS CLI?
+
+- Uma ferramenta que habilita você a interagir com serviços da AWS usando linhas de comando em um Git Bash por exemplo
+- Tem acesso direto as API Publicas da AWS
+- Você pode desenvolver scripts para gerenciar os seus recursos e automatizar algumas tarefas
+- Ela é open source, segue link: https://github.com/aws/aws-cli
+- É uma alternativa ao inves de usar o AWS Management Console
+- todas as linhas de comando começam com aws, exemplo:
+  aws s3 cp myfile.txt s3://ccp-mybucket/myfile.txt
+
+## What's the AWS SDK?
+
+- AWS Software Development Kit ( AWS SDK )
+- SDK é uma lib específica em uma linguagem específica.
+- A AWS possui diversos sdk's um para cada tipo de linguagem de programação
+- SDK Habilita você a acessar e gerenciar serviços da AWS programaticamente ( via linha de código )
+- SDK Sempre ficará dentro do seu código, exemplo para fazer o multipartupload via Node.js:
+  VocÊ precisa instalar e importar o SDK de Node, para poder utilizar o serviço de multipart da AWS
+- A AWS suporta SDK para:
+  - Javascript, Python, PHP, .NET, Ruby, Java, Go, Node.js, C++
+  - Mobile SDK's ( Android, IOS ... )
+  - IoT Device SDK's ( Embedded C, Arduino... )
+- Exemplo: AWS CLI foi construído no SDK da AWS para Python
+
+# How Can I Install AWS CLI?
+
+- Follow these steps
+- 1º digite no google "aws cli install on windows"
+- 2º Clique em um link que tenha uma url da AWS
+- 3º Clique no link que baixa um .msi para a sua maquina
+- 4º de next next next até instalar o CLI
+- 5º abra o git bash e digite aws --version
+- 6º se ele retornou a versão do cli da aws está tudo configurado
+
+# How Can I Use AWS CLI
+
+- Primeiro de tudo para conseguir utilizar o CLI da AWS, precisamos gerar as nossas Chaves de Acesso (Access Key)
+- Entre no serviço "IAM"
+- Clique em "Usuários(Users)"
+- Clique no usuário que deseja gerar a Chave de Acesso procure por "Credenciais de segurança"(
+security credentials)
+- Procure por "Chaves de acesso"(access keys)
+- Clique em criar chaves de acesso
+- Selecione a opção "Command Line Interface (CLI)"
+- Clique em Proximo
+- Clique em Criar chave de acesso
+- Voce vai receber duas chaves, "Chave de acesso" e "Chave de acesso secreta", copie as duas e guarde em um lugar seguro
+- Vá ate o git bash e configure sua CLI com as chaves
+- Digite no git bash: "aws configure"
+- Ele vai te pedir o "AWS Access Key ID" (Chave de acesso) ai vc copia e cola a chave de acesso
+- Ele vai te pedir o "AWS Secret Access Key" (Chave de acesso secreta) ai vc copia e cola a Chave de acesso secreta
+- Ele vai pedir uma região "a mais proxima de você" no meu caso é: "sa-east-1"
+- Ele vai pedir um "Default output format" ai vc apenas aperta ENTER
+- E pronto sua AWS CLI está configurada
