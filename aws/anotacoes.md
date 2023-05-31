@@ -495,3 +495,19 @@ security credentials)
 - O Management Console e o AWS CLI fornecem informações similares.
 - Exemplo: se eu for no CLI e digitar "aws iam list-users" a informações que eu vou receber,
   É similar a ir no console de gerenciamento e clicar em usuários.
+
+# AWS CloudShell
+
+- O CloudShell é um icone de "console" que fica no canto superior direito do lado do icone de notificação
+- Importante pode não estar disponíveis em todas as regions, para descobrir as regiões disponíveis
+  digite no google: "cloudshell aws availability regions", e clique no link da aws, que vai mostrar
+  uma tabela de regiões suportadas.
+- Uma alternativa ao inves de utilizar um Git Bash da vida
+- **IMPORTANTE SABER:** No gitbash vc pode digitar o aws iam list-users --region "nome_da_regiao"
+  já no CloudShell não precisa digitar o --region pois ele pega por padrão a região selecionada no navegador.
+- Outra curiosidade do CloudShell, é que temos um ambiente nele ( um pc (um repositório cheio)), e podemos criar um arquivo nele
+  e esse arquivo não some depois de recarregar a página, ele fica lá.
+- Outra coisa legal do CloudShell é que você pode configurá-lo no canto superior direito.
+- Você também pode clicar no botão de Actions e fazer o download ou upload de arquivos
+- para saber o caminho completo do seu CloudShell digite "pwd"
+- dando pwd vc pega copia o caminho todo e pode jogar esse caminho no botão de ação download + nome do arquivo que você deseja baixar ( caso vc tenha criado algum no seu CloudShell )
