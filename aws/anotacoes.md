@@ -485,3 +485,13 @@ security credentials)
 - Ele vai pedir uma região "a mais proxima de você" no meu caso é: "sa-east-1"
 - Ele vai pedir um "Default output format" ai vc apenas aperta ENTER
 - E pronto sua AWS CLI está configurada
+- para testar digite um comando no CLI como "aws iam list-users", se você tiver usuários para listar ele retornará algo,
+  caso não tenha, ele não retornara nada.
+
+# AWS Management Console vs AWS CLI
+
+- o Management Console é na web, quando vc vai até um serviço como IAM e ve uma lista de usuários, vc está utilizando
+  o Management Console
+- O Management Console e o AWS CLI fornecem informações similares.
+- Exemplo: se eu for no CLI e digitar "aws iam list-users" a informações que eu vou receber,
+  É similar a ir no console de gerenciamento e clicar em usuários.
