@@ -511,3 +511,41 @@ security credentials)
 - Você também pode clicar no botão de Actions e fazer o download ou upload de arquivos
 - para saber o caminho completo do seu CloudShell digite "pwd"
 - dando pwd vc pega copia o caminho todo e pode jogar esse caminho no botão de ação download + nome do arquivo que você deseja baixar ( caso vc tenha criado algum no seu CloudShell )
+
+# IAM Roles for Services
+
+- Alguns Serviços da AWS precisarão executar ações em SEU NOME.
+- Para fazer isso atribuiremos permissõoes aos serviços da AWS com IAM Roles.
+- Para que serviços da aws como EC2 (Virtual Server) se comunique com a AWS, precisamos dar as permissões necessárias
+  para que esse serviço consiga fazer a request e obter a response com IAM Roles, é parecido com o que fazemos com Usuários
+  quando adicionamos as IAM Policies, para que o usuário tenha acessa a determinadas coisas.
+- Common Roles ( Roles Comuns )
+  - EC2 Instance Roles
+  - Lambda Function Roles
+  - Roles for CloudFormation
+
+# Criando uma role para EC2
+
+- Vá até o serviço de IAM
+- Clique no menu esquero "Roles" ou "Funções"
+- Clique em Criar função
+- Escolha o tipo de entidade que vai receber essa "Role"
+- No nosso caso vai ser Serviços da AWS
+- Escolha o serviço da aws que recebera essa "Role" em "Casos de uso"
+- No nosso caso vai ser EC2, selecione ele e de um next
+- vai aparecer uma lista de Policies vc escreve na busca "IAMReady" e
+  selecione a opção "IAMReadOnlyAccess"
+- pois queremos apenas que o EC2 ( Maquina virtual ) tenha acesso a leitura do IAM
+- De um proximo
+- de um nome para essa sua "Role" personalizada
+- e clique em criar role ou criar função
+
+# IAM Security Tools
+
+- [IAM Credentials Report] Podemos criar um relatório de credenciais do IAM e isso ocorre no nivel da sua conta ( account-level )
+  - Esse relatório conterá todos os usuários de suas contas e o status de suas várias credenciais
+- [IAM Access Advisor] (user-level)
+  - Mostrará as permissões de serviços concedidas a um usuário e quando esses serviços foram acessados pela última vez.
+- E isso é muito útil, pois estamos falando sobre o princípio do menor privilégio, e portanto, usando essa ferramenta
+    podemos ver quais permissões não são usadas e reduzir a permissão que um usuário pode ter, para estarmos alinhados
+    com o principio de menor privilegio
