@@ -388,6 +388,11 @@ Bom isso depende, tem alguns pontos:
   - Ou pode requerer que os usuários mudem o password de tempo em tempo ( password expiration )
   - Pode também previnir que os usuários reutilizem senhas anteriores na hora da mudança da senha. ( Prevent password re-use )
 
+  - Para ver isso siga o passo a passo vá até o serviço IAM -> Configurações da conta -> no card "Política de senha" clique no botão editar -> clique no radio button personalizado e aplique a regra que deseja para as senhas, segue um exemplo: 
+  - 
+![aleatorio](imgs/politicas_de_senha.png 'aleatorio')
+
+
 <br>
 
 ## [SERVICES] IAM MFA - Multi Factor Authentication
@@ -549,3 +554,44 @@ security credentials)
 - E isso é muito útil, pois estamos falando sobre o princípio do menor privilégio, e portanto, usando essa ferramenta
     podemos ver quais permissões não são usadas e reduzir a permissão que um usuário pode ter, para estarmos alinhados
     com o principio de menor privilegio
+
+# IAM Gerando um relatório de credenciais
+
+- vá até o serviço de IAM  clique em "Relatório de acesso" e depois em "Relatório de credenciais"
+- depois clique em baixar relatório de credenciais
+- O PQ É BOM ESSE RELATÓRIO?
+  - Pq conseguimos validar muitas coisas, como por exemplo:
+  - Qual foi a ultima vez que o usuário logou ( será que ele ainda precisa desse acesso? )
+  - Quantos usuários colocar validação MFA?
+  - Quantas Access Keys foram criadas
+  - e por ai vai..
+
+# IAM User Access Advisor ( Consultor de acesso )
+
+- vá até o serviço de IAM -> Users -> clique em um usuário -> depois clique na tab Access Advisor
+- Ele mostra quais e quantos serviços foram usados a ultima vez por determinado usuário
+- Atividades recentes por aquele usuário aparecerão dentro de 4 horas esse é o padrão da AWS para mostrar
+  items nesse serviço
+- O PQ É BOM ESSE AccessAdvisor?
+  - pq permite que agt identifique SERVIÇOS que o usuário possui acesso, porem ele não utiliza,
+    então podemos remover
+
+# IAM MELHORES PRATICAS
+
+- Não use a root account, exceto para utiliza-la para configuração inicial
+- Não passe seu usuário para seu amigo/colega, se ele precisa de um usuário é só criar um usuário com a root account
+- Atribua usuário a um grupo e Atribua permissões a esse grupo, assim todo usuário dentro desse grupo
+  já vai obter as permissões relacionadas aquele grupo
+- Criar uma política de "strong password" nas configs de usuário vc pode deixar o proprio usuário, criar
+sua senha mas vc pode específicar o que é obrigatório nessa senha, tipo caracteres especiais letras maiusculas minusculas e etc. [PESQUISEPOR:] "[SERVICES] IAM Password Policy" lá tem tudo sobre 
+- Todos os usuário devem ter MFA para aumentar a segurança de todos os usuários
+- Criar e usar Funções(Roles) para dar permissões a serviços da AWS
+- Use Chaves de acesso para acessar o CLI ou o SDK, e guarde as chaves bem, pois elas são secretas.
+- Supervisione permissões de usuários e serviços via Relatório de Credenciais e Access Advisor
+- NUNCA COMPARTILHE seus usuários IAM e suas Access Keys
+
+# Shared Responsability Model for IAM
+
+- AWS Responsability
+  - Infraestrutura ( global network security )
+  - Configuration and vunerability analysis
