@@ -67,3 +67,4 @@ R: AWS Database Migration Service
 - Pode cair na prova sobre a Estrutura JSON ( policies ou políticas )
   - pode cair sobre "Principal", "Effect", "Action" e "Resource" mas estude sobre tudo e fique de buenas.
 - Quais as opções de Dispositivos MFA disponível na AWS?
+- O instrutor diz que será feita bastante perguntas sobre Shared Responsability Model **PROCURE EM ANOTAÇÕES POR:** "# Shared Responsability Model for IAM"

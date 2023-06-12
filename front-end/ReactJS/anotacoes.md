@@ -315,14 +315,24 @@ function MyButton() {
 
 <br>
 
-## Hooks
-
----
+# Hooks
 
 <br/>
 
 Funções iniciadas com `use` nós chamamos de `Hooks` um dos hooks que acabamos de utilizar foi o `useState`
 para saber mais sobre outros hooks acesse: https://beta.reactjs.org/reference/react
+
+<br/>
+
+---
+
+## **useState**
+
+<br>
+
+> **_NOTE:_**  O React quando se trata de Comunicar o RENDER para atualizar a visualização para o usuário
+> nós temos que utilizar o useState, se eu simplesmente declarar um let index = 0 colocar ele no html
+> e atravez de um click dar um index = index + 1, ele nuncá vai atualizar o render( a tela )
 
 <br>
 

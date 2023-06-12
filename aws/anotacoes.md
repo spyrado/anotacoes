@@ -594,4 +594,17 @@ sua senha mas vc pode específicar o que é obrigatório nessa senha, tipo carac
 
 - AWS Responsability
   - Infraestrutura ( global network security )
-  - Configuration and vunerability analysis
+  - Configuration and vunerability analysis ( configuração e análise de vulnerabilidade )
+  - Complience validation ( validação de conformidade )
+
+
+- Your Responsability
+  - Você é responsável por criar seus próprios usuários, grupos, roles, policies, gerenciamento
+    e monitoramento das mesmas.
+  - Você é responsável por habilitar MFA em todas as contas.
+  - Você é responsável por mudar as KEYS com frequencia
+  - Você é responsável por usar o IAM Tools e aplicar as permissões apropriadas
+  - Você é responsável por analisar os padrões de acesso e revisar as permissões da sua conta.
+
+Em resumo: a AWS é responsável por tota a INFRAESTRUTURA e VOCÊ é responsável por como usa essa
+infraestrutura
