@@ -608,3 +608,16 @@ sua senha mas vc pode específicar o que é obrigatório nessa senha, tipo carac
 
 Em resumo: a AWS é responsável por tota a INFRAESTRUTURA e VOCÊ é responsável por como usa essa
 infraestrutura
+
+# IAM Section - Summary
+
+- **Users:** usuário são como pessoas na vida real, cada usuário deve ter seu próprio user na AWS,
+  com a sua senha para o AWS Console
+- **Groups:** GRUPOS contém apenas USUÁRIOS apenas.
+- **Policies:** podemos anexar ou compartilhar documentos JSON que escreve a permissão para usuários e grupos.
+- **Roles:** Para instancias de EC2 ou Serviços AWS
+- **Security:** MFA + Password Policy
+- **AWS CLI:** gerenciar os serviços AWS usando linha de comando
+- **AWS SDK:** gerenciar os serviços AWS usando uma linguagem de programação
+- **Access Keys:** para conseguir acessar a AWS usando o CLI ou SDK
+- **Audit:** IAM Credential Reports & IAM Access Advisor (monitorar reports de credenciais e consultar acessos)
