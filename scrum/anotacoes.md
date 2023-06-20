@@ -39,4 +39,5 @@
   - Aprovado pelo CX ( layout igual ao proposto no figma )
   - Tela responsiva
   - Tela com acessibilidade
+  - Feito e Aprovado o Code Review
   - Publicado em ambiente produtivo.
