@@ -16,7 +16,7 @@
 
 **Significado:** É tudo que define o que uma história precisa ter ANTES de iniciar o seu desenvolvimento.
 
-**Exemplos:** 
+**Exemplos:**
   - Layout pronto no figma
   - Definição de contrato com o back-end
   - Regras de negócio devem estar claras
@@ -29,3 +29,14 @@
 ## DOD ( Definition of Done )
 ---
 <br>
+
+**Significado:** É tudo que define o que uma história precisa ter PRONTO quando finalizada.
+
+**Exemplos:**
+  - Teste unitário concluído
+  - Teste de integração concluído
+  - Aprovado pelo QA
+  - Aprovado pelo CX ( layout igual ao proposto no figma )
+  - Tela responsiva
+  - Tela com acessibilidade
+  - Publicado em ambiente produtivo.
