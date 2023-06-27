@@ -324,9 +324,9 @@ para saber mais sobre outros hooks acesse: https://beta.reactjs.org/reference/re
 
 <br/>
 
----
-
 ## **useState**
+
+---
 
 <br>
 
@@ -414,3 +414,33 @@ function ButtonCount({ count, onClick }) {
 Até aqui essa doc foi baseada nesse link de ref: https://beta.reactjs.org/learn#writing-markup-with-jsx
 
 ---
+
+<br>
+<br>
+
+
+
+## **useRef**
+---
+
+<br>
+
+**Quando usar?** <br>
+  - Quando queremos utilizar algum valor, porem não queremos renderizar esse valor na tela.
+  - Quando queremos armazenar valores internamente
+  - Quando queremos manipular elementos do DOM
+
+**Porque utilizar useRef e não simplesmente declarar uma variavel?:** <br>
+  - Bom, pois em react, quando declaramos variaveis normais, sem hooks elas resetam quando acontece
+  um render de tela por exemplo, e assim perdemos o valor daquela variavel, já utilizando useRef o valor
+  se mantem
+
+## Manipulando elementos do DOM com useRef
+
+const inputRef = useRef();
+
+```
+<input type="text" ref={inputRef}>
+```
+
+inputRef.
