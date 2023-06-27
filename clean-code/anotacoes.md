@@ -4,6 +4,75 @@
 
 Clean code representa **boas praticas** em seu código, como você escreve o código, ele "prega" que um código limpo deve ser bem legível, manutenível dentre outras coisas.
 
+## Técnicas de refatoração
+---
+<br>
+
+### [Técnicas de refatoração] MÉTODO DE EXTRAÇÃO
+---
+<br>
+
+  - **[ERRADO] Exemplo de um método que tem mais de um objetivo:** 
+  ```
+  function calcularMedia(numeros) {
+    let soma = 0;
+    let contador = 0;
+
+    for (let i = 0; i < numeros.length; i++) {
+      soma += numeros[i];
+      contador++;
+    }
+
+    const media = soma / contador;
+
+    if (media >= 7) {
+      console.log("Aprovado");
+    } else {
+      console.log("Reprovado");
+    }
+  }
+
+  // Exemplo de uso da função
+  const notas = [8, 7, 6, 9, 5];
+  calcularMedia(notas);
+
+  ```
+  - **[CORRETO] Exemplo utilizando "Método de extração"**
+  ```
+  function calcularMedia(numeros) {
+    const soma = calcularSoma(numeros);
+    const contador = numeros.length;
+    const media = calcularMediaAritmetica(soma, contador);
+    exibirResultado(media);
+  }
+
+  function calcularSoma(numeros) {
+    let soma = 0;
+
+    for (let i = 0; i < numeros.length; i++) {
+      soma += numeros[i];
+    }
+
+    return soma;
+  }
+
+  function calcularMediaAritmetica(soma, contador) {
+    return soma / contador;
+  }
+
+  function exibirResultado(media) {
+    if (media >= 7) {
+      console.log("Aprovado");
+    } else {
+      console.log("Reprovado");
+    }
+  }
+
+  // Exemplo de uso da função
+  const notas = [8, 7, 6, 9, 5];
+  calcularMedia(notas);
+
+  ```
 
 ## Boas práticas:
 
@@ -34,3 +103,66 @@ ideal, mas se o contexto for esse é melhor que nada.)
 
 - **Minimizar o número de entidades, como classes, métodos, funções e outras coisas do tipo**: a dica aqui é verificar se temos uma solução já feita no projeto, que atenda a sua intenção naquele momento, isso eu englobo tudo, classes metodos funções interfaces e etc.<br>
 As vezes temos uma interface que já atende ao cenário proposto, mas como não consultamos o projeto criamos mais uma interface com a mesma intenção gerando duplicidade, as vezes temos funções com nomes diferentes, porem com o mesmo objetivo que seria por exemplo ```clearValue() - limparValor()``` e por ai vai.
+
+- **Observar se a classe e/ou o método possui apenas um objetivo**: métodos que possuem mais de uma tarefa precisam ser divididos.
+  - **[ERRADO] Exemplo de um método que tem mais de um objetivo:** 
+  ```
+  function calcularMedia(numeros) {
+    let soma = 0;
+    let contador = 0;
+
+    for (let i = 0; i < numeros.length; i++) {
+      soma += numeros[i];
+      contador++;
+    }
+
+    const media = soma / contador;
+
+    if (media >= 7) {
+      console.log("Aprovado");
+    } else {
+      console.log("Reprovado");
+    }
+  }
+
+  // Exemplo de uso da função
+  const notas = [8, 7, 6, 9, 5];
+  calcularMedia(notas);
+
+  ```
+  - **[CORRETO] Exemplo utilizando "Método de extração"**
+  ```
+  function calcularMedia(numeros) {
+    const soma = calcularSoma(numeros);
+    const contador = numeros.length;
+    const media = calcularMediaAritmetica(soma, contador);
+    exibirResultado(media);
+  }
+
+  function calcularSoma(numeros) {
+    let soma = 0;
+
+    for (let i = 0; i < numeros.length; i++) {
+      soma += numeros[i];
+    }
+
+    return soma;
+  }
+
+  function calcularMediaAritmetica(soma, contador) {
+    return soma / contador;
+  }
+
+  function exibirResultado(media) {
+    if (media >= 7) {
+      console.log("Aprovado");
+    } else {
+      console.log("Reprovado");
+    }
+  }
+
+  // Exemplo de uso da função
+  const notas = [8, 7, 6, 9, 5];
+  calcularMedia(notas);
+
+  ```
