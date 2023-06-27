@@ -31,3 +31,6 @@ ideal, mas se o contexto for esse é melhor que nada.)
       }
      ```
 - **Sem duplicidade de código**: Código duplicado significa que uma ideia na sua cabeça, não está bem representada no código, nesses caso deve analisar o código duplicado e verificar o que é possível fazer para unificar esse código, unificando o código isso também ajuda nos testes unitários, pois você só irá precisar validar uma vez esse ponto.
+
+- **Minimizar o número de entidades, como classes, métodos, funções e outras coisas do tipo**: a dica aqui é verificar se temos uma solução já feita no projeto, que atenda a sua intenção naquele momento, isso eu englobo tudo, classes metodos funções interfaces e etc.<br>
+As vezes temos uma interface que já atende ao cenário proposto, mas como não consultamos o projeto criamos mais uma interface com a mesma intenção gerando duplicidade, as vezes temos funções com nomes diferentes, porem com o mesmo objetivo que seria por exemplo ```clearValue() - limparValor()``` e por ai vai.
