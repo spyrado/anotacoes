@@ -13,10 +13,19 @@ Ou com uma versão específica
 1. > npx react-native start
 2. > npx react-native run-android
 
+# Como limpar o cache do seu aplicativo?
+
+> npm start -- --reset-cache
+
+<br>
+
 # StyleSheet
 
 ## Como tipar um StyleSheet.create?
 
+???
+
+<br>
 
 # Fonts
 
