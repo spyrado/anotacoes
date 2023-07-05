@@ -626,6 +626,9 @@ infraestrutura
 
 # Billing Dashboard (Painel de faturamento)
 
+> **EXTREMAMENTE IMPORTANTE** esse dashboard, pois é aqui que conseguimos identificar de onde vem as cobranças,
+exemplo: pode ser que meu s3 eu tenha esquecido de apagar um arquivo de 1TERA que deixei la pra teste, e todo mes vai vir a cobrança relativa ao uso do tamanho de armazenamento do S3, ai no Billing dashboard eu consigo identificar o VALOR que está sendo cobrado e o pq está sendo cobrado ( ex: uso de 1TERA e 200mb do s3) ai eu teria que ir no s3 e identificar esse 1TERA e remover ele.
+
 <br>
 
 Com `Billing Dashboard` conseguimos gerenciar e estabelecer alertas para eventuais custos custos, exemplo, quero ser alertado se
@@ -645,3 +648,48 @@ a conta está passando de 2 mil dolares
 6. Clique em salvar
 7. E pronto, todos os usuários IAM dessa conta root terá acesso ao Billing Dashboard
 8. Caso você não queira que os users IAM tenha acesso, é só configurar seus alertas apenas na conta root
+
+<br>
+
+## Como identificar a cobrança de cada serviço? ( API Gateway, S3, Cloud Front e etc)
+
+1. Vá até `Billing Dashboard`
+2. Clique no menu ao lado esquerdo `Bills`
+3. Procure pela tab `charges by service` ou `cobranças por serviço` caso esteja em portugues
+4. E logo abaixo da tab, vai ter uma lista de serviços que você está utilizando, e os valores cobrados
+referentes aos serviços utilizados.
+
+<br>
+
+## Como identificar se o serviço que você está utilizando está chegando no limite do uso gratis?
+
+> Lembrando que o free tier é para contas com no máximo 12 meses, após isso os serviços serão cobrados sem limite de free tier
+
+1. Vá até `Billing Dashboard`
+2. Clique no menu ao lado esquerdo `Free tier`
+3. E caso você esteje utilizando serviços aparecerá uma lista para você
+com os serviços utilizados e quantos % falta para atingir o limite do free tier
+
+## Como receber alertas sobre custos futuros?
+
+1. Vá até `Billing Dashboard`
+2. Clique no menu ao lado esquerdo `Budgets`
+2. Clique no botão `Create a budget`
+3. Aqui você pode escolher o seu tipo de budget,
+se você qr um personalizado ou um padrão definido pela aws ( na descrição fala o que ele vai monitorar ),
+exemplo, esse aqui: 
+
+![aleatorio](imgs/free_tier_alert.png 'aleatorio')
+
+fala que vai te notificar quando algum serviço passar o free tier.
+
+esse outro nós conseguimos definir um limite de custo mensal para que ele nos avise, exemplo:
+quero que me avise quando o custo total da minha conta chegar a 100 dolares.
+
+![aleatorio](imgs/budget_custom.png 'aleatorio')
+
+e em ambos os cenários nós devemos passar o `e-mail` que deve receber a notificação.
+
+a aws no caso do template custom, te da um aviso de como você será notificado, segue o aviso: 
+
+![aleatorio](imgs/aviso_budget_custom.png 'aleatorio')
