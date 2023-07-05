@@ -621,3 +621,27 @@ infraestrutura
 - **AWS SDK:** gerenciar os serviços AWS usando uma linguagem de programação
 - **Access Keys:** para conseguir acessar a AWS usando o CLI ou SDK
 - **Audit:** IAM Credential Reports & IAM Access Advisor (monitorar reports de credenciais e consultar acessos)
+
+<br>
+
+# Billing Dashboard (Painel de faturamento)
+
+<br>
+
+Com `Billing Dashboard` conseguimos gerenciar e estabelecer alertas para eventuais custos custos, exemplo, quero ser alertado se
+a conta está passando de 2 mil dolares
+
+<br>
+
+## Como habilitar um user IAM para acessar o Billing Dashboard?
+
+
+1. Você deve ser o usuário root
+2. Clique no nome do usuário lado superior direito
+3. Clique em My Account
+3. Busque por: "IAM user and role access to Billing information"
+4. Clique no botão de editar
+5. Clique no checkbox "Activate IAM Access"
+6. Clique em salvar
+7. E pronto, todos os usuários IAM dessa conta root terá acesso ao Billing Dashboard
+8. Caso você não queira que os users IAM tenha acesso, é só configurar seus alertas apenas na conta root
