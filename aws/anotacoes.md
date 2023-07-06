@@ -693,3 +693,84 @@ e em ambos os cenários nós devemos passar o `e-mail` que deve receber a notifi
 a aws no caso do template custom, te da um aviso de como você será notificado, segue o aviso: 
 
 ![aleatorio](imgs/aviso_budget_custom.png 'aleatorio')
+
+<br>
+
+# Amazon EC2
+
+<br>
+
+> Saber como usar EC2 na AWS é fundamental para entender como funciona a nuvem
+
+> Você pode configurar alugar uma maquina EC2 e configurá-la para o seu cenário
+
+<br>
+
+## EC2
+
+- é um dos serviços mais populares da AWS
+- EC2 = `Elastic Compute Cloud` = Infrastructure as a Service
+- EC2 Consiste principalmente na capacidade de:
+  - Aluguel de maquinas virtuais (EC2)
+  - Armazenamento de dados em unidades virtuais (EBS)
+  - Distribuição de carga entre máquinas (ELB) ( Elastic Load Balancer )
+  - Escalar os serviços usando um grupo de auto-scaling (ASG)
+- Saber como usar EC2 na AWS é fundamental para entender como funciona a nuvem
+
+## EC2 sizing & configuration options ( tamanho e opções de configuração )
+
+- Sistema operacional(OS): Linux, Window ou Mac OS
+- Quanta potência de computação e núcleos(cores) (CPU)
+- Quanto de memória (RAM)
+- Quanto espaço de armazenamento
+  - Tipos de armazenamentos para EC2:
+    - Network-attached ( EBS & EFS )
+    - Hardware ( EC2 Instance Store )
+- Tipo de rede que você deseja conectar a sua instância EC2
+  - Placa de rede rapida (speed of the card)
+  - Endereço de IP publico (Public IP address)
+- Regras de Firewall (Firewall Rules): security group
+- Bootstrap script: para configurar a instancia na sua primeira inicialização que é chamado de EC2 User Data
+
+## EC2 User Data
+
+<br>
+
+- É possivel inicializar nossas instâncias usando o `script EC2 User Data`
+- Bootstrapping o que significa?
+  - Significa lançar comandos quando a máquina inicia.
+  - esse script executa apenas uma vez e é quando a maquina inicia e depois não será mais executado
+- EC2 user data é usado para automatizar tarefas de boot ( inicialização ) dai o nome bootstrapping
+  - Quais tarefas você deseja automatizar no bootstrap?
+    - Instalar atualizações
+    - Instalar softwares
+    - Download de arquivos comuns da internet
+    - Qualquer coisa que você possa pensar.
+    - Porem saiba que quanto mais coisas você implementa na inicialização, mais vai ser a demora de inicialização do seu EC2
+- O `EC2 User Data Script` são executados com um usuário root,
+portanto qualquer comando que você rode será rodando com as permissões de SUDO ( usuário root )
+
+## EC2 instance types: example ( tipos de instancias EC2 )
+
+<br>
+
+### Temos centenas de tipos de instâncias para o EC2, mas aqui vai o exemplo de 5 tipos:
+
+<br>
+
+![aleatorio](imgs/tipo_de_instancia_ec2.png 'aleatorio')
+
+- Na primeira linha podemos obeservar que a instancia `t2.micro` tem:
+  -  1 `vCPU`
+  -  1 `GB RAM`
+  -  suporta armazenamento apenas de `EBS`
+  -  `Performance da network` é de `baixa para moderada`.
+
+- Na terceira linha podemos obeservar que a instancia `c5d.4xlarge` tem:
+  -  1 `vCPU`
+  -  1 `GB RAM`
+  -  suporta 1 armazenamento `1 x 400 NVMe SSD`.
+  -  `Performance da network` é de até `10 Gbps` (excelente).
+  -  `4,750` de largura de banda para se comunicar com o armazenamento da rede.
+
+- E tudo isso você pode mudar na nuvem sob demanda, se hoje o fluxo caiu da sua aplicação não tem quase nenhuma acesso mude para a `t2.micro` por exemplo, caso tenha bastante acesso mude para uma `r5.16xlarge` é apenas um exemplo, mas de um upgrade no seu poder de processamento ram e etc.
