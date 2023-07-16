@@ -1,4 +1,5 @@
 # Como criar uma aplicação React?
+<br>
 
 Com a ultima versão:
 
@@ -7,27 +8,71 @@ Com a ultima versão:
 Ou com uma versão específica 
 
 > npx react-native@X.XX.X init AwesomeProject --version X.XX.X 
+> 
+<br>
 
 # Como iniciar sua aplicação Android?
+<br>
 
 1. > npx react-native start
 2. > npx react-native run-android
 
+<br>
+
 # Como limpar o cache do seu aplicativo?
+<br>
 
 > npm start -- --reset-cache
 
 <br>
 
+# Como DEBUGGAR (DEBUG) sua aplicação?
+
+<br>
+
+> Video de referência: https://www.youtube.com/watch?v=FmomKgqYSoA
+
+Temos um conjunto de ferramentas para te ajudar nisso segue cada uma delas e suas especialidades:
+
+- **[EXTENSAO]** React Native Tools
+  - Permite você colocar `breakpoints` dentro do código no `vs code`
+    - SIGA EXATAMENTE ESSES PASSOS PARA QUE FAÇA FUNCIONAR:
+      1. RODE: `npm start` para iniciar o metro
+      2. Configure o seu debugger seguindo esse tutorial: https://marketplace.visualstudio.com/items?itemName=msjsdiag.vscode-react-native#debugging-react-native-applications <br>
+      **Recomendo mudar o name** de "Debug android" para "[Nicolas] Debug Android"
+      ![xpto](./imgs/add-debug-configuration.gif "xpto")
+      3. Com o debugger configurado, clique na aba de `Run and Debug no vs code`
+      ![xpto](./imgs/run-and-debug.png "xpto")
+      4. Clique no botão para `startar o debug`
+      ![xpto](./imgs/play-debug.png "xpto")
+      5. Aguarde o app inicializar e habilite o modo debug no app CTRL+M e depois clique em debug
+      5. Coloque um `breakpoint` em algum lugar do código e faça algo no app para que caia no `breakpoint`
+      6. e pronto você agora consegue debugar pelo `VS Code`
+
+      <br>
+
+  - **[PRE-REQUISITO]:** Instalar `npm install -g react-devtools` ( necessário para que funcione essa integração ), ainda dentro da mesma extensão temos uma integração com o `React DevTools`, que é uma ferramenta.
+  para que agt possa `Inspecionar os Elementos` igual fazemos na `web` podemos alterar as propriedades
+  e verificar o comportamento mudar cores e etc.
+- **Flipper** é uma ferramenta de debugger que você pode utilizar por exemplo o `Network Inspector` para fazer uma análise das requisições feitas.
+
+<br>
+
 # StyleSheet
 
+<br>
+
 ## Como tipar um StyleSheet.create?
+--- 
+<br>
 
 ???
 
 <br>
 
 # Fonts
+
+<br>
 
 - Como adicionar fonts?
   - primeiro vá vá até o google fonts, escolha uma e baixe ela, vai vir em zip e dentro vai ter todos os
@@ -52,7 +97,11 @@ Ou com uma versão específica
   `fontFamily: 'Roboto'`
 - Como remover fontes adicionadas com esse plugin?
 
+<br>
+
 # Como usar icones no React Native?
+
+<br>
 
 - instale essa lib `npm i react-native-vector-icons` e leia a doc: https://www.npmjs.com/package/react-native-vector-icons
 
@@ -116,7 +165,11 @@ Make sure to replace `FontAwesome` with the appropriate icon set you want to use
 
 By following these steps, you can easily add and use custom fonts in your React Native application using the `react-native-vector-icons` library.
 
+<br>
+
 # Como usar Navegação
+
+<br>
 
 - **Vamos utilizar o React Navigation**
 - link da lib: https://reactnavigation.org/docs/getting-started
