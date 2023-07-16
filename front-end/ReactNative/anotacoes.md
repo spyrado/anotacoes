@@ -34,7 +34,7 @@ Ou com uma versão específica
 
 Temos um conjunto de ferramentas para te ajudar nisso segue cada uma delas e suas especialidades:
 
-- **[EXTENSAO]** React Native Tools
+- **[EXTENSAO:React Native Tools]:** 
   - Permite você colocar `breakpoints` dentro do código no `vs code`
     - SIGA EXATAMENTE ESSES PASSOS PARA QUE FAÇA FUNCIONAR:
       1. RODE: `npm start` para iniciar o metro
@@ -51,7 +51,7 @@ Temos um conjunto de ferramentas para te ajudar nisso segue cada uma delas e sua
 
       <br>
 
-- **[REACT-DEVTOOLS]:** 
+- **[REACT-DEVTOOLS](https://www.npmjs.com/package/react-devtools/v/4.28.0):** 
   - Rode o comando: `npm install -g react-devtools`
   - Em alguns casos precisa rodar um comando antes de iniciar o `react-devtools` (no meu caso atual precisa), caso precise rode esse comando: `adb reverse tcp:8097 tcp:8097`
   - Após rodar o comando anterior(caso precise) rode `react-devtools` para iniciar a ferramenta
@@ -59,7 +59,7 @@ Temos um conjunto de ferramentas para te ajudar nisso segue cada uma delas e sua
   - o `react-devtools` deve detectar o seu app quando você apertar CTRL+M, caso não detect na hora,
   aguarde alguns segundos (5 a 10 segundos), caso não conectar recarregue o seu aplicativo.
   - **Para que serve o react-devtools?:** para que agt possa `Inspecionar os Elementos` igual fazemos na `web` podemos alterar as propriedades e verificar o comportamento mudar cores e etc.
-- **Flipper** é uma ferramenta de debugger que você pode utilizar por exemplo o `Network Inspector` para fazer uma análise das requisições feitas.
+- **[FLIPPER](https://fbflipper.com/docs/features/react-native/):** é uma ferramenta de debugger que você pode utilizar por exemplo o `Network Inspector` para fazer uma análise das requisições feitas.
 
 <br>
 
