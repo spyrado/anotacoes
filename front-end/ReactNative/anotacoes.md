@@ -51,9 +51,14 @@ Temos um conjunto de ferramentas para te ajudar nisso segue cada uma delas e sua
 
       <br>
 
-  - **[PRE-REQUISITO]:** Instalar `npm install -g react-devtools` ( necessário para que funcione essa integração ), ainda dentro da mesma extensão temos uma integração com o `React DevTools`, que é uma ferramenta.
-  para que agt possa `Inspecionar os Elementos` igual fazemos na `web` podemos alterar as propriedades
-  e verificar o comportamento mudar cores e etc.
+- **[REACT-DEVTOOLS]:** 
+  - Rode o comando: `npm install -g react-devtools`
+  - Em alguns casos precisa rodar um comando antes de iniciar o `react-devtools` (no meu caso atual precisa), caso precise rode esse comando: `adb reverse tcp:8097 tcp:8097`
+  - Após rodar o comando anterior(caso precise) rode `react-devtools` para iniciar a ferramenta
+  - Com a ferramenta aberta, vá até seu app e aperte CTRL+M para abrir as opções de desenvolvedor
+  - o `react-devtools` deve detectar o seu app quando você apertar CTRL+M, caso não detect na hora,
+  aguarde alguns segundos (5 a 10 segundos), caso não conectar recarregue o seu aplicativo.
+  - **Para que serve o react-devtools?:** para que agt possa `Inspecionar os Elementos` igual fazemos na `web` podemos alterar as propriedades e verificar o comportamento mudar cores e etc.
 - **Flipper** é uma ferramenta de debugger que você pode utilizar por exemplo o `Network Inspector` para fazer uma análise das requisições feitas.
 
 <br>
@@ -63,7 +68,7 @@ Temos um conjunto de ferramentas para te ajudar nisso segue cada uma delas e sua
 <br>
 
 ## Como tipar um StyleSheet.create?
---- 
+
 <br>
 
 ???
