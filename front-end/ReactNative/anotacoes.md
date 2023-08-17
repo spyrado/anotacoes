@@ -1,3 +1,19 @@
+# Lista de Bugs e soluções
+
+<br>
+
+- ERRO: `:app:installDebug`
+  - Link de referencia para a solução: https://stackoverflow.com/questions/37500205/react-native-appinstalldebug-failed
+  - SOLUÇÃO 1: 
+    - digite na linha de comando
+    - `adb kill-server`
+    - `adb start-server`
+    - e depois rode `adb devices` e verifique se na lista ele aparece como `device` ao inves de `unauthorized`
+  - SOLUÇÃO 2:
+    - Siga o passo a passo da imagem abaixo:
+    - ![xpto](./imgs/solucao-2.png "xpto")
+    - Caso não funcione esse passo a passo além de fazer esse passo a passo você deve executar a solução 1 novamente.
+
 # Como criar uma aplicação React?
 <br>
 
