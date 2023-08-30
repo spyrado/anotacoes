@@ -786,7 +786,7 @@ não cobra valores, é só ir na tabela de Instance(instancias) selecionar sua i
 
 > **IMPORTANTE 2:** Se você iniciar uma instancia ela vai gerar um Public Address IPV4, ou seja um acesso publico
   via IP, exemplo: IPV4: 123.123.123, `POREM` se você resolver dar um STOP nessa instancia e inicia-la novamente,
-  esse IPV4 pode mudar, então `fique atento a isso` caso vc esteja utilizando esse ip publico e for derrubar algúem que esteja utilizando ele.
+  esse IPV4 pode mudar, então `fique atento a isso` caso vc esteja utilizando esse ip publico e for derrubar algúem que esteja utilizando ele. `OBS: APENAS O IPV4 Publico vai mudar, o IPV4 Privado não vai mudar mesmo que você stop a instancia, mas apenas o privado.`
 
 - Estaremos lançando nosso primeiro servidor virtual usando AWS Console.
 - Teremos uma primeira abordagem de alto nível aos vários parâmetros que vamos utilizar.
