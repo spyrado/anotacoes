@@ -774,3 +774,22 @@ portanto qualquer comando que você rode será rodando com as permissões de SUD
   -  `4,750` de largura de banda para se comunicar com o armazenamento da rede.
 
 - E tudo isso você pode mudar na nuvem sob demanda, se hoje o fluxo caiu da sua aplicação não tem quase nenhuma acesso mude para a `t2.micro` por exemplo, caso tenha bastante acesso mude para uma `r5.16xlarge` é apenas um exemplo, mas de um upgrade no seu poder de processamento ram e etc.
+
+
+## Hands-On: <br> Lauching an EC2 Instance running Linux
+
+<br>
+
+> **IMPORTANTE:** Se após criar a sua instancia de EC2 você deixar ela ligada, vai cobrar por hora ligada,
+então caso só esteja fazendo testes ligue para os testes e logo em seguida pause a instancia, a instancia pausada
+não cobra valores, é só ir na tabela de Instance(instancias) selecionar sua instancia na tabela e clicar em "Instance state" e depois clicar em `Stop instance`
+
+> **IMPORTANTE 2:** Se você iniciar uma instancia ela vai gerar um Public Address IPV4, ou seja um acesso publico
+  via IP, exemplo: IPV4: 123.123.123, `POREM` se você resolver dar um STOP nessa instancia e inicia-la novamente,
+  esse IPV4 pode mudar, então `fique atento a isso` caso vc esteja utilizando esse ip publico e for derrubar algúem que esteja utilizando ele.
+
+- Estaremos lançando nosso primeiro servidor virtual usando AWS Console.
+- Teremos uma primeira abordagem de alto nível aos vários parâmetros que vamos utilizar.
+- Veremos que nosso servidor web é iniciado usando dados do usuário EC2
+- Vamos aprender como iniciar / parar / finalizar (start/stop/terminate) nossa instancia.
+
