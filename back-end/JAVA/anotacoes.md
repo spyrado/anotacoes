@@ -11,3 +11,12 @@ Vá até a barra de pesquisa do windows digite: `Editar as variaveis de embiente
 ![alt](./imgs/variaveis_de_emabiente.png)
 
 após isso cliente logo abaixo na variável Path depois clique no botão editar e caso não tenha adicione `%JAVA_HOME%\bin` ao `Path`
+
+
+
+## Atalhos
+
+1. `CTRL+SHIT+I` selecione o código em modo debug e aperta ele vai rodar apenas aquela linha, mas também pode ser um bloco e etc, importante só vai executar se o debugger já pasosu por ele.
+2. `CTRL+SHIFT+R` busca classes
+3. `CTRL+H` busca no workspace na tab file search você busca por uma string ou nome de classe funcção e etc igual no vs code na busca
+4. `CTRL+ALT+H` vc seleciona o método e da esse comando ele vai buscar todos os lugares que estão chamando esse metodo
