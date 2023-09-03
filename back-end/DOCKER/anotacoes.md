@@ -21,3 +21,5 @@
    8. Open PowerShell as an Administrator
    9. Type in the command: wsl --set-default-version 2, then press Enter to set WSL 2 as the default version
    10. Restart your computer to ensure the changes take effect
+
+
