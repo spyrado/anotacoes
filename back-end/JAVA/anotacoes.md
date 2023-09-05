@@ -20,6 +20,7 @@ após isso cliente logo abaixo na variável Path depois clique no botão editar 
 2. `CTRL+SHIFT+R` busca classes
 3. `CTRL+H` busca no workspace na tab file search você busca por uma string ou nome de classe funcção e etc igual no vs code na busca
 4. `CTRL+ALT+H` vc seleciona o método e da esse comando ele vai buscar todos os lugares que estão chamando esse metodo
+5. `ALT+SHIFT+S` abre um menu e vc pode gerar um construtor a partir das props criadas pode gerar get e set e por ai vai.
 
 ## Estrutura de pastas, como funciona?
 
