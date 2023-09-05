@@ -1,8 +1,14 @@
 # MAVEN
 
+## DICAS
+
+Caso de erros absurdos que não deveriam acontecer, pode ser alguma dependencia que foi baixada e está corrompida, ai para resolver você vai na pasta .m2 que geralmente fica localizada na pasta do usuário exemplo `C:\Users\nicol\.m2` ai vc deleta e importa novamente o projeto ele vai recarregar e baixar as dependencias novamente, sem estar corrompida resolvendo o problema.
+
 ## Para que serve?
 
 Ele gerencia as nossas dependencias, baixa as nossas dependencias ele é `SIMILAR` ao `NPM ( Node Package Maneger )`
+
+O Maven procura as dependencias dentro do pom.xml (Project Object Model) baixa todas as dependencias e armazena em um repositório local, localizado no diretório .m2 dentro do diretório do usuário
 
 ## Como configurar?
 
