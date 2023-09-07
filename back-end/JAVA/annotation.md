@@ -16,6 +16,11 @@
 4. `@PathVariable`: recupera as variaveis declaradas dentro de `@RequestMapping` do exemplo `2.2`. 
    1. Segue exemplo:<br>
    ![alt](./imgs/path-variable.png)
+   
+5. `@ResponseStatus`: diz o status que a classe irá retornar (400, 500, 200 e etc.)
+   
+6. `@ControllerAdvice`: ele funciona como um interceptor, no exemplo de tratamento de exceções, 
+se colocado em um handler de exceções ele vai ser ativado toda vez que o código identificar que não existe um tratamento específico para aquela exceção vai cair na nossa exceção generica.
 
 
 # Diferenças entre PathVariable e RequestParam
