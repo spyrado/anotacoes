@@ -22,6 +22,13 @@
 6. `@ControllerAdvice`: ele funciona como um interceptor, no exemplo de tratamento de exceções, 
 se colocado em um handler de exceções ele vai ser ativado toda vez que o código identificar que não existe um tratamento específico para aquela exceção vai cair na nossa exceção generica.
 
+7. `@ExceptionHandler(Exception.class)`: Essa annotation filtra e diz para o metodo que está abaixo dela qual
+   o tipo de exeção o metodo deve rodar a lógica dele nesse exemplo estou falando para que ele rode apenas 
+   para exceções do tipo `Exception.class` significa que eu só quero que ele rode para exceções `GENÉRICAS`
+   que na sua maioria são exceções do tipo erro 500, segue um exemplo de implementação dessa annotation.
+   exemplo:<br>
+   ![alt](./imgs/exception-handler-500.png)
+
 
 # Diferenças entre PathVariable e RequestParam
 

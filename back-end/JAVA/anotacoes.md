@@ -26,6 +26,7 @@
   3. `CTRL+H` busca no workspace na tab file search você busca por uma string ou nome de classe funcção e etc igual no vs code na busca
   4. `CTRL+ALT+H` vc seleciona o método e da esse comando ele vai buscar todos os lugares que estão chamando esse metodo
   5. `ALT+SHIFT+S` abre um menu e vc pode gerar um construtor a partir das props criadas pode gerar get e set e por ai vai.
+  6. `CTRL+ALT+ SETA PARA BAIXO` copie tudo que você deseja duplicar para a linha abaixo e use esse atalho.
 </details>
 
 <details>
@@ -54,6 +55,7 @@
         ![alt](./imgs/exclusion.png)
 </details>
 
+> IMPORTANTE: O metodo abaixo o professor disse que dessa forma toda exception que for a mesma da PAI a pai que irá assumir, então pensar bem antes de utilizar essa abordagem, e pesquisar mais sobre exceções globais para verificar e validar se de fato isso ocorre
 <details>
   <summary>Criar Exceptions customizadas</summary>
 
@@ -131,6 +133,10 @@
             @ResponseStatus(HttpStatus.BAD_REQUEST)
             public class UnsupportedMathOperationException extends RuntimeException {
 
+              public UnsupportedMathOperationException(String string) {
+                super(string);
+              }
+
               /**
               * 
               */
@@ -138,7 +144,27 @@
 
             }
 
+
           ```
           </details>
+  <br>
+
+  4. depois de fazer tudo isso, devemos criar mais um pacote dentro do pacote `br.com.nicolas.exceptions`
+  criaremos agora a pasta  `br.com.nicolas.exceptions.handler` que vamos criar nossa classe 
+  que vai lidar com todas as exceções.
+     1. Após criar o package `br.com.nicolas.exceptions.handler`
+     2. Crie o nome da classe: `CustomResponseEntityExceptionHandler`
+     3. coloque duas annotation nela a `@RestController`
+     4. e coloque a `@ControllerAdvice`, ela fará a função de um `interceptor`
+     5. crie seu metodo generico de tratamento de exceções
+     6. e adicione a annotation `@ExceptionHandler` passando como parâmetro o tipo da exception que voce deseje que ele lide
+     7. no meu caso eu coloquei a `Exception.class` que é a exceção padrão do java quando não tem tratamento cai nela.
+     8. e como colocamos `@ExceptionHandler`  na funcionalidade e temos o `@ControllerAdvice`, toda requisição que for `Exception.class` vai cair dentro do metodo que você colocou `@ExceptionHandler(Exception.class)`
+     9. (info a parte) importante comentar que a sua exception customizada e o seu handler devem passar o MESMO parametro de status error
+     10. segue exemplo da classe implementada:
+     ![alt](./imgs/exception-handler-class.png)
+     11. observe que o primeiro método é generico apenas para Exceções do tipo `Exception`
+     12. já o segundo é feito apenas para Exceções do tipo `UnsupportedMathOperationException`
+
 
 </details>
