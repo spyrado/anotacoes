@@ -29,6 +29,21 @@ se colocado em um handler de exceções ele vai ser ativado toda vez que o códi
    exemplo:<br>
    ![alt](./imgs/exception-handler-500.png)
 
+8. `@Service`: Indica para o spring boot que esse objeto será Injetado em RUN TIME em outras classes
+   da nossa aplicação, segue exemplo:
+   ![alt](./imgs/service.png)
+
+9. `@Autowired`: cuida da instaciação de uma classe de forma dinâmica em tempo de execução, segue exemplo em foto.
+   1. Antigamente:<br>
+      ![alt](./imgs/instancia-antigamente.png)
+   2. Hoje em dia:<br>
+      ![alt](./imgs/instancia-hoje-em-dia.png)
+   3. Para que você consiga fazer isso com outras classes que não possuem a annotation `@Service`,
+      essa classe deve possuir a annotation `@Component`, ou um Alias para ela, segue exemplo:<br>
+      ![alt](./imgs/alias-for-component.png)<br>
+      no exemplo acima só conseguimos utilizar `@Autowired` com `@Service` pq `@Service` tem um aliasFor `@Component`
+      
+
 
 # Diferenças entre PathVariable e RequestParam
 
