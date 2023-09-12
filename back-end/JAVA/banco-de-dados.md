@@ -21,11 +21,10 @@
     ```
       spring:
         datasource:
-          dbcp2:
-            driver-class-name: com.mysql.cj.jdbc.Driver #Driver necessário para o funcionamento
-            url: jdbc:mysql://localhost:3306/NOME_DO_SEU_BANCO_DE_DADOS?useTimezone=true&serverTimezone=UTC
-            username: spyrado
-            password: admin123 
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://localhost:3306/java_spring_mysql?useTimezone=true&serverTimezone=UTC #evitando problemas de time zone com esses parametros ?useTimezone=true&serverTimezone=UTC
+          username: spyrado
+          password: admin123
     ```
 
 
@@ -36,11 +35,10 @@
       ```
       spring:
         datasource:
-          dbcp2:
-            driver-class-name: com.mysql.cj.jdbc.Driver
-            url: jdbc:mysql://localhost:3306/java_spring_mysql?useTimezone=true&serverTimezone=UTC #evitando problemas de time zone com esses parametros ?useTimezone=true&serverTimezone=UTC
-            username: spyrado
-            password: admin123 
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://localhost:3306/java_spring_mysql?useTimezone=true&serverTimezone=UTC #evitando problemas de time zone com esses parametros ?useTimezone=true&serverTimezone=UTC
+          username: spyrado
+          password: admin123
         # AQUI COMEÇA A CONFIG DO JPA
         jpa:
           hibernate:
