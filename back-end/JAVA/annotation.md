@@ -51,7 +51,21 @@ se colocado em um handler de exceções ele vai ser ativado toda vez que o códi
 10.  `@RequestBody`: é com ele que indicamos para o parâmetro do metodo que vamos receber um Body nesse metodo, segue exemplo:<br>
     ![alt](./imgs/request-body.png)
 
-11. `@Entity`: diz para o Hibernate que a classe representa uma tabela do banco.
+11. `@Entity`: diz para o Hibernate que a classe representa uma tabela do banco.<br>
+   ![alt](./imgs/entity.png)
+
+12. `@Table(name = "pessoa")`: passamos para a `Entity` a qual tipo de tabela ela pertence passando o nome da tabela.<br>
+![alt](./imgs/table.png)
+
+13. `@Id`: Indica para o `hibernate` qual é a `PK` dentre todas as propriedades<br>
+   ![alt](./imgs/id.png)
+
+14. `@GeneratedValue(strategy = GenerationType.IDENTITY)`: indica para o `hibernate`  que aquela prop deve ser autoincremental ou seja adicionar 1 ao id a cada nova persistencia.<br>
+    ![alt](./imgs/id_autoincremental.png)
+
+15. `@Column(name = "primeiro_nome")`: define o nome da propriedade no banco de dados
+    1.  Se você definir apenas `@Column` ele vai assumir o nome da prop como padrão, segue os 2 exemplos<br>
+    ![alt](./imgs/colum-com-e-sem-nome.png) 
       
 
 
