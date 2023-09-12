@@ -64,8 +64,20 @@ se colocado em um handler de exceções ele vai ser ativado toda vez que o códi
     ![alt](./imgs/id_autoincremental.png)
 
 15. `@Column(name = "primeiro_nome")`: define o nome da propriedade no banco de dados
-    1.  Se você definir apenas `@Column` ele vai assumir o nome da prop como padrão, segue os 2 exemplos<br>
-    ![alt](./imgs/colum-com-e-sem-nome.png) 
+    1. `name`: passa o nome da coluna que você deseja que seja no banco de dados
+    2. `nullable`: define se você quer que essa prop seja ou não nulla no banco
+    3. `length`: indica o maximo de caracteres que pode ter essa coluna
+    4.  Se você definir apenas `@Column` ele vai assumir o nome da prop como padrão, segue os 2 exemplos<br>
+    ![alt](./imgs/colum-com-e-sem-nome.png)
+    ![alt](./imgs/nullable%20e%20length.png)
+
+16. `@Repository` a interface com essa annotation permite o acesso ao banco de dados, e
+   já habilita todas as operações de CRUD segue exemplo:<br>
+    1. ![alt](./imgs/repository-interface.png)
+    2. lembrando que `JpaRepository<SEU_OBJETO_ENTIDADE, TIPO_DO_ID_PK_DA_ENTIDADE>`
+    3. no exemplo da foto foi `Pessoa` como entidade/objeto e `Long` como tipo do id. segue exemplo:<br>
+      ![alt](./imgs/entidade-tipo-id.png)
+
       
 
 
