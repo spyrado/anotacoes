@@ -27,18 +27,18 @@
 6. `@ControllerAdvice`: ele funciona como um interceptor, no exemplo de tratamento de exceções, 
 se colocado em um handler de exceções ele vai ser ativado toda vez que o código identificar que não existe um tratamento específico para aquela exceção vai cair na nossa exceção generica.
 
-1. `@ExceptionHandler(Exception.class)`: Essa annotation filtra e diz para o metodo que está abaixo dela qual
+7. `@ExceptionHandler(Exception.class)`: Essa annotation filtra e diz para o metodo que está abaixo dela qual
    o tipo de exeção o metodo deve rodar a lógica dele nesse exemplo estou falando para que ele rode apenas 
    para exceções do tipo `Exception.class` significa que eu só quero que ele rode para exceções `GENÉRICAS`
    que na sua maioria são exceções do tipo erro 500, segue um exemplo de implementação dessa annotation.
    exemplo:<br>
    ![alt](./imgs/exception-handler-500.png)
 
-2. `@Service`: Indica para o spring boot que esse objeto será Injetado em RUN TIME em outras classes
+8. `@Service`: Indica para o spring boot que esse objeto será Injetado em RUN TIME em outras classes
    da nossa aplicação, segue exemplo:
    ![alt](./imgs/service.png)
 
-3. `@Autowired`: cuida da instaciação de uma classe de forma dinâmica em tempo de execução, segue exemplo em foto.
+9. `@Autowired`: cuida da instaciação de uma classe de forma dinâmica em tempo de execução, segue exemplo em foto.
    1. Antigamente:<br>
       ![alt](./imgs/instancia-antigamente.png)
    2. Hoje em dia:<br>
@@ -48,8 +48,10 @@ se colocado em um handler de exceções ele vai ser ativado toda vez que o códi
       ![alt](./imgs/alias-for-component.png)<br>
       no exemplo acima só conseguimos utilizar `@Autowired` com `@Service` pq `@Service` tem um aliasFor `@Component`
 
-4.  `@RequestBody`: é com ele que indicamos para o parâmetro do metodo que vamos receber um Body nesse metodo, segue exemplo:<br>
+10.  `@RequestBody`: é com ele que indicamos para o parâmetro do metodo que vamos receber um Body nesse metodo, segue exemplo:<br>
     ![alt](./imgs/request-body.png)
+
+11. `@Entity`: diz para o Hibernate que a classe representa uma tabela do banco.
       
 
 
