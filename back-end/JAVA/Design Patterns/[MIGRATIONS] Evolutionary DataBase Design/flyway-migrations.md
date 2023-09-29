@@ -39,4 +39,23 @@ src/main/resources/
 │ ├── V1__XPTO.sql
 ```
 
-- Com a estrutura de pastas criada, vá até o seu banco de dados e de um `export database as SQL`
+- Com a estrutura de pastas criada, vá até o seu banco de dados e de um `export database as SQL`,
+  ou se ele não possuir faça manualmente pegando todas as tabelas e todos os inserts dela se possivel.
+- no exemplo de estudo eu tive que pegar a criação da tabela pesoa e os inserts, e o nome dos 
+  scripts ficaram assim:
+  - `V1__Cria_Tabela_Pessoa.sql`
+  - `V2__Popula_Tabela_Pesspa.sql`
+  - coloquei eles dentro de 
+  - 
+  ```
+    src/main/resources/
+    │
+    ├── db/
+    │ ├── migration/
+    │ ├── V1__Cria_Tabela_Pessoa.sql
+    │ ├── V2__Popula_Tabela_Pesspa.sql
+  ```
+  - >`IMPORTANTE`: após fazer tudo isso, verifique se a configuração do seu hibernate no `application.yml`
+    está configurado como `ddl-auto: update`, se estiver `MUDE` para `ddl-auto: none`.
+    pois o `update` ele pega as `entidades` gera o sql e cria o banco pra mim, mudando para `none` o hibernate vai apenas `ler e gravar informações` ele não vai mais mudar a estrutura do banco pra mim, agora quem vai fazer isso vai ser o `flyway`
+  - mapeando todo o seu banco de dados, você já pode ir no seu banco local, e dar um drop nas tabelas     dele, pois o flyway vai gera-las ao iniciar o código.
