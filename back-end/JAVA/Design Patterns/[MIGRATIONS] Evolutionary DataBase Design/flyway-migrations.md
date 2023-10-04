@@ -59,3 +59,20 @@ src/main/resources/
     está configurado como `ddl-auto: update`, se estiver `MUDE` para `ddl-auto: none`.
     pois o `update` ele pega as `entidades` gera o sql e cria o banco pra mim, mudando para `none` o hibernate vai apenas `ler e gravar informações` ele não vai mais mudar a estrutura do banco pra mim, agora quem vai fazer isso vai ser o `flyway`
   - mapeando todo o seu banco de dados, você já pode ir no seu banco local, e dar um drop nas tabelas     dele, pois o flyway vai gera-las ao iniciar o código.
+
+## Após integrar com o fly way
+
+- ele vai criar as tabelas de acordo com o que você colocou em `src/main/resources/db/migration`
+- la no banco ele vai adicionar uma tabela de controle chamada `flyway_schema_history`,
+  nela contem todo o `histórico` de migrações/criaçoes/mudanças e etc.
+- `flyway_schema_history` colunas:
+  - `description`: é o nome do seu script `.sql` dentro de `src/main/resources/db/migration`
+  - `checksum`: é um `hash` gerado para controlar o script, se um dia alguém mudar um `espaço` que seja,
+    o valor do `checksum` vai mudar, resultando em erro na hora de startar a aplicação.
+    - exemplo de erro quando eu altero o arquivo `V2__Popula_Tabela_Pesspa.sql`: 
+    ``` 
+      Caused by: org.flywaydb.core.api.exception.FlywayValidateException: Validate failed: Migrations have failed validation
+      Migration checksum mismatch for migration version 2
+      -> Applied to database : 1470983646
+      -> Resolved locally    : 1939374397
+    ```
