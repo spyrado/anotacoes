@@ -77,16 +77,19 @@ se colocado em um handler de exceções ele vai ser ativado toda vez que o códi
     2. lembrando que `JpaRepository<SEU_OBJETO_ENTIDADE, TIPO_DO_ID_PK_DA_ENTIDADE>`
     3. no exemplo da foto foi `Pessoa` como entidade/objeto e `Long` como tipo do id. segue exemplo:<br>
       ![alt](./imgs/entidade-tipo-id.png)
-
-      
-
+  
+<br>
+<br>
 
 # Diferenças entre PathVariable e RequestParam
 
 - `@RequestParam` você pode passar vários parâmetros no client que o endpoint não dará erro
 - `@PathVariable` já com path, se você passar path não esperado pelo endpoint dará erro.
 
-# ORDENAR/ORDER Serialization/Serialização
+<br>
+<br>
+
+# ORDENAR Serialização APENAS NO JSON/RESPONSE
 
 - `@JsonPropertyOrder` permite ordenar a sua DTO, mostrando para o front na ordem desejada,
   - suponhamos que seu json retorna para o front: 
@@ -108,3 +111,23 @@ se colocado em um handler de exceções ele vai ser ativado toda vez que o códi
 		```
   - segue exemplo:
   - ![alt](./imgs/annotation-json-property-order.png)
+
+# Mudar nome da propriedade APENAS NO JSON/RESPONSE
+
+-	`@JsonProperty` define um nome de propriedade que será retornado no JSON/RESPONSE do endpoint
+	não afetando o nome da propriedade interna no back-end, exemplo:
+	- alterando o código:
+		```
+			@JsonProperty("primeiro_Nome")
+			private String primeiroNome;
+		```
+	- retorno do endpoint: 
+		```
+			{
+				"id": 1,
+				"primeiro_Nome": "Nicolas",
+				"sobrenome": "Matheus",
+				"endereco": "Rua Alvarenga Ornamental de Oloco bixo",
+				"genero": "Masculino"
+			},
+		```
