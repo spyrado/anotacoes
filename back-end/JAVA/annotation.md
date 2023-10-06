@@ -85,3 +85,26 @@ se colocado em um handler de exceções ele vai ser ativado toda vez que o códi
 
 - `@RequestParam` você pode passar vários parâmetros no client que o endpoint não dará erro
 - `@PathVariable` já com path, se você passar path não esperado pelo endpoint dará erro.
+
+# ORDENAR/ORDER Serialization/Serialização
+
+- `@JsonPropertyOrder` permite ordenar a sua DTO, mostrando para o front na ordem desejada,
+  - suponhamos que seu json retorna para o front: 
+	```
+		{
+			"id": 1,
+			"cpf: 000000000,
+			"nome: "Nome Xpto"
+		}
+	```
+  - mas ele precisa ser na ordem `id` `nome` `cpf`, para fazer isso basta colocar essa annotation na DTO
+    - `@JsonPropertyOrder({"id", "nome", "cpf"})`
+		```
+			{
+				"id": 1,
+				"nome: "Nome Xpto",
+				"cpf: 000000000
+			}
+		```
+  - segue exemplo:
+  - ![alt](./imgs/annotation-json-property-order.png)
