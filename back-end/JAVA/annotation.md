@@ -112,7 +112,74 @@ se colocado em um handler de exceções ele vai ser ativado toda vez que o códi
   - segue exemplo:
   - ![alt](./imgs/annotation-json-property-order.png)
 
-# Mudar nome da propriedade APENAS NO JSON/RESPONSE
+<br>
+<br>
+
+
+<details>
+  <summary>@JsonProperty</summary>
+  
+  
+
+</details>  
+<details>
+  <summary>@JsonProperty</summary>
+  
+  
+
+</details>  
+<details>
+  <summary>@JsonProperty</summary>
+  
+  
+
+</details>  
+<details>
+  <summary>@JsonProperty</summary>
+  
+  
+
+</details>  
+<details>
+  <summary>@JsonProperty</summary>
+  
+  
+
+</details>  
+<details>
+  <summary>@JsonProperty</summary>
+  
+  
+
+</details>  
+<details>
+  <summary>@JsonProperty</summary>
+  
+  
+
+</details>  
+<details>
+  <summary>@JsonProperty</summary>
+  
+  
+
+</details>  
+<details>
+  <summary>@JsonProperty</summary>
+  
+  
+
+</details>  
+<details>
+  <summary>@JsonProperty</summary>
+  
+
+
+</details>  
+<details>
+  <summary>@JsonProperty</summary>
+  
+  ### Mudar nome da propriedade APENAS NO JSON/RESPONSE
 
 -	`@JsonProperty` define um nome de propriedade que será retornado no JSON/RESPONSE do endpoint
 	não afetando o nome da propriedade interna no back-end, exemplo:
@@ -131,3 +198,15 @@ se colocado em um handler de exceções ele vai ser ativado toda vez que o códi
 				"genero": "Masculino"
 			},
 		```
+
+
+</details>
+<details>
+  <summary>@JsonIgnore</summary>
+  
+  ### Não enviar a propriedade APENAS NO JSON/RESPONSE
+  
+  `@JsonIgnore` -> faz com que a propriedade não seja enviada no response.
+
+
+</details>
