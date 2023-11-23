@@ -4,7 +4,7 @@
 
 ## O que é uma região na aws?
 
-- a aws fica instalada em várias regiões pelo mundo, no brasil atualmente ela só tem suas instalações me SÃO PAULO.
+- a aws fica instalada em várias regiões pelo mundo, no brasil atualmente ela só tem suas instalações em SÃO PAULO.
 - o código da região é `sa-east-1` de South America-Leste-1
 
 ## Porque é importante saber qual região utilizar?
