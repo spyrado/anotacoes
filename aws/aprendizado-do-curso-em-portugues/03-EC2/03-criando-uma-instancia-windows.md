@@ -4,6 +4,10 @@
 
 - Vá até o painel da aws procure por EC2
 - Procure por "Launch instance"
-- Configure a sua maquina virtual da maneira que deseja.
-- Após isso clique em "Launch instance" novamente.
-- E pronto, teremos nossa Maquina Virtual
+- configurações principais:
+  - de um nome a sua instancia
+  - clique em "create new key pair" ( vai gerar o login para acessar a maquina )
+    - selecione para gerar em `.pem` que ai vc pode converter para outro tipo se quiser
+  - para fins de estudos mude a porta de onde é autorizado o acesso a maquina
+    - mude de qualquer porta (0.0.0.0/0) para My Ip
+- e pronto feita as configurações principais, voce pode mandar criar/executar a instancia.
