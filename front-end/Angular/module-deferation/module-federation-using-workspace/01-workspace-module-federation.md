@@ -27,6 +27,26 @@ Bem simples, siga esse passo a passo
 8. digite: `ng g application carts-app`
 9. e pronto temos a estrutura de pastas.
 
+## Instalando Bootstrap ( como exemplo apenas do potencial do module federation )
+
+1. instale na raiz do projeto
+2. `cd angular-module-federation`
+3. `npm install bootstrap`
+
+## Instalando Module Federation
+
+1. entre no root da sua aplicação, que nesse caso é `cd angular-module-federation`
+2. crie um module federation para cada aplicação, seguindo esses comandos:
+3. `ng add @angular-architects/module-federation --project host-app --port 5000`
+4. `ng add @angular-architects/module-federation --project orders-app --port 4000`
+5. `ng add @angular-architects/module-federation --project products-app --port 3000`
+6. `ng add @angular-architects/module-federation --project carts-app --port 2000`
+
+## Gerando um componente para products-app
+
+1. `cd angular-module-federation`
+2. `ng g m products --route products --module app.module --project products-app`
+
 ## Comandos
 
 - cria um `workspace` com node_module e todos os arquivos de configuração do angular removendo a pasta src/app
@@ -36,3 +56,9 @@ Bem simples, siga esse passo a passo
 - para startar um servidor de um projeto voce pode fazer assim:
   - `cd workspace`
   - `ng s host-app`
+
+## IMAGENS:
+
+arquivos iniciais de configuração:
+
+![alt](./imgs/significado-dos-arquivos-gerados.png)
