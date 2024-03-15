@@ -17,15 +17,18 @@ claro que a API(`SERVER-DRIVEN`) tem que estar preparada para que o cliente(`Age
 # Como IMPLEMENTAR?
 
 1. No seu pom, adicione essa dependencia:
+
 ```
 		<dependency>
 			<groupId>com.fasterxml.jackson.dataformat</groupId>
 			<artifactId>jackson-dataformat-xml</artifactId>
 		</dependency>
 ```
+
 2. essa dependencia faz conversoes para xml, se desejar outro formato, procure pro "jackson yml" "jackson csv" e etc..
 3. com a extensão instalada.
 4. crie o arquivo `WebConfig` dentro de: `package br.com.nicolas.config` e adicione essa configuração:
+
 ```
 package br.com.nicolas.config;
 
@@ -46,6 +49,7 @@ public class WebConfig implements WebMvcConfigurer {
         //https://www.baeldung.com/spring-mvc-content-negotiation-json-xml
         // WebMvcConfigurer.super.configureContentNegotiation(configurer);
         // http://localhost:8080/pessoa?mediaType=xml
+        // Configuração via QueryParam
         configurer.favorParameter(true) // Aceita parametros
                 .parameterName("mediaType") // nome do parametro aceito
                 .ignoreAcceptHeader(true) // Ignora parametros no header
@@ -54,12 +58,22 @@ public class WebConfig implements WebMvcConfigurer {
                 .mediaType("json", MediaType.APPLICATION_JSON)
                 .mediaType("xml", MediaType.APPLICATION_XML);
     }
+
+        // CONFIGURAÇÃO VIA HEADER
+        // http://localhost:8080/pessoa
+        configurer.favorParameter(false) // não aceita parametros
+          .ignoreAcceptHeader(false) // Ignora parametros no header
+          .useRegisteredExtensionsOnly(false)
+          .defaultContentType(MediaType.APPLICATION_JSON)
+          .mediaType("json", MediaType.APPLICATION_JSON)
+          .mediaType("xml", MediaType.APPLICATION_XML);
 }
 
 ```
 
 5. após isso você precisa configurar os seus endpoints para produzirem `XML` por exemplo, e receberem `XML` (`produces/consumes`)
-6. 
+6.
+
 ```
   @PostMapping(
     consumes = {
