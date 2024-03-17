@@ -94,3 +94,53 @@ public class WebConfig implements WebMvcConfigurer {
 
 7. o seu endpoint agora retorna xml, basta passar mediaType=xml como queryParam
 8. exemplo: `http://localhost:8080/pessoa?mediaType=xml`
+
+<br>
+
+# Serializando para YML
+
+<br>
+
+1. adicione a dependencia ao `pom.xml`
+   ```
+     <dependency>
+       <groupId>com.fasterxml.jackson.dataformat</groupId>
+       <artifactId>jackson-dataformat-yaml</artifactId>
+     </dependency>
+   ```
+2. agora criaremos um pacote dentro de br.com.xpto.**serialization.converter**
+3. agora precisamos criar uma classe e vamos chamar de `YamlJackson2HttpMessageConverter`
+4. e vamos extender o `AbstractJackson2HttpMessageConverter`, como mostra o exemplo abaixo:
+   ```
+    public class YamlJackson2HttpMessageConverter extends AbstractJackson2HttpMessageConverter {}
+   ```
+5. cole esse código para ele já adicionar todas as dependencias:
+   ```
+   public class YamlJackson2HttpMessageConverter extends AbstractJackson2HttpMessageConverter {
+      public YamlJackson2HttpMessageConverter() {
+        super(
+          new YAMLMapper().setSerializationInclusion(JsonInclude.Include.NON_NULL), // deixamos como NON_NULL para quando um campo estiver como nome: null, ele não inclua ele.
+          MediaType.parseMediaType("application/x-yaml")
+        );
+      }
+    }
+   ```
+6. e pronto nossa classe já está configurada, agora devemos configurar nosso `WebConfig.java` para aceitar yml também
+7. ![alt](../../imgs/aceitando-yml.png)
+8. após adicionar `.mediaType("x-yaml", MEDIA_TYPE_APPLICATION_YML);` ao seu WebConfig
+9. vá para a sua controller e coloque `"application/x-yaml"` tanto para o `consumer` quanto para o `producer`, como no exemplo abaixo:
+10. ![alt](../../imgs/produz-consome-yaml.png)
+11. após isso adicione o extendMessageConverters dentro do seu arquivo `WebConfig.java`:
+
+```
+   @Override
+   public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
+       converters.add(new YamlJackson2HttpMessageConverter()); // adicionando o meu converter customizado para yml
+   }
+```
+
+12. e pronto podemos testar nosso endpoint de pessoa no postman fazendo uma requisição `GET` passando o
+    `Content-Type` e `Accept` como `application/x-yaml` como no exemplo:
+    ![alt](../../imgs/headers-com-content-type-e-accept.png)
+13. como colocamos produces e consumes no post, podemos enviar também um YML no body, segue um exemplo:
+    ![alt](../../imgs/yml-no-body.png)
