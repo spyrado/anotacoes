@@ -1,4 +1,4 @@
-# Iniciando uma aplicação angular com module federation
+# Criando um projeto Angular e Adicionando Module Federation a ele.
 
 > **Link Referência:** https://www.angulararchitects.io/blog/the-microfrontend-revolution-part-2-module-federation-with-angular/
 
