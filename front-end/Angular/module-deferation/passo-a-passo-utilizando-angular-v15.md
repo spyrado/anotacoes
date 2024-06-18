@@ -9,19 +9,19 @@ Primeiro, vamos criar os três projetos:
 # Criar o projeto shell
 ng new pokemon-shell --routing --style=scss
 cd pokemon-shell
-ng add @angular-architects/module-federation@18.0.2 --project pokemon-shell --port 4200
+ng add @angular-architects/module-federation@15.0.0 --project pokemon-shell --port 4200 --type host
 cd ..
 
 # Criar o projeto mfe1
 ng new pokemon-mfe-list --routing --style=scss
 cd pokemon-mfe-list
-ng add @angular-architects/module-federation@18.0.2 --project pokemon-mfe-list --port 4201
+ng add @angular-architects/module-federation@15.0.0 --project pokemon-mfe-list --port 4201 --type remote
 cd ..
 
 # Criar o projeto mfe2
 ng new pokemon-mfe-profile --routing --style=scss
 cd pokemon-mfe-profile
-ng add @angular-architects/module-federation@18.0.2 --project pokemon-mfe-profile --port 4202
+ng add @angular-architects/module-federation@15.0.0 --project pokemon-mfe-profile --port 4202 --type remote
 cd ..
 ```
 
@@ -35,11 +35,16 @@ cd ..
 const { shareAll, withModuleFederationPlugin } = require('@angular-architects/module-federation/webpack');
 
 module.exports = withModuleFederationPlugin({
+
   remotes: {
     "pokemonMfeList": "http://localhost:4201/remoteEntry.js",
     "pokemonMfeProfile": "http://localhost:4202/remoteEntry.js",
   },
-  shared: shareAll({ singleton: true, strictVersion: true, requiredVersion: 'auto' }),
+
+  shared: {
+    ...shareAll({ singleton: true, strictVersion: true, requiredVersion: 'auto' }),
+  },
+
 });
 ```
 
@@ -63,6 +68,13 @@ const routes: Routes = [
 export class AppRoutingModule { }
 ```
 
+3. Crie um arquivo dentro de app/ chamado `declar.d.ts` e declare os modulos dos mfes importados no routing
+
+```typescript
+declare module 'pokemonMfeList/Module';
+declare module 'pokemonMfeProfile/Module';
+```
+
 ### Configurar o `pokemon-mfe-list`
 
 1. Abra o arquivo `webpack.config.js` gerado na raiz do projeto `pokemon-mfe-list` e configure-o conforme abaixo:
@@ -73,19 +85,19 @@ const { shareAll, withModuleFederationPlugin } = require('@angular-architects/mo
 module.exports = withModuleFederationPlugin({
   name: 'pokemonMfeList',
   exposes: {
-    './Module': './src/app/remote-entry/entry.module.ts',
+    './Module': './src/app/remote-entry/remote-entry.module.ts',
   },
   shared: shareAll({ singleton: true, strictVersion: true, requiredVersion: 'auto' }),
 });
 ```
 
-2. Crie o módulo de entrada `entry.module.ts`:
+2. Crie o módulo de entrada `remote-entry.module.ts`:
 
 ```typescript
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { RemoteEntryComponent } from './entry.component';
+import { RemoteEntryComponent } from './remote-entry.component';
 
 @NgModule({
   declarations: [RemoteEntryComponent],
@@ -99,7 +111,7 @@ import { RemoteEntryComponent } from './entry.component';
 export class RemoteEntryModule {}
 ```
 
-3. Crie o componente `entry.component.ts`:
+3. Crie o componente `remote-entry.component.ts`:
 
 ```typescript
 import { Component } from '@angular/core';
@@ -109,6 +121,31 @@ import { Component } from '@angular/core';
   template: `<h2>Pokémon List</h2>`,
 })
 export class RemoteEntryComponent {}
+```
+
+4. Importe o modulo `RemoteEntryModule` dentro de `app.module.ts`
+
+```typescript
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { RemoteEntryModule } from './remote-entry/remote-entry.module';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    RemoteEntryModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
 ```
 
 ### Configurar o `pokemon-mfe-profile`
@@ -121,19 +158,19 @@ const { shareAll, withModuleFederationPlugin } = require('@angular-architects/mo
 module.exports = withModuleFederationPlugin({
   name: 'pokemonMfeProfile',
   exposes: {
-    './Module': './src/app/remote-entry/entry.module.ts',
+    './Module': './src/app/remote-entry/remote-entry.module.ts',
   },
   shared: shareAll({ singleton: true, strictVersion: true, requiredVersion: 'auto' }),
 });
 ```
 
-2. Crie o módulo de entrada `entry.module.ts`:
+2. Crie o módulo de entrada `remote-entry.module.ts`:
 
 ```typescript
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular.common';
+import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { RemoteEntryComponent } from './entry.component';
+import { RemoteEntryComponent } from './remote-entry.component';
 
 @NgModule({
   declarations: [RemoteEntryComponent],
@@ -147,7 +184,7 @@ import { RemoteEntryComponent } from './entry.component';
 export class RemoteEntryModule {}
 ```
 
-3. Crie o componente `entry.component.ts`:
+3. Crie o componente `remote-entry.component.ts`:
 
 ```typescript
 import { Component } from '@angular.core';
@@ -157,6 +194,31 @@ import { Component } from '@angular.core';
   template: `<h2>Pokémon Profile</h2>`,
 })
 export class RemoteEntryComponent {}
+```
+
+4. Importe o modulo `RemoteEntryModule` dentro de `app.module.ts`
+
+```typescript
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { RemoteEntryModule } from './remote-entry/remote-entry.module';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    RemoteEntryModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
 ```
 
 ## Passo 3: Ajustar Configurações de Build e Servidor
