@@ -85,7 +85,7 @@ const { shareAll, withModuleFederationPlugin } = require('@angular-architects/mo
 module.exports = withModuleFederationPlugin({
   name: 'pokemonMfeList',
   exposes: {
-    './Module': './src/app/remote-entry/remote-entry.module.ts',
+    './Module': './src/app/app.module.ts',
   },
   shared: shareAll({ singleton: true, strictVersion: true, requiredVersion: 'auto' }),
 });
@@ -158,7 +158,7 @@ const { shareAll, withModuleFederationPlugin } = require('@angular-architects/mo
 module.exports = withModuleFederationPlugin({
   name: 'pokemonMfeProfile',
   exposes: {
-    './Module': './src/app/remote-entry/remote-entry.module.ts',
+    './Module': './src/app/app.module.ts',
   },
   shared: shareAll({ singleton: true, strictVersion: true, requiredVersion: 'auto' }),
 });
