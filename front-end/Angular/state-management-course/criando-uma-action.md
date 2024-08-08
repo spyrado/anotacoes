@@ -1,5 +1,8 @@
 # Como Criar uma Action no NgRx
 
+> **IMPORTANTE:** Uma ACTION por si só não faz nada, não armazena no store, ela simplesmente representa um evento.
+
+
 ## Criando uma Action Simples
 
 Podemos criar uma action diretamente ao despachá-la para o store usando o método `dispatch`. Aqui está um exemplo básico:
