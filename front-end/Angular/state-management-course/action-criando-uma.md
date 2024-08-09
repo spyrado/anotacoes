@@ -2,6 +2,8 @@
 
 > **IMPORTANTE:** Uma ACTION por si só não faz nada, não armazena no store, ela simplesmente representa um evento.
 
+> **DICA:** procure sempre criar uma ação para cada tipo de situação, para termos um facil rastreio das actions
+
 
 ## Criando uma Action Simples
 
