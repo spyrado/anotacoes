@@ -1,3 +1,5 @@
+> **DICA:** Sempre que estiver criando um novo effect desligue sua aplicação para evitar loop infinito
+
 #### Ao invez de utilizarmos essa estrutura para criar um side effect
 
 ```typescript
