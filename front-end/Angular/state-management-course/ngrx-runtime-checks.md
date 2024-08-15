@@ -80,6 +80,14 @@ como duas ações nesse caso estão com o mesmo nome `'[User API] Load Users'` o
 
 ## strictActionSerializability como funciona?
 
+mandar algo que não é SERIALIZÁVEL para o NGRX ele vai guardar um objeto vazio no store, com isso não conseguimos rastrear oq aconteceu na aplicação
+
+```typescript
+  auth: {
+    file: {} // ao mandar um new File() para o store, ele será armazenado como objeto vazio por não ser SERIALIZÁVEL
+  }
+```
+
 
 Aqui está um exemplo onde a configuração strictActionSerializability: true causaria um erro:
 
@@ -96,3 +104,5 @@ Neste exemplo, a ação `uploadFile` contém uma propriedade `file` do tipo `Fil
 Em vez de passar o objeto `File`, você pode extrair apenas os dados necessários, como `fileName` e `fileContent`, e passar esses valores na ação. Dessa forma, a ação se torna serializável e a configuração `strictActionSerializability: true` não gerará um erro.
 
 Esse cenário ajuda a manter o gerenciamento de estado limpo e previsível, garantindo que todas as ações possam ser manipuladas de forma consistente, sem surpresas ao serializar ou deserializar o estado.
+
+
