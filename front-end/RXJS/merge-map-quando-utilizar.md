@@ -25,3 +25,83 @@ Logo em seguida o usuário selecionou a `TERCEIRA OPÇÃO` e a terceira opção 
 
   - Quando as emissões/eventos puderem ser processadas de simultanea ( muitas vezes mais performático )
   - quando a ordem não importar.
+
+## Codigo de exemplo para voce testar o comportamento:
+
+site para testar: https://stackblitz.com/edit/vkdudx?devtoolsheight=50&file=index.ts,index.html
+
+```html
+<div>
+  <label for="options">Escolha uma opção:</label>
+  <select id="options">
+    <option value="">escolha uma opção</option>
+      <option value="1">Opção 1</option>
+      <option value="2">Opção 2</option>
+      <option value="3">Opção 3</option>
+  </select>
+</div>
+
+<div>
+  <h3>Resultado Atual:</h3>
+  <div id="result"></div>
+</div>
+
+<div>
+  <h3>Histórico de Chamadas:</h3>
+  <ul id="history"></ul>
+</div>
+
+```
+
+```typescript 
+import { fromEvent, of } from 'rxjs';
+import { mergeMap, delay } from 'rxjs/operators';
+
+// Função para simular requisições com diferentes tempos de resposta
+function simulateAsyncOperation(value: string) {
+    let simulatedDelay: number;
+
+    switch (value) {
+        case '1':
+            simulatedDelay = 3000; // 3 segundos
+            break;
+        case '2':
+            simulatedDelay = 1000; // 1 segundo
+            break;
+        case '3':
+            simulatedDelay = 2000; // 2 segundos
+            break;
+        default:
+            simulatedDelay = 1000;
+    }
+
+    return of(`Resultado para opção ${value} (demorou ${simulatedDelay / 1000} segundos)`).pipe(
+        delay(simulatedDelay)
+    );
+}
+
+// Seleciona os elementos necessários
+const selectElement = document.getElementById('options') as HTMLSelectElement;
+const resultDiv = document.getElementById('result');
+const historyList = document.getElementById('history');
+
+// Cria um observable para o evento de mudança (change) no <select>
+const selectChange$ = fromEvent<Event>(selectElement, 'change');
+
+// Usa mergeMap para processar as mudanças do select
+selectChange$.pipe(
+    mergeMap(event => {
+        const selectedValue = (event.target as HTMLSelectElement).value;
+        return simulateAsyncOperation(selectedValue);
+    })
+).subscribe(result => {
+    // Atualiza o resultado atual
+    resultDiv!.textContent = result;
+
+    // Adiciona o resultado ao histórico
+    const listItem = document.createElement('li');
+    listItem.textContent = result;
+    historyList!.appendChild(listItem);
+});
+
+```
