@@ -4,7 +4,7 @@
 
 O `concatMap` funciona como uma corrida de revezamento:
 <br/>
-  ![alt text](image.png)
+  ![alt text](imgs/image.png)
 <br/>
 - ele sempre vai ser executado na ordem em que for recebido.
 - o primeiro evento recebido sempre vai ser o primeiro a ser disparado como em uma fila.
@@ -16,8 +16,8 @@ O `concatMap` funciona como uma corrida de revezamento:
 
   O usuário selecionou o `item 2` depois o `item 3` e viu que na verdade ele queria o `item 1` da lista.
 
-![alt text](image-2.png)
-![alt text](image-1.png)
+![alt text](imgs/image-2.png)<br>
+![alt text](imgs/image-1.png)
 
 utilizar o `concatMap` nesse cenário é ruim pois:
   - ele vai fazer o request do `item 2` pegar o usuário x

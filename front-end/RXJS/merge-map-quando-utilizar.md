@@ -4,13 +4,13 @@
 
 O `mergeMap` funciona como uma corrida de 800 metros:
 
-![alt text](image-3.png)
+![alt text](imgs/image-3.png)
 
 Todos vão sair ao mesmo tempo, uns podem sair em primeiro, outros em segundo, mas não significa que sempre oq sair primeiro vai finalizar a corrida em primeiro.
 
 ### Como no exemplo abaixo:
-![alt text](image-2.png)
-![alt text](image-4.png)
+![alt text](imgs/image-2.png)<br>
+![alt text](imgs/image-4.png)
 
 O usuário selecionou a `SEGUNDA OPÇÃO` foi feito o request logo em seguida da `SEGUNDA OPÇÃO`,
 porem ela foi a última a dar a resposta, pois a carga do request 2 é maior que os demais.
