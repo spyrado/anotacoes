@@ -1,4 +1,4 @@
-# Merge Map
+# mergeMap
 
 `VIDEO REFERÊNCIA: ` https://www.youtube.com/watch?v=RSf7DlJXoGQs
 

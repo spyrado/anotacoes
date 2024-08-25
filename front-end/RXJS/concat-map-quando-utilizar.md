@@ -1,4 +1,4 @@
-# Concat Map
+# concatMap
 
 `VIDEO REFERÊNCIA: ` https://www.youtube.com/watch?v=RSf7DlJXoGQ
 
