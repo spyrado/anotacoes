@@ -26,7 +26,7 @@ utilizar o `concatMap` nesse cenário é ruim pois:
 
 mas o objetivo final do usuário era o item 1, o item 2 e o item 3 ele clicou sem querer.
 
-## Quando utilizar Concat Map? &check;
+## Quando utilizar concatMap? &check;
 
 - Quando a ordem importar
 - Quando você precisar processar uma a uma.
