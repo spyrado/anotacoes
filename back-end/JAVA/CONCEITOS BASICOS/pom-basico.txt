@@ -1,0 +1,15 @@
+Dependencias basicas de um projeto.
+
+
+spring-boot-devtools -> para servir de hot reload
+spring-boot
+lombok -> gera automaticamente getters e setters toString e etc
+spring-boot-starter-web -> necessário para rest api
+validation -> serve para validarmos os campos igual o Validation do Angular
+  - exemplos:
+    - @NotBlank(message = "O nome é obrigatório")
+    - @Email(message = "Email inválido")
+    - @Size(min = 6, message = "A senha deve ter pelo menos 6 caracteres")
+mysql driver -> utilizado para que o java possa se comunicar com o mysql(banco de dados)
+Spring Data SPA -> facilita o trabalho com o banco de dados, ele simplifica o CRUD e evita que vc digite query sql manualmente na maioria das vezes
+fly way migration -> versionador de banco, ou seja cada coisa que você criar nova no banco ele gera uma versão, isso evita divergencia entre ambientes, permite ter um rollback contrado pois temos o controle sobre as versoes

@@ -1,0 +1,17 @@
+DTO ( Data Transfer Object )
+
+Porque usar DTO?
+
+1. Segurança e Encapsulamento
+  - Evita expor campos sensíveis da entidade diretamente
+  - EXEMPLO: minha entidade usuário tem todas as infos do usuário incluindo senha, eu crio um DTO e passo apenas as informações que eu quero.
+
+2. Customização da Resposta
+  - Permite retornar apenas os dados necessários
+  - EXEMPLO: o usuário tem vários campos, mas a API só precisa enviar nome e email.
+
+3. Separação de camadas
+  - Mantém o modelo de domínio separado da estrutura usada para transporte de dados
+
+4. Validação de entrada
+  - Pode-se usar anotações como @NotNull, @Size e etc, diretamente no DTO para validar dados recebidos
