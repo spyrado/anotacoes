@@ -15,3 +15,6 @@ lista de comandos docker
   - `angular-docker`: Nome ou tag da imagem Docker que será usada para criar o contêiner. Essa imagem deve ter sido previamente construída ou baixada.
 - `docker ps`: lista todos os containers ativos
 - `docker stop ID_DO_SEU_CONTAINER`: faz com que o container pare de rodar
+- `docker pull [NOME_DA_SUA_IMAGEM]`: ele baixa a imagem apenas.
+- `docker run [NOME_DA_SUA_IMAGEM]`: ele baixa a imagem e sobe um docker
+- `docker ps`: ele mostra quais containers estão em execução
