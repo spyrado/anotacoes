@@ -14,7 +14,11 @@ lista de comandos docker
     - `4500:4500`: O formato é porta_host:porta_contêiner. Isso significa que a porta 4500 do host será redirecionada para a porta 4500 dentro do contêiner.
   - `angular-docker`: Nome ou tag da imagem Docker que será usada para criar o contêiner. Essa imagem deve ter sido previamente construída ou baixada.
 - `docker ps`: lista todos os containers ativos
-- `docker stop ID_DO_SEU_CONTAINER`: faz com que o container pare de rodar
 - `docker pull [NOME_DA_SUA_IMAGEM]`: ele baixa a imagem apenas.
 - `docker run [NOME_DA_SUA_IMAGEM]`: ele baixa a imagem e sobe um docker
-- `docker ps`: ele mostra quais containers estão em execução
+- `docker exec -it [ID_DO_SEU_CONTAINER] bash`: ele entra nesse docker em modo interativo ( você fica dentro desse container podendo executar comandos dentro dele )
+-  `docker stop ID_DO_SEU_CONTAINER`: faz com que o container pare de rodar, ele RESETA toda a arvore de processos que estavam em execução.
+-  `docker pause ID_DO_SEU_CONTAINER`: faz com que o container pare de rodar, porem ele NÃO RESETA a arvore de processos, os processos continuam rodando.
+-  `docker run [IMAGEM]`: ela roda sua image, porem se vc ficar rodando ele vai criar 1 instancia para cada docker run.
+-  `docker start [ID_DO_SEU_CONTAINER]`: se voce deu um stop, voce pode dar um start pelo id do container que o container volta a subir e reexecutar tudo que estava programado.
+-  `top`: não é comando docker, é linux, mas é util pois ele verifica todos os processos que estão sendo executados
