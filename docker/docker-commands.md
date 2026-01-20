@@ -23,3 +23,20 @@ lista de comandos docker
 -  `docker run [IMAGEM]`: ela roda sua image, porem se vc ficar rodando ele vai criar 1 instancia para cada docker run.
 -  `docker start [ID_DO_SEU_CONTAINER]`: se voce deu um stop, voce pode dar um start pelo id do container que o container volta a subir e reexecutar tudo que estava programado.
 -  `top`: não é comando docker, é linux, mas é util pois ele verifica todos os processos que estão sendo executados
+-  `docker stop -t=0 [ID_DO_SEU_CONTAINER]`: o -t=0 diz que eu nao quero esperando 10 segundos, para que meu container pare.
+-  `docker rm [ID_DO_SEU_CONTAINER]`: remove o container ( e tudo que estava dentro dele é perdido ), exemplo: se você criou um arquivo x la dentro, esse arquivo é perdido.
+-  `docker images`: lista todas as imagens que você já baixou
+-  `docker rmi [ID_DA_SUA_IMAGEM]`: remove a imagem que você baixou anteriormente.
+-  
+
+
+## COISAS INTERESSANTES
+
+> docker stop [ID_CONTAINER] // ele vai matar os processos que estão rodando, **MANTEM OS ARQUIVOS CRIADOS** \
+> docker start [ID_CONTAINER] // ele vai iniciar do zero os processos 
+
+> docker pause [ID_CONTAINER] // ele vai congelar o seu container e NÃO VAI matar os processos que estão rodando **MANTEM OS ARQUIVOS CRIADOS** \
+> docker unpause [ID_CONTAINER] // ele vai despausar o seu container, e seus processos vão continuar lá
+
+ 
+> docker rm [ID_CONTAINER] // ele vai deletar o seu container **DELETA OS ARQUIVOS CRIADOS**, ao rodar outra instancia, vai estar sem os arquivos previamente configurados ( em caso de inserção manual )
