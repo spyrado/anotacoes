@@ -52,6 +52,7 @@ lista de comandos docker
 ### CAMADAS DO DOCKER (DOCKER LAYERS)
 
 ![alt text](image-1.png)
+![alt text](image-4.png)
 
 Duvidas frequentes: **NÃO**, o Docker **não baixa nem duplica os layers** para cada container.
 
