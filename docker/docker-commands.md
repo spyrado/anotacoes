@@ -16,18 +16,24 @@ lista de comandos docker
 - `docker ps`: lista todos os containers ativos
 - `docker pull [NOME_DA_SUA_IMAGEM]`: ele baixa a imagem apenas.
 - `docker run [NOME_DA_SUA_IMAGEM]`: ele baixa a imagem e sobe um docker
-- `docker exec -it [ID_DO_SEU_CONTAINER] bash`: ele entra nesse docker em modo interativo ( você fica dentro desse container podendo executar comandos dentro dele )
+- `docker exec -it [ID_CONTAINER] bash`: ele entra nesse docker em modo interativo ( você fica dentro desse container podendo executar comandos dentro dele )
 -  `docker stop ID_DO_SEU_CONTAINER`: faz com que o container pare de rodar, ele RESETA toda a arvore de processos que estavam em execução.
 -  `docker pause ID_DO_SEU_CONTAINER`: faz com que o container pare de rodar, porem ele NÃO RESETA a arvore de processos, os processos continuam rodando.
 -  `docker unpause ID_DO_SEU_CONTAINER`: faz o seu container voltar a rodar.
 -  `docker run [IMAGEM]`: ela roda sua image, porem se vc ficar rodando ele vai criar 1 instancia para cada docker run.
--  `docker start [ID_DO_SEU_CONTAINER]`: se voce deu um stop, voce pode dar um start pelo id do container que o container volta a subir e reexecutar tudo que estava programado.
+-  `docker start [ID_CONTAINER]`: se voce deu um stop, voce pode dar um start pelo id do container que o container volta a subir e reexecutar tudo que estava programado.
 -  `top`: não é comando docker, é linux, mas é util pois ele verifica todos os processos que estão sendo executados
--  `docker stop -t=0 [ID_DO_SEU_CONTAINER]`: o -t=0 diz que eu nao quero esperando 10 segundos, para que meu container pare.
--  `docker rm [ID_DO_SEU_CONTAINER]`: remove o container ( e tudo que estava dentro dele é perdido ), exemplo: se você criou um arquivo x la dentro, esse arquivo é perdido.
+-  `docker stop -t=0 [ID_CONTAINER]`: o -t=0 diz que eu nao quero esperando 10 segundos, para que meu container pare.
+-  `docker rm [ID_CONTAINER]`: remove o container ( e tudo que estava dentro dele é perdido ), exemplo: se você criou um arquivo x la dentro, esse arquivo é perdido.
 -  `docker images`: lista todas as imagens que você já baixou
 -  `docker rmi [ID_DA_SUA_IMAGEM]`: remove a imagem que você baixou anteriormente.
--  
+-  `docker run -P [ID_CONTAINER]`: faz o mapeamento automatico de portas pra você
+-  `docker run -p 80:80 [ID_CONTAINER]`: faz o mapeamento MANUAL de portas, sendo que PORTA_DA_SUA_MAQUINA_LOCAL:PORTA_DO_CONTAINER, ex: o container ao ser executado ele fica escutando a porta 80, localmente você quer que quando acessar localhost:3000 ele aponte para a porta 80 do seu container, entao a configuração deve ser `docker run -p 3000:80 [ID_CONTAINER]` ai quando você acessar localhost:3000 ele vai redirecionar você para dentro do container na porta 80
+-  `docker port [ID_CONTAINER]`: mostra todo o mapeamento de portas do seu container
+-  `docker history [ID_IMAGEM]`: mostra todos os layers dessa imagem
+   - ![alt text](image-2.png)
+-  `docker inspect [ID_IMAGEM]`: mostra toda a configuração feita para essa imagem
+   -  ![alt text](image-3.png)
 
 
 ## COISAS INTERESSANTES
@@ -40,3 +46,49 @@ lista de comandos docker
 
  
 > docker rm [ID_CONTAINER] // ele vai deletar o seu container **DELETA OS ARQUIVOS CRIADOS**, ao rodar outra instancia, vai estar sem os arquivos previamente configurados ( em caso de inserção manual )
+
+## COISAS INTERESSANTES
+
+### CAMADAS DO DOCKER (DOCKER LAYERS)
+
+![alt text](image-1.png)
+
+Duvidas frequentes: **NÃO**, o Docker **não baixa nem duplica os layers** para cada container.
+
+Agora vamos ao detalhe 👇
+
+## 🧱 Como o Docker usa layers
+
+O Docker trabalha com **imagens em camadas (layers)** e **containers reutilizam essas camadas**.
+
+Exemplo simplificado da imagem Ubuntu:
+
+- Layer 1: filesystem base  
+- Layer 2: libs básicas  
+- Layer 3: configs do Ubuntu  
+
+Esses layers:
+
+- São baixados **UMA ÚNICA VEZ**
+- Ficam armazenados localmente
+- São **read-only**
+
+## 📦 E se eu criar 7 containers Ubuntu?
+
+Se você rodar:
+
+```bash
+docker run ubuntu
+docker run ubuntu
+docker run ubuntu
+```
+
+- 👉 O que acontece:
+  - ✅ Download do Ubuntu: apenas 1 vez
+  - ✅ Layers compartilhados entre todos os containers
+  - ❌ Não duplica espaço em disco
+  - ❌ Não cria 7 cópias da imagem
+
+- Cada container cria apenas:
+  - mais 1 camada extra (write layer)
+
