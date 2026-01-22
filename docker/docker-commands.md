@@ -17,6 +17,7 @@ lista de comandos docker
 - `docker pull [NOME_DA_SUA_IMAGEM]`: ele baixa a imagem apenas.
 - `docker run [NOME_DA_SUA_IMAGEM]`: ele baixa a imagem e sobe um docker
 - `docker exec -it [ID_CONTAINER] bash`: ele entra nesse docker em modo interativo ( você fica dentro desse container podendo executar comandos dentro dele )
+-  `docker stop $(docker ps -q)`: para todos os containers em execução
 -  `docker stop ID_DO_SEU_CONTAINER`: faz com que o container pare de rodar, ele RESETA toda a arvore de processos que estavam em execução.
 -  `docker pause ID_DO_SEU_CONTAINER`: faz com que o container pare de rodar, porem ele NÃO RESETA a arvore de processos, os processos continuam rodando.
 -  `docker unpause ID_DO_SEU_CONTAINER`: faz o seu container voltar a rodar.
