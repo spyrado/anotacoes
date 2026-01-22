@@ -34,7 +34,11 @@ lista de comandos docker
    - ![alt text](image-2.png)
 -  `docker inspect [ID_IMAGEM]`: mostra toda a configuração feita para essa imagem
    -  ![alt text](image-3.png)
-
+-  `docker build -t spyrado/app-node:1.0`: esse comando vai:
+   - rodar um build para construir uma imagem docker
+   - `-t` indica qual o nome que eu quero dar para essa imagem 
+   - `spyrado/app-node` representa o nome da imagem
+   - `:1.0` é a versao que eu estou dando para essa imagem 
 
 ## COISAS INTERESSANTES
 
