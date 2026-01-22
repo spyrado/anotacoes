@@ -5,3 +5,6 @@
 - `COPY . .` -> estou copiando tudo que está na raiz desse projeto e jogando para dentro do meu workdir ( app ou qualquer outro nome que você definir no WORKDIR )
 - `RUN npm install` -> estou instalando as dependencias do sistema
 - `ENTRYPOINT npm start` -> estou falando que sempre que o container for iniciado deve rodar esse comando
+- `ARG PORT=3000` -> estou definindo uma variavel com um valor apenas em tempo de execução desse script
+- `ENV PORT=$PORT` -> estou falando que a variavel de ambiente vai ter o seu valor alterado para o valor atribuido a variável $PORT
+- `EXPOSE $PORT` -> estou informando para quem consumir minha imagem que a porta é 3000
