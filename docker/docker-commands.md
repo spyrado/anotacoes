@@ -19,12 +19,12 @@ lista de comandos docker
 - `docker exec -it [ID_CONTAINER] bash`: ele entra nesse docker em modo interativo ( você fica dentro desse container podendo executar comandos dentro dele )
 -  `docker stop $(docker ps -q)`: para todos os containers em execução
 -  `docker stop ID_DO_SEU_CONTAINER`: faz com que o container pare de rodar, ele RESETA toda a arvore de processos que estavam em execução.
+-  `docker stop -t=0 [ID_CONTAINER]`: o -t=0 diz que eu nao quero esperando 10 segundos, para que meu container pare.
 -  `docker pause ID_DO_SEU_CONTAINER`: faz com que o container pare de rodar, porem ele NÃO RESETA a arvore de processos, os processos continuam rodando.
 -  `docker unpause ID_DO_SEU_CONTAINER`: faz o seu container voltar a rodar.
 -  `docker run [IMAGEM]`: ela roda sua image, porem se vc ficar rodando ele vai criar 1 instancia para cada docker run.
 -  `docker start [ID_CONTAINER]`: se voce deu um stop, voce pode dar um start pelo id do container que o container volta a subir e reexecutar tudo que estava programado.
 -  `top`: não é comando docker, é linux, mas é util pois ele verifica todos os processos que estão sendo executados
--  `docker stop -t=0 [ID_CONTAINER]`: o -t=0 diz que eu nao quero esperando 10 segundos, para que meu container pare.
 -  `docker rm [ID_CONTAINER]`: remove o container ( e tudo que estava dentro dele é perdido ), exemplo: se você criou um arquivo x la dentro, esse arquivo é perdido.
 -  `docker images`: lista todas as imagens que você já baixou
 -  `docker rmi [ID_DA_SUA_IMAGEM]`: remove a imagem que você baixou anteriormente.
@@ -41,6 +41,15 @@ lista de comandos docker
    - `spyrado/app-node` representa o nome da imagem
    - `:1.0` é a versao que eu estou dando para essa imagem 
    - o `.` do final representa qual o caminho que essa instrução deve ser executada, como geralmente rodamos a instrução na mesma pasta onde se encontra o dockerfile, colocamos o `.` para indicar que é para rodar ali mesmo aonde estamos.
+
+## Global Option
+
+> cada COMANDO tem um leque de opções, para visualiza basta:
+> docker COMMAND --help
+> exemplo, quero saber sobre as opções de um RUN ai eu tenho que fazer
+> docker run --help ele vai me listar todas as opções que docker run tem.
+
+- `-d`: detached mode, o terminal fica livre e o container continua rodando.
 
 ## COISAS INTERESSANTES
 
