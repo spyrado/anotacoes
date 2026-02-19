@@ -2,30 +2,42 @@ Link REF: https://www.youtube.com/watch?v=F2au3FXq9Y4
 
 lista de comandos docker
 
+- `docker login -u nome_do_seu_usuario_no_docker` -> exemplo: docker login -u spyrado, e depois voce coloca sua senha
 - `docker --helper` -> para verificar se o seu docker está instalado na maquina
 - `docker run hello-world` -> para verificar se o seu docker desktop está de pé
 - `docker build -t angular-docker .`
   - `docker build`: Comando usado para construir uma imagem Docker.
   - `-t angular-docker`: A opção `-t` permite atribuir uma tag (ou nome) à imagem que está sendo construída. Neste caso, a imagem será nomeada como angular-docker
   - `.` o ponto no final é para falar para o docker que o arquivo Dockerfile está na raiz aonde o comando está sendo executado
+- `docker push nome_da_sua_imagem` -> exemplo: spyrado/mfe-login:1.0.0
 - `docker run -p 4500:4500 angular-docker`
   - `docker run`: Comando para iniciar um novo contêiner a partir de uma imagem Docker.
   - `-p 4500:4500`: Opção para mapear portas entre o host e o contêiner.
     - `4500:4500`: O formato é porta_host:porta_contêiner. Isso significa que a porta 4500 do host será redirecionada para a porta 4500 dentro do contêiner.
   - `angular-docker`: Nome ou tag da imagem Docker que será usada para criar o contêiner. Essa imagem deve ter sido previamente construída ou baixada.
 - `docker ps`: lista todos os containers ativos
+- `docker ps -a`: lista todos os containers inativos
+- `docker ps -s`: lista os containers e mostra o size de cada um deles, e todo container tem o size inicial dele proprio
+  - exemplo: ubuntu tem 87.6MB de size padrão, e 0mb de size de RW(Read Write)
+  - se eu subir o container do ubuntu e rodar o comando apt-get update
+  - e rodar novamente o docker ps -s, o size do ubuntu vai subir de 87.6MB para valor XPTO ( ex: 150mb ) pois ele fez um update na maquina e isso escreveu atualizações naquele container, ou seja o seu tamanho aumentou.
+  - ![alt text](image-5.png)
 - `docker pull [NOME_DA_SUA_IMAGEM]`: ele baixa a imagem apenas.
 - `docker run [NOME_DA_SUA_IMAGEM]`: ele baixa a imagem e sobe um docker
 - `docker exec -it [ID_CONTAINER] bash`: ele entra nesse docker em modo interativo ( você fica dentro desse container podendo executar comandos dentro dele )
--  `docker stop $(docker ps -q)`: para todos os containers em execução
--  `docker stop ID_DO_SEU_CONTAINER`: faz com que o container pare de rodar, ele RESETA toda a arvore de processos que estavam em execução.
--  `docker stop -t=0 [ID_CONTAINER]`: o -t=0 diz que eu nao quero esperando 10 segundos, para que meu container pare.
--  `docker pause ID_DO_SEU_CONTAINER`: faz com que o container pare de rodar, porem ele NÃO RESETA a arvore de processos, os processos continuam rodando.
--  `docker unpause ID_DO_SEU_CONTAINER`: faz o seu container voltar a rodar.
--  `docker run [IMAGEM]`: ela roda sua image, porem se vc ficar rodando ele vai criar 1 instancia para cada docker run.
--  `docker start [ID_CONTAINER]`: se voce deu um stop, voce pode dar um start pelo id do container que o container volta a subir e reexecutar tudo que estava programado.
--  `top`: não é comando docker, é linux, mas é util pois ele verifica todos os processos que estão sendo executados
--  `docker rm [ID_CONTAINER]`: remove o container ( e tudo que estava dentro dele é perdido ), exemplo: se você criou um arquivo x la dentro, esse arquivo é perdido.
+- `docker stop $(docker ps -q)`: para todos os containers em execução
+- `docker stop ID_DO_SEU_CONTAINER`: faz com que o container pare de rodar, ele RESETA toda a arvore de processos que estavam em execução.
+- `docker stop -t=0 [ID_CONTAINER]`: o -t=0 diz que eu nao quero esperando 10 segundos, para que meu container pare.
+- `docker pause ID_DO_SEU_CONTAINER`: faz com que o container pare de rodar, porem ele NÃO RESETA a arvore de processos, os processos continuam rodando.
+- `docker unpause ID_DO_SEU_CONTAINER`: faz o seu container voltar a rodar.
+- `docker run [IMAGEM]`: ela roda sua image, porem se vc ficar rodando ele vai criar 1 instancia para cada docker run.
+- `docker start [ID_CONTAINER]`: se voce deu um stop, voce pode dar um start pelo id do container que o container volta a subir e reexecutar tudo que estava programado.
+- `top`: não é comando docker, é linux, mas é util pois ele verifica todos os processos que estão sendo executados
+- `docker rm [ID_CONTAINER]`: remove o container ( e tudo que estava dentro dele é perdido ), exemplo: se você criou um arquivo x la dentro, esse arquivo é perdido.
+- `docker container rm $(docker container ls -aq)`: remove todos os containers tanto os ativos, quanto os parados (-a)
+    - docker container rm -> remove container e vc indica qual
+    - $(docker container ls -aq) comando para indicar que eu quero remover todos os container ativos e inativos
+-  `docker rmi $(docker image ls -aq)`: remove todas as imagens docker
 -  `docker images`: lista todas as imagens que você já baixou
 -  `docker rmi [ID_DA_SUA_IMAGEM]`: remove a imagem que você baixou anteriormente.
 -  `docker run -P [ID_CONTAINER]`: faz o mapeamento automatico de portas pra você
