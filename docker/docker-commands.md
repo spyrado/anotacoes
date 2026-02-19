@@ -21,6 +21,11 @@ lista de comandos docker
   - exemplo: ubuntu tem 87.6MB de size padrão, e 0mb de size de RW(Read Write)
   - se eu subir o container do ubuntu e rodar o comando apt-get update
   - e rodar novamente o docker ps -s, o size do ubuntu vai subir de 87.6MB para valor XPTO ( ex: 150mb ) pois ele fez um update na maquina e isso escreveu atualizações naquele container, ou seja o seu tamanho aumentou.
+  - e vale lembrar que sempre que deletamos o container do ubuntu e subimos ele novamente tudo que existia se perde, pois o docker é Efêmero
+    - Quer dizer que:
+      - O container pode ser destruído a qualquer momento
+      - O estado interno não é confiável
+      - Mudanças feitas dentro dele são descartáveis
   - ![alt text](image-5.png)
 - `docker pull [NOME_DA_SUA_IMAGEM]`: ele baixa a imagem apenas.
 - `docker run [NOME_DA_SUA_IMAGEM]`: ele baixa a imagem e sobe um docker
