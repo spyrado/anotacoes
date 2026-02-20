@@ -63,6 +63,8 @@ lista de comandos docker
 
 # VOLUMES
 
+> Podemos compartilhar volumes `ENTRE CONTAINERS`
+
 ## BIND MOUNTS
 
   ### adicionando volumes com a flag -v
@@ -80,7 +82,10 @@ lista de comandos docker
   ### adicionando volumes com a flag --amount ( mais recomendada )
     - `docker run -it --mount type=bind,src=/caminho/xpto/volume-docker-pasta-teste,target=/app ubuntu bash`: aqui é a mesma coisa que o exemplo do -v, porem o docker recomenda utilizar o --mount por ficar mais explicito e ter mais compatibilidade
 
-## CRIANDO VOLUME e fazendo o docker em vez de pegar local via bind pegar do volume criado
+## VOLUME 
+
+> CRIANDO volume e fazendo o docker em vez de pegar local via bind pegar do volume criado
+
    -  `docker volume ls`: lista os volumes já criados.
    -  `docker volume create meu-volume`: cria um volume chamado "meu-volume"
    -  `docker run -it --mount src=meu-volume,target=/app ubuntu bash` ou `docker run -it -v meu-volume:/app ubuntu bash` ambos vao apontar para a pasta que foi criada no docker chamada de "meu-volume" e sempre que for recuperar será de lá.
@@ -88,6 +93,11 @@ lista de comandos docker
     dentro desse caminho: `/var/lib/docker/volumes`, para acessar precisa acessar com sudo su ( super usuário )
     o conteudo sempre vai ficar aqui `/var/lib/docker/volumes/meu-volume/_data`
    `DICA IMPORTANTE` se voce rodar esse comando: `docker run -it --mount src=meu-volume,target=/app ubuntu bash` porem não existir o volume "meu-volume" criado ainda, ele vai `CRIAR` para voce automaticamente.
+
+## tmpfs
+
+> DIFERENTE dos volumes e os bind mounts você NÃO CONSEGUE compartilha-los entre containers
+> Essa funcionalidade está `APENAS DISPONÍVEL` se você estiver rodando dentro de um `linux`
 
 
 ## Global Option
