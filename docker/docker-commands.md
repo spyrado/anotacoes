@@ -97,7 +97,43 @@ lista de comandos docker
 ## tmpfs
 
 > DIFERENTE dos volumes e os bind mounts você NÃO CONSEGUE compartilha-los entre containers
+
 > Essa funcionalidade está `APENAS DISPONÍVEL` se você estiver rodando dentro de um `linux`
+
+> tmpfs não é armazenado na camada de RW (Read Write), pois ele é armazenado na MEMORIA RAM do HOST
+
+  ### Quais são as vantagens?
+    🔹 1. Performance (muito mais rápido)
+
+    RAM é **MUITO** mais rápida que disco.
+
+    👉 Ideal pra:
+    - arquivos temporários  
+    - cache  
+    - processamento intermediário  
+
+    ---
+
+    🔹 2. Segurança 🔐
+
+    Nada é persistido.
+
+    👉 Perfeito pra:
+    - senhas temporárias  
+    - tokens  
+    - dados sensíveis  
+
+    Se o container parar → **sumiu tudo**
+
+    ---
+
+    🔹 3. Evitar escrita em disco
+
+    Às vezes você não quer sujar o disco.
+
+    👉 Exemplo:
+    - logs temporários  
+    - arquivos que não precisam ser salvos  
 
 
 ## Global Option
