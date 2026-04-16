@@ -60,6 +60,13 @@ lista de comandos docker
    - o `.` do final representa qual o caminho que essa instrução deve ser executada, como geralmente rodamos a instrução na mesma pasta onde se encontra o dockerfile, colocamos o `.` para indicar que é para rodar ali mesmo aonde estamos.
 -  `docker volume ls`: lista os volumes já criados.
 -  `docker volume create meu-volume`: cria um volume chamado "meu-volume"
+-  `docker network ls`: lista as networks que o docker possui
+-  `docker network create --driver bridge minha-rede-customizada`: cria uma rede customizada passando um driver que nesse caso é o bridge
+-  `docker network rm minha-rede-customizada`: deleta uma rede que nesse caso é a "minha-rede-customizada"
+-  `docker run -it --name ubuntu1 --network minha-rede-customizada ubuntu`
+   -  roda o ubuntu em modo iterativo
+   -  `--name ubuntu1` estou dando um nome x para o container
+   -  `--network minha-rede-customizada` estou falando que esse container pertence a rede x
 
 ## Global Option
 
