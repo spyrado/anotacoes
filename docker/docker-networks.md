@@ -46,3 +46,119 @@ Exemplo utilizando ubuntu:
           - ping ubuntu2
             - ele vai pingar normalmente e não dependemos mais de pingar no IP, só pingamos via hostname
 
+
+# RESUMO E DIFERENÇA ENTRE AS 3 REDES ( BRIDGE, HOST e none (sem rede))
+
+## 🔹 bridge (padrão)
+
+É o modo default do Docker.
+
+👉 Cada container:
+
+- Ganha um IP próprio dentro de uma rede interna (ex: `172.17.x.x`)
+- Fica isolado do host e de outros containers (a menos que você permita)
+
+👉 Comunicação:
+
+- Container → internet: ✅
+- Container → container (mesma rede): ✅
+- Host → container: ⚠️ precisa fazer port mapping (`-p`)
+
+### Exemplo
+
+```bash
+docker run -p 3000:3000 my-app
+```
+
+✔️ Acessa via `localhost:3000`
+
+👉 Por baixo:
+
+- Docker cria uma rede virtual (`docker0`)
+- Usa NAT
+
+📌 **Quando usar?**
+
+- Quase sempre (90% dos casos)
+- APIs, frontends, microserviços
+
+---
+
+## 🔹 host
+
+Aqui o container usa a rede do host diretamente.
+
+👉 Não existe isolamento de rede:
+
+- Não tem IP separado
+- Não precisa de `-p`
+
+### Exemplo
+
+```bash
+docker run --network host my-app
+```
+
+👉 Se sua app roda na porta `3000`:
+
+- Vai abrir direto em `localhost:3000`
+
+📌 **Diferença chave:**
+
+- Sem NAT
+- Sem overhead de rede
+
+✔️ Mais performance  
+❌ Menos isolamento
+
+📌 **Quando usar?**
+
+- Sistemas de alta performance
+- Ferramentas de rede (sniffers, proxies)
+- Quando precisa acessar portas diretamente
+
+⚠️ No Mac/Windows: suporte limitado (funciona melhor no Linux)
+
+---
+
+## 🔹 none
+
+Aqui o container fica sem rede nenhuma.
+
+👉 Ele:
+
+- Não acessa internet
+- Não se comunica com nada
+- Só roda isolado
+
+### Exemplo
+
+```bash
+docker run --network none my-app
+```
+
+📌 **Quando usar?**
+
+- Processamento offline
+- Jobs batch
+- Segurança extrema
+
+✔️ Isolamento total
+
+---
+
+## 🔥 Resumo direto
+
+| Modo   | Rede própria | Internet | Acesso externo | Isolamento | Performance |
+|--------|--------------|----------|----------------|------------|-------------|
+| bridge | ✅           | ✅       | via `-p`       | ✅         | Médio       |
+| host   | ❌           | ✅       | direto         | ❌         | Alto        |
+| none   | ❌           | ❌       | ❌             | 🔒 Máximo  | Alto        |
+
+---
+
+## 🧠 Forma simples de pensar
+
+- **bridge** → "container vive em uma rede própria"
+- **host** → "container é o próprio host"
+- **none** → "container tá offline total"
